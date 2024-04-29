@@ -1,5 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.INTERNET" />
+    <queries>
+        <package android:name="io.metamask" />
+        <package android:name="com.wallet.crypto.trustapp" />
+        <package android:name="io.gnosis.safe" />
+        <package android:name="me.rainbow" />
+        <package android:name="org.toshi" />
+    </queries>
     <application android:label="quantwealth"
                  android:name="${applicationName}"
                  android:icon="@mipmap/ic_launcher">
@@ -28,6 +35,12 @@
                       android:host="app.quant.wealth"
                       android:path="/auth" />
                 <!-- Accept URIs: w3a://com.example.w3aflutter/auth -->
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="quantwealth" />
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.
