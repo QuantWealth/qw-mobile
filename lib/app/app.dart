@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:quantwealth/core/wallet/wallet_connect_provider.dart';
 import 'package:web3modal_flutter/web3modal_flutter.dart';
 
 final w3mServiceProvider = Provider<W3MService>((ref) {
@@ -43,6 +42,7 @@ class _QuantAppState extends ConsumerState<QuantApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.dark,
+      theme: ThemeData(useMaterial3: true),
       home: Scaffold(
         appBar: AppBar(title: const Text('QuantWealth')),
         body: Column(
