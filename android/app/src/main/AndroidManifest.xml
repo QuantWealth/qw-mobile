@@ -31,7 +31,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="{scheme}"
+                <data android:scheme="quantwealth"
                       android:host="app.quant.wealth"
                       android:path="/auth" />
                 <!-- Accept URIs: w3a://com.example.w3aflutter/auth -->

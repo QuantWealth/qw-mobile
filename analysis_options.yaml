@@ -5,8 +5,6 @@ linter:
     prefer_const_constructors: false
 
 analyzer:
-  plugins:
-    - custom_lint
   exclude:
     - "**/*.g.dart"
     - "**/*.freezed.dart"
