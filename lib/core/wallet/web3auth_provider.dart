@@ -1,13 +1,24 @@
+import 'dart:developer';
 import 'dart:io';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/foundation.dart';
+import 'package:hex/hex.dart';
+import 'package:quantwealth/core/wallet/wallet_connect_provider.dart';
 import 'package:quantwealth/core/wallet/wallet_provider.dart';
+import 'package:walletconnect_flutter_v2/walletconnect_flutter_v2.dart';
 import 'package:web3auth_flutter/enums.dart';
 import 'package:web3auth_flutter/input.dart';
+import 'package:web3auth_flutter/output.dart';
 import 'package:web3auth_flutter/web3auth_flutter.dart';
 import 'package:web3dart/web3dart.dart';
+import 'package:http/http.dart' as http;
 
 class Web3AuthProvider implements WalletProvider {
+  late final Web3Client client;
+  late final Credentials creds;
+
+  late final bool Function(String msg) onSignMsg;
+
   @override
   Future<void> init() async {
     late final Uri redirectUrl;
@@ -20,51 +31,97 @@ class Web3AuthProvider implements WalletProvider {
 
     await Web3AuthFlutter.init(Web3AuthOptions(
       clientId:
-          'f8d9099851dbc368664024afdee62e79a3c592058b4bc521c406af3c118eb2fd',
-      network: Network.sapphire_mainnet,
+          'BHykbPZYH7oVMpiCugpp6DGovePXukzttx6bsqt5u3ftQZGBwKdDwRPEWQpOPftsm-HRk0YYl0ieVJjZA1tBu64',
+      network: Network.sapphire_devnet,
       redirectUrl: redirectUrl,
     ));
 
     await Web3AuthFlutter.initialize();
+
+    client = Web3Client(
+      'https://eth.llamarpc.com',
+      http.Client(),
+    );
+  }
+
+  Future<void> loginWithGoogle() async {
+    final Web3AuthResponse response = await Web3AuthFlutter.login(
+      LoginParams(loginProvider: Provider.google),
+    );
+
+    log('Response: $response', name: 'Web3AuthProvider');
   }
 
   @override
-  Future<Wallet?> getWallet() {
-    // TODO: implement getWallet
-    throw UnimplementedError();
+  Future<EvmWallet?> getWallet() async {
+    final privKey = await Web3AuthFlutter.getPrivKey();
+    creds = EthPrivateKey.fromHex(privKey);
+    final address = creds.address.hex;
+
+    final balance = await client.getBalance(creds.address);
+    final chainId = await client.getChainId();
+
+    log('Address: $address');
+    log('Balance: $balance');
+    log('Chain ID: $chainId');
+
+    return EvmWallet(
+      address: address,
+      chainId: chainId.toInt(),
+      balance: balance.toString(),
+    );
   }
 
   @override
-  Future<void> personalSign(
-    String msg,
-    Function(String p1) onSign,
-    Function(String p1) onSendTx,
-  ) {
-    // TODO: implement personalSign
-    throw UnimplementedError();
+  Future<String> personalSign(String msg) async {
+    final signed = creds.signPersonalMessageToUint8List(
+      Uint8List.fromList(msg.codeUnits),
+    );
+
+    final result = HEX.encode(signed);
+
+    log('Signature: $result', name: 'Web3AuthProvider');
+
+    return result;
   }
 
   @override
-  Future<void> sendTx({
-    required String tx,
-  }) {
-    // TODO: implement sendTx
-    throw UnimplementedError();
+  Future<void> sendRawTx({required String tx}) async {
+    final result = await client.sendRawTransaction(
+      Uint8List.fromList(tx.codeUnits),
+    );
+
+    log('Tx hash: $result', name: 'Web3AuthProvider');
   }
 
   @override
-  Future<void> signMsg({
-    required String msg,
-  }) {
+  Future<void> sendTx({required Transaction tx}) async {
+    final result = await client.sendTransaction(creds, tx);
+
+    log('Tx hash: $result', name: 'Web3AuthProvider');
+  }
+
+  @override
+  Future<void> signMsg({required String msg}) {
     // TODO: implement signMsg
     throw UnimplementedError();
   }
 
   @override
   Future<void> signTx({
-    required String tx,
-  }) {
-    // TODO: implement signTx
-    throw UnimplementedError();
+    required String address,
+    required String data,
+  }) async {
+    final result = await client.signTransaction(
+      creds,
+      Transaction(
+        from: creds.address,
+        maxGas: 100000,
+        to: EthereumAddress.fromHex(address),
+        data: Uint8List.fromList(data.codeUnits),
+      ),
+    );
+
+    log('Tx hash: $result', name: 'Web3AuthProvider');
   }
 }

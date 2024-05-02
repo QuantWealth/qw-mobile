@@ -11,14 +11,14 @@ class QuantApp extends StatefulWidget {
 }
 
 class _QuantAppState extends State<QuantApp> {
-  final wcCubit = WalletConnectProviderCubit(null);
-  final w3Cubit = Web3AuthProviderCubit(null);
+  final wcProvider = WalletConnectProvider();
+  final web3Auth = Web3AuthProvider();
 
   @override
   void initState() {
     super.initState();
-    wcCubit.init();
-    w3Cubit.init();
+    wcProvider.init();
+    web3Auth.init();
   }
 
   @override
@@ -33,10 +33,22 @@ class _QuantAppState extends State<QuantApp> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Center(
-              child: W3MConnectWalletButton(service: wcCubit.service),
+              child: W3MConnectWalletButton(service: wcProvider.service),
             ),
             Center(
-              child: W3MAccountButton(service: wcCubit.service),
+              child: W3MAccountButton(service: wcProvider.service),
+            ),
+            Center(
+              child: ElevatedButton(
+                child: Text('WC Personal Sign'),
+                onPressed: () => wcProvider.personalSign('Hello World'),
+              ),
+            ),
+            Center(
+              child: ElevatedButton(
+                child: Text('Web3Auth Google Login'),
+                onPressed: () async => await web3Auth.loginWithGoogle(),
+              ),
             ),
           ],
         ),

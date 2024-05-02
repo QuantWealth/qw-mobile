@@ -44,4 +44,6 @@ class Networks {
       explorerUrl: 'https://sepolia.explorer.zksync.io/',
     ),
   );
+
+  static final networks = [zkEVM, zkSync];
 }
