@@ -1,16 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:quantwealth/core/wallet/wallet_connect_provider.dart';
 import 'package:quantwealth/core/wallet/web3auth_provider.dart';
+import 'package:quantwealth/ui/auth/auth_page.dart';
 import 'package:web3modal_flutter/web3modal_flutter.dart';
 
-class QuantApp extends StatefulWidget {
+class QuantApp extends StatelessWidget {
   const QuantApp({super.key});
 
   @override
-  State<QuantApp> createState() => _QuantAppState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      themeMode: ThemeMode.dark,
+      theme: ThemeData(useMaterial3: true),
+      home: HomeScreen(),
+    );
+  }
 }
 
-class _QuantAppState extends State<QuantApp> {
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final wcProvider = WalletConnectProvider();
   final web3Auth = Web3AuthProvider();
 
@@ -23,35 +38,39 @@ class _QuantAppState extends State<QuantApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.dark,
-      theme: ThemeData(useMaterial3: true),
-      home: Scaffold(
-        appBar: AppBar(title: const Text('QuantWealth')),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(
-              child: W3MConnectWalletButton(service: wcProvider.service),
+    return Scaffold(
+      appBar: AppBar(title: const Text('QuantWealth')),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: W3MConnectWalletButton(service: wcProvider.service),
+          ),
+          Center(
+            child: W3MAccountButton(service: wcProvider.service),
+          ),
+          Center(
+            child: ElevatedButton(
+              child: Text('WC Personal Sign'),
+              onPressed: () => wcProvider.personalSign('Hello World'),
             ),
-            Center(
-              child: W3MAccountButton(service: wcProvider.service),
+          ),
+          Center(
+            child: ElevatedButton(
+              child: Text('Web3Auth Google Login'),
+              onPressed: () async => await web3Auth.loginWithGoogle(),
             ),
-            Center(
-              child: ElevatedButton(
-                child: Text('WC Personal Sign'),
-                onPressed: () => wcProvider.personalSign('Hello World'),
+          ),
+          Center(
+            child: ElevatedButton(
+              child: Text('Go to Auth Page'),
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => AuthPage()),
               ),
             ),
-            Center(
-              child: ElevatedButton(
-                child: Text('Web3Auth Google Login'),
-                onPressed: () async => await web3Auth.loginWithGoogle(),
-              ),
-            ),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }
