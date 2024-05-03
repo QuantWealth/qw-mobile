@@ -9,11 +9,13 @@ class QuantApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.dark,
-      theme: ThemeData(useMaterial3: true),
-      home: HomeScreen(),
+    return Web3ModalTheme(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        themeMode: ThemeMode.dark,
+        theme: ThemeData(useMaterial3: true),
+        home: HomeScreen(),
+      ),
     );
   }
 }

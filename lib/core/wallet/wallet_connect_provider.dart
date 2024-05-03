@@ -18,6 +18,15 @@ class EvmWallet {
 class WalletConnectProvider implements WalletProvider {
   late W3MService service;
 
+  static WalletConnectProvider? _instance;
+
+  WalletConnectProvider._();
+
+  factory WalletConnectProvider() {
+    _instance ??= WalletConnectProvider._();
+    return _instance!;
+  }
+
   @override
   Future<void> init() async {
     service = W3MService(

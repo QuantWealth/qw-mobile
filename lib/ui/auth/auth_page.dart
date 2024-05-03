@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quantwealth/app/icons.dart';
+import 'package:quantwealth/core/wallet/wallet_connect_provider.dart';
 import 'package:quantwealth/core/wallet/web3auth_provider.dart';
 import 'package:quantwealth/ui/common/icon_outlined_button.dart';
 import 'package:quantwealth/ui/common/icon_outlined_text_button.dart';
@@ -13,6 +14,7 @@ class AuthPage extends StatefulWidget {
 
 class _AuthPageState extends State<AuthPage> {
   final web3AuthProvider = Web3AuthProvider();
+  final wcAuthProvider = WalletConnectProvider();
 
   @override
   Widget build(BuildContext context) {

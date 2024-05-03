@@ -19,6 +19,15 @@ class Web3AuthProvider implements WalletProvider {
 
   late final bool Function(String msg) onSignMsg;
 
+  static Web3AuthProvider? _instance;
+
+  Web3AuthProvider._();
+
+  factory Web3AuthProvider() {
+    _instance ??= Web3AuthProvider._();
+    return _instance!;
+  }
+
   @override
   Future<void> init() async {
     late final Uri redirectUrl;

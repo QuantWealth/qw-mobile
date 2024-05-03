@@ -6,7 +6,7 @@ class IconOutlinedTextButton extends StatelessWidget {
   final String assetIcon;
   final Color primaryColor;
   final double elevation;
-  final Function() onPressed;
+  final Function()? onPressed;
 
   const IconOutlinedTextButton({
     super.key,
@@ -14,7 +14,7 @@ class IconOutlinedTextButton extends StatelessWidget {
     required this.assetIcon,
     this.elevation = 0.0,
     this.primaryColor = Colors.black,
-    required this.onPressed,
+    this.onPressed,
   });
 
   @override
