@@ -1,11 +1,11 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:quantwealth/app/extensions.dart';
 import 'package:quantwealth/app/theme/icons.dart';
 import 'package:quantwealth/core/wallet/wallet_connect_provider.dart';
 import 'package:quantwealth/core/wallet/web3auth_provider.dart';
 import 'package:quantwealth/ui/common/icon_outlined_button.dart';
 import 'package:quantwealth/ui/common/icon_outlined_text_button.dart';
+import 'package:quantwealth/ui/overview/overview_page.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -110,7 +110,9 @@ class _AuthPageState extends State<AuthPage> {
                     height: 68,
                     width: 54,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () => context.navigator.push(
+                        OverviewPage().route(),
+                      ),
                       style: ElevatedButton.styleFrom(
                         elevation: .0,
                         padding: EdgeInsets.zero,
@@ -145,7 +147,8 @@ class _AuthPageState extends State<AuthPage> {
                 SvgOutlinedButton(
                   icon: SvgIcons.email,
                   padding: EdgeInsets.symmetric(vertical: 22),
-                  onPressed: () async {},
+                  onPressed: () async =>
+                      await web3AuthProvider.loginWithEmail(),
                 ),
               ],
             )
