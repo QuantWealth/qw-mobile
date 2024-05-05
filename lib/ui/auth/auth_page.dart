@@ -1,5 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:quantwealth/app/icons.dart';
+import 'package:quantwealth/app/theme/icons.dart';
 import 'package:quantwealth/core/wallet/wallet_connect_provider.dart';
 import 'package:quantwealth/core/wallet/web3auth_provider.dart';
 import 'package:quantwealth/ui/common/icon_outlined_button.dart';
@@ -15,6 +17,20 @@ class AuthPage extends StatefulWidget {
 class _AuthPageState extends State<AuthPage> {
   final web3AuthProvider = Web3AuthProvider();
   final wcAuthProvider = WalletConnectProvider();
+
+  late final TextEditingController emailController;
+
+  @override
+  void initState() {
+    emailController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    wcAuthProvider.cleanupListeners();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +68,8 @@ class _AuthPageState extends State<AuthPage> {
                 IconOutlinedTextButton(
                   title: 'WalletConnect',
                   assetIcon: SvgIcons.walletConnect,
-                  onPressed: () {},
+                  onPressed: () async =>
+                      await wcAuthProvider.service.openModal(context),
                 ),
               ],
             ),
@@ -61,12 +78,60 @@ class _AuthPageState extends State<AuthPage> {
               'or continue with socials',
               style: TextStyle(fontSize: 24),
             ),
-            SizedBox(height: 20),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                vertical: 20,
+                horizontal: 30,
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: emailController,
+                      decoration: InputDecoration(
+                        hintText: 'Enter your email...',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(color: Color(0xFFE2E8F0)),
+                        ),
+                        hintStyle: TextStyle(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.normal,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 20),
+                  SizedBox(
+                    height: 68,
+                    width: 54,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        elevation: .0,
+                        padding: EdgeInsets.zero,
+                        foregroundColor: Colors.black,
+                        backgroundColor: Color(0xFFF1F5F9),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: Icon(Icons.arrow_forward_outlined),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                IconOutlinedButton(
-                  icon: Icons.facebook,
+                SvgOutlinedButton(
+                  icon: SvgIcons.google,
+                  padding: EdgeInsets.symmetric(vertical: 22),
                   onPressed: () async =>
                       await web3AuthProvider.loginWithGoogle(),
                 ),
@@ -77,8 +142,9 @@ class _AuthPageState extends State<AuthPage> {
                       await web3AuthProvider.loginWithApple(),
                 ),
                 SizedBox(width: 9),
-                IconOutlinedButton(
-                  icon: Icons.key,
+                SvgOutlinedButton(
+                  icon: SvgIcons.email,
+                  padding: EdgeInsets.symmetric(vertical: 22),
                   onPressed: () async {},
                 ),
               ],

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:quantwealth/app/theme/styles.dart';
 
 class IconOutlinedButton extends StatelessWidget {
   final IconData icon;
@@ -15,21 +17,40 @@ class IconOutlinedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
-      style: OutlinedButton.styleFrom(
-        elevation: .0,
-        enableFeedback: true,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        textStyle: TextStyle(fontWeight: FontWeight.bold),
-        padding: EdgeInsets.symmetric(vertical: 16),
-        side: BorderSide(width: 2, color: Color(0xFFE2E8F0)),
-      ),
+      style: Styles.outlinedButtonStyle,
       onPressed: onPressed,
       child: Icon(
         icon,
         size: 30,
         color: color,
+      ),
+    );
+  }
+}
+
+class SvgOutlinedButton extends StatelessWidget {
+  final String icon;
+  final double? height;
+  final Function() onPressed;
+  final EdgeInsetsGeometry? padding;
+
+  const SvgOutlinedButton({
+    super.key,
+    this.height = 20,
+    this.padding,
+    required this.icon,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return OutlinedButton(
+      style: Styles.outlinedButtonStyle
+          .copyWith(padding: MaterialStatePropertyAll(padding)),
+      onPressed: onPressed,
+      child: SvgPicture.asset(
+        icon,
+        height: height,
       ),
     );
   }

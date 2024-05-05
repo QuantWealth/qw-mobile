@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:quantwealth/app/theme/styles.dart';
 
 class IconOutlinedTextButton extends StatelessWidget {
   final String title;
@@ -20,15 +21,10 @@ class IconOutlinedTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
-      style: OutlinedButton.styleFrom(
-        elevation: elevation,
-        enableFeedback: true,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
+      style: Styles.outlinedButtonStyle.copyWith(
+        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+          EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         ),
-        textStyle: TextStyle(fontWeight: FontWeight.bold),
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        side: BorderSide(width: 2, color: Color(0xFFE2E8F0)),
       ),
       onPressed: onPressed,
       child: Row(

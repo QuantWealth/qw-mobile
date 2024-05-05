@@ -69,6 +69,14 @@ class Web3AuthProvider implements WalletProvider {
     log('Response: $response', name: 'Web3AuthProvider');
   }
 
+  Future<void> loginWithEmail() async {
+    final Web3AuthResponse response = await Web3AuthFlutter.login(
+      LoginParams(loginProvider: Provider.email_passwordless),
+    );
+
+    log('Response: $response', name: 'Web3AuthProvider');
+  }
+
   @override
   Future<EvmWallet?> getWallet() async {
     final privKey = await Web3AuthFlutter.getPrivKey();
