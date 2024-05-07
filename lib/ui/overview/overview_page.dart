@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:quantwealth/app/theme/styles.dart';
-import 'package:quantwealth/ui/common/text_outlined_button.dart';
+import 'package:quantwealth/ui/overview/balance_page.dart';
 
 class OverviewPage extends StatefulWidget {
   const OverviewPage({super.key});
@@ -11,120 +9,111 @@ class OverviewPage extends StatefulWidget {
 }
 
 class _OverviewPageState extends State<OverviewPage> {
+  int currentPageIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Overall Balance',
-                style: TextStyle(
-                  fontSize: 24,
-                ),
-              ),
-              SizedBox(height: 8),
-              Text(
-                '\$55.00',
-                style: TextStyle(
-                  fontSize: 48,
-                  fontWeight: FontWeight.w900,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 40.0),
-                child: OutlinedButton(
-                  onPressed: () => showModalBottomSheet(
-                    context: context,
-                    backgroundColor: Colors.white,
-                    builder: (_) => AddFundsSheet(),
-                  ),
-                  style: Styles.outlinedButtonStyle.copyWith(
-                    padding: MaterialStatePropertyAll(
-                      EdgeInsets.symmetric(
-                        vertical: 16,
-                        horizontal: 32,
-                      ),
-                    ),
-                    side: MaterialStateProperty.all(
-                      BorderSide(
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  child: Text(
-                    'Add Funds',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                ),
-              ),
-              TextButton(
-                onPressed: () {},
-                child: Text(
-                  'Show Assets',
-                  style: TextStyle(fontSize: 16, color: Colors.black),
-                ),
-              )
-            ],
+      bottomNavigationBar: NavigationBar(
+        onDestinationSelected: (index) => setState(() {
+          currentPageIndex = index;
+        }),
+        selectedIndex: currentPageIndex,
+        destinations: const <Widget>[
+          NavigationDestination(
+            icon: Icon(Icons.stop_circle_outlined),
+            label: 'Balance',
           ),
-        ),
+          NavigationDestination(
+            icon: Icon(Icons.wallet),
+            label: 'Wallet',
+          ),
+        ],
+      ),
+      body: SafeArea(
+        child: <Widget>[
+          BalancePage(),
+          WalletPage(),
+        ][currentPageIndex],
       ),
     );
   }
 }
 
-class AddFundsSheet extends StatelessWidget {
-  const AddFundsSheet({
+class WalletPage extends StatelessWidget {
+  const WalletPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 30.0),
+            child: Text(
+              'Savings',
+              style: TextStyle(
+                fontSize: 26,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+          ),
+          DividerTextButton(
+            title: 'Flexible',
+            subtitle: '18%',
+            onPressed: () {},
+          ),
+          SizedBox(height: 20),
+          DividerTextButton(
+            title: 'Fixed',
+            subtitle: '18%',
+            onPressed: () {},
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class DividerTextButton extends StatelessWidget {
+  final String title, subtitle;
+  final Function()? onPressed;
+
+  const DividerTextButton({
     super.key,
+    required this.title,
+    required this.subtitle,
+    this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.all(16),
-      child: Column(
-        children: [
-          SizedBox(height: 35),
-          Text(
-            'Deposit Via',
-            style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.w900,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 70.0),
+      child: InkWell(
+        onTap: onPressed,
+        child: Column(
+          children: [
+            Divider(),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(fontSize: 22),
+                  ),
+                  Text(
+                    subtitle,
+                    style: TextStyle(fontSize: 22),
+                  ),
+                ],
+              ),
             ),
-          ),
-          SizedBox(height: 24),
-          TextOutlinedButton(
-            text: 'Bank Transfer',
-            onPressed: () {},
-          ),
-          SizedBox(height: 18),
-          TextOutlinedButton(
-            text: 'Apple Pay',
-            onPressed: () {},
-          ),
-          SizedBox(height: 18),
-          TextOutlinedButton(
-            text: 'Crypto Transfer',
-            onPressed: () {},
-          ),
-          SizedBox(height: 18),
-          TextOutlinedButton(
-            text: 'Exchange Transfer',
-            onPressed: () {},
-          ),
-          SizedBox(height: 18),
-          TextOutlinedButton(
-            text: 'Wallet Address',
-            onPressed: () {},
-          ),
-        ],
+            Divider(),
+          ],
+        ),
       ),
     );
   }

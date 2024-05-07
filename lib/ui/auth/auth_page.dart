@@ -38,7 +38,6 @@ class _AuthPageState extends State<AuthPage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
               'Let\'s setup your account',
