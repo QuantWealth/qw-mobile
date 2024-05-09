@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:quantwealth/app/extensions.dart';
 import 'package:quantwealth/core/wallet/wallet_connect_provider.dart';
 import 'package:quantwealth/core/wallet/web3auth_provider.dart';
 import 'package:quantwealth/ui/auth/auth_page.dart';
-import 'package:quantwealth/app/extensions.dart';
+import 'package:quantwealth/ui/home/ui/pages/home_page.dart';
+import 'package:quantwealth/ui/savings/ui/pages/savings_page.dart';
 import 'package:web3modal_flutter/web3modal_flutter.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class TestPage extends StatefulWidget {
+  const TestPage({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<TestPage> createState() => _TestPageState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _TestPageState extends State<TestPage> {
   final wcProvider = WalletConnectProvider();
   final web3Auth = Web3AuthProvider();
 
@@ -39,7 +41,9 @@ class _HomeScreenState extends State<HomeScreen> {
           Center(
             child: ElevatedButton(
               child: Text('WC Personal Sign'),
-              onPressed: () => wcProvider.personalSign('Hello World'),
+              onPressed: () {
+                wcProvider.personalSign('Hello World');
+              },
             ),
           ),
           Center(
@@ -54,6 +58,20 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () => context.navigator.push(
                 AuthPage().route(),
               ),
+            ),
+          ),
+          Center(
+            child: ElevatedButton(
+              child: Text('Go to Overview Page'),
+              onPressed: () => context.navigator.push(
+                HomePage().route(),
+              ),
+            ),
+          ),
+          Center(
+            child: ElevatedButton(
+              child: Text('Go to Savings Page'),
+              onPressed: () => context.navigator.push(SavingsPage().route()),
             ),
           )
         ],

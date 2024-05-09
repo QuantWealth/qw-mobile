@@ -135,6 +135,7 @@ class WalletConnectProvider implements WalletProvider {
         params: [msg, service.session!.address!],
       ),
     );
+    service.launchConnectedWallet();
 
     log('Personal sign result: $result', name: 'WcProvider');
 
@@ -161,6 +162,7 @@ class WalletConnectProvider implements WalletProvider {
         params: [tx.toJson()],
       ),
     );
+    service.launchConnectedWallet();
 
     log('Send tx result: $result', name: 'WcProvider');
   }
@@ -185,6 +187,7 @@ class WalletConnectProvider implements WalletProvider {
         params: [tx],
       ),
     );
+    service.launchConnectedWallet();
 
     log('Send raw tx result: $result', name: 'WcProvider');
   }
@@ -215,6 +218,7 @@ class WalletConnectProvider implements WalletProvider {
         params: [address, data],
       ),
     );
+    service.launchConnectedWallet();
 
     log('Sign tx result: $result', name: 'WcProvider');
   }

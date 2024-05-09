@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:quantwealth/ui/home/home_page.dart';
+import 'package:quantwealth/ui/home/ui/pages/test_page.dart';
 import 'package:web3modal_flutter/web3modal_flutter.dart';
 
 class QuantApp extends StatelessWidget {
@@ -16,7 +16,7 @@ class QuantApp extends StatelessWidget {
           useMaterial3: true,
           fontFamily: GoogleFonts.rubik().fontFamily,
         ),
-        home: HomeScreen(),
+        home: TestPage(),
       ),
     );
   }

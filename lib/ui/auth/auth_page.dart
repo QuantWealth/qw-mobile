@@ -5,7 +5,7 @@ import 'package:quantwealth/core/wallet/wallet_connect_provider.dart';
 import 'package:quantwealth/core/wallet/web3auth_provider.dart';
 import 'package:quantwealth/ui/common/icon_outlined_button.dart';
 import 'package:quantwealth/ui/common/icon_outlined_text_button.dart';
-import 'package:quantwealth/ui/overview/overview_page.dart';
+import 'package:quantwealth/ui/savings/ui/pages/savings_page.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -110,7 +110,7 @@ class _AuthPageState extends State<AuthPage> {
                     width: 54,
                     child: ElevatedButton(
                       onPressed: () => context.navigator.push(
-                        OverviewPage().route(),
+                        SavingsPage().route(),
                       ),
                       style: ElevatedButton.styleFrom(
                         elevation: .0,
