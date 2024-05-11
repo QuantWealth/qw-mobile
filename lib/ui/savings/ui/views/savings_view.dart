@@ -4,15 +4,15 @@ import 'package:quantwealth/app/strings.dart';
 import 'package:quantwealth/app/theme/theme.dart';
 import 'package:quantwealth/ui/common/widgets/default_button.dart';
 import 'package:quantwealth/ui/savings/cubit/savings_cubit.dart';
-import 'package:quantwealth/ui/savings/domain/entities/savings_entity.dart';
+import 'package:quantwealth/ui/savings/infrastructure/datasource/savings_dto.dart';
 
 class SavingsView extends StatelessWidget {
   final void Function(String) onAmountChanged;
   final void Function(AmountInputLevels) onLevelChanged;
-  final void Function(SavingsEntity) onSelectSavings;
+  final void Function(SavingsDto) onSelectSavings;
   final VoidCallback onInvest;
-  final List<SavingsEntity> savings;
-  final SavingsEntity selectedSavings;
+  final List<SavingsDto> savings;
+  final SavingsDto? selectedSavings;
 
   const SavingsView({
     super.key,
@@ -21,7 +21,7 @@ class SavingsView extends StatelessWidget {
     required this.onSelectSavings,
     required this.onInvest,
     required this.savings,
-    required this.selectedSavings,
+    this.selectedSavings,
   });
 
   @override
@@ -103,7 +103,7 @@ class SavingsView extends StatelessWidget {
               child: Row(
                 children: [
                   Expanded(child: Text(savings.name)),
-                  Text('${savings.yield}%'),
+                  Text('${savings.apy}%'),
                   const SizedBox(width: 16.0),
                   selectedSavings == savings
                       ? Icon(

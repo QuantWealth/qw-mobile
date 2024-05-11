@@ -4,14 +4,44 @@ part of 'savings_cubit.dart';
 class SavingsState with _$SavingsState {
   const factory SavingsState({
     required String amount,
+    required List<SavingsDto> savingOptions,
     required AmountInputLevels? selectedInputLevel,
     required RequestStatus status,
+    String? error,
   }) = _Initial;
 
   factory SavingsState.initial() => SavingsState(
         amount: '',
+        savingOptions: [],
         selectedInputLevel: AmountInputLevels.l0,
         status: RequestStatus.initial,
+      );
+
+  factory SavingsState.loading() => SavingsState(
+        amount: '',
+        savingOptions: [],
+        selectedInputLevel: AmountInputLevels.l0,
+        status: RequestStatus.loading,
+      );
+
+  factory SavingsState.success({
+    required String amount,
+    required List<SavingsDto> savingOptions,
+    required AmountInputLevels selectedInputLevel,
+  }) =>
+      SavingsState(
+        amount: amount,
+        savingOptions: savingOptions,
+        selectedInputLevel: selectedInputLevel,
+        status: RequestStatus.success,
+      );
+
+  factory SavingsState.failure(String error) => SavingsState(
+        amount: '',
+        savingOptions: [],
+        selectedInputLevel: AmountInputLevels.l0,
+        status: RequestStatus.failure,
+        error: error,
       );
 }
 

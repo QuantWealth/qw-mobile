@@ -3,6 +3,7 @@ linter:
   rules:
     prefer_single_quotes: true
     prefer_const_constructors: false
+    non_constant_identifier_names: false
 
 analyzer:
   exclude:

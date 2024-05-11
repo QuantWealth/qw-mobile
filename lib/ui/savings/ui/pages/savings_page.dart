@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:quantwealth/ui/savings/domain/entities/savings_entity.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quantwealth/injectable.dart';
+import 'package:quantwealth/ui/savings/cubit/savings_cubit.dart';
 import 'package:quantwealth/ui/savings/ui/views/savings_view.dart';
 
 class SavingsPage extends StatefulWidget {
@@ -17,28 +19,19 @@ class _SavingsPageState extends State<SavingsPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return SavingsView(
-      onAmountChanged: (val) {},
-      onLevelChanged: (val) {},
-      onSelectSavings: (savings) {},
-      onInvest: () {},
-      savings: const [
-        SavingsEntity(
-          id: '0',
-          name: 'Flexible',
-          yield: 18,
-        ),
-        SavingsEntity(
-          id: '1',
-          name: 'Fixed',
-          yield: 18,
-        ),
-      ],
-      selectedSavings: SavingsEntity(
-        id: '1',
-        name: 'Fixed',
-        yield: 18,
-      ),
+
+    return BlocBuilder<SavingsCubit, SavingsState>(
+      bloc: getIt<SavingsCubit>()..onStart(),
+      builder: (context, state) {
+        return SavingsView(
+          onAmountChanged: (val) {},
+          onLevelChanged: (val) {},
+          onSelectSavings: (savings) {},
+          onInvest: () {},
+          savings: state.savingOptions,
+          selectedSavings: state.savingOptions.firstOrNull,
+        );
+      },
     );
   }
 }

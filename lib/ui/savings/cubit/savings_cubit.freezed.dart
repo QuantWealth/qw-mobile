@@ -17,9 +17,11 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SavingsState {
   String get amount => throw _privateConstructorUsedError;
+  List<SavingsDto> get savingOptions => throw _privateConstructorUsedError;
   AmountInputLevels? get selectedInputLevel =>
       throw _privateConstructorUsedError;
   RequestStatus get status => throw _privateConstructorUsedError;
+  String? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SavingsStateCopyWith<SavingsState> get copyWith =>
@@ -34,8 +36,10 @@ abstract class $SavingsStateCopyWith<$Res> {
   @useResult
   $Res call(
       {String amount,
+      List<SavingsDto> savingOptions,
       AmountInputLevels? selectedInputLevel,
-      RequestStatus status});
+      RequestStatus status,
+      String? error});
 }
 
 /// @nodoc
@@ -52,14 +56,20 @@ class _$SavingsStateCopyWithImpl<$Res, $Val extends SavingsState>
   @override
   $Res call({
     Object? amount = null,
+    Object? savingOptions = null,
     Object? selectedInputLevel = freezed,
     Object? status = null,
+    Object? error = freezed,
   }) {
     return _then(_value.copyWith(
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as String,
+      savingOptions: null == savingOptions
+          ? _value.savingOptions
+          : savingOptions // ignore: cast_nullable_to_non_nullable
+              as List<SavingsDto>,
       selectedInputLevel: freezed == selectedInputLevel
           ? _value.selectedInputLevel
           : selectedInputLevel // ignore: cast_nullable_to_non_nullable
@@ -68,6 +78,10 @@ class _$SavingsStateCopyWithImpl<$Res, $Val extends SavingsState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as RequestStatus,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -82,8 +96,10 @@ abstract class _$$InitialImplCopyWith<$Res>
   @useResult
   $Res call(
       {String amount,
+      List<SavingsDto> savingOptions,
       AmountInputLevels? selectedInputLevel,
-      RequestStatus status});
+      RequestStatus status,
+      String? error});
 }
 
 /// @nodoc
@@ -98,14 +114,20 @@ class __$$InitialImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? amount = null,
+    Object? savingOptions = null,
     Object? selectedInputLevel = freezed,
     Object? status = null,
+    Object? error = freezed,
   }) {
     return _then(_$InitialImpl(
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as String,
+      savingOptions: null == savingOptions
+          ? _value._savingOptions
+          : savingOptions // ignore: cast_nullable_to_non_nullable
+              as List<SavingsDto>,
       selectedInputLevel: freezed == selectedInputLevel
           ? _value.selectedInputLevel
           : selectedInputLevel // ignore: cast_nullable_to_non_nullable
@@ -114,6 +136,10 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as RequestStatus,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -123,19 +149,32 @@ class __$$InitialImplCopyWithImpl<$Res>
 class _$InitialImpl implements _Initial {
   const _$InitialImpl(
       {required this.amount,
+      required final List<SavingsDto> savingOptions,
       required this.selectedInputLevel,
-      required this.status});
+      required this.status,
+      this.error})
+      : _savingOptions = savingOptions;
 
   @override
   final String amount;
+  final List<SavingsDto> _savingOptions;
+  @override
+  List<SavingsDto> get savingOptions {
+    if (_savingOptions is EqualUnmodifiableListView) return _savingOptions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_savingOptions);
+  }
+
   @override
   final AmountInputLevels? selectedInputLevel;
   @override
   final RequestStatus status;
+  @override
+  final String? error;
 
   @override
   String toString() {
-    return 'SavingsState(amount: $amount, selectedInputLevel: $selectedInputLevel, status: $status)';
+    return 'SavingsState(amount: $amount, savingOptions: $savingOptions, selectedInputLevel: $selectedInputLevel, status: $status, error: $error)';
   }
 
   @override
@@ -144,14 +183,22 @@ class _$InitialImpl implements _Initial {
         (other.runtimeType == runtimeType &&
             other is _$InitialImpl &&
             (identical(other.amount, amount) || other.amount == amount) &&
+            const DeepCollectionEquality()
+                .equals(other._savingOptions, _savingOptions) &&
             (identical(other.selectedInputLevel, selectedInputLevel) ||
                 other.selectedInputLevel == selectedInputLevel) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, amount, selectedInputLevel, status);
+  int get hashCode => Object.hash(
+      runtimeType,
+      amount,
+      const DeepCollectionEquality().hash(_savingOptions),
+      selectedInputLevel,
+      status,
+      error);
 
   @JsonKey(ignore: true)
   @override
@@ -163,15 +210,21 @@ class _$InitialImpl implements _Initial {
 abstract class _Initial implements SavingsState {
   const factory _Initial(
       {required final String amount,
+      required final List<SavingsDto> savingOptions,
       required final AmountInputLevels? selectedInputLevel,
-      required final RequestStatus status}) = _$InitialImpl;
+      required final RequestStatus status,
+      final String? error}) = _$InitialImpl;
 
   @override
   String get amount;
   @override
+  List<SavingsDto> get savingOptions;
+  @override
   AmountInputLevels? get selectedInputLevel;
   @override
   RequestStatus get status;
+  @override
+  String? get error;
   @override
   @JsonKey(ignore: true)
   _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
