@@ -28,4 +28,8 @@ class SavingsCubit extends Cubit<SavingsState> {
       (error) => emit(SavingsState.failure(error.toString())),
     );
   }
+
+  void switchOption(SavingsDto option) {
+    emit(state.copyWith(selectedSavingsOption: option));
+  }
 }

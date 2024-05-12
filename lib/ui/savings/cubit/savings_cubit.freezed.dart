@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SavingsState {
   String get amount => throw _privateConstructorUsedError;
   List<SavingsDto> get savingOptions => throw _privateConstructorUsedError;
+  SavingsDto? get selectedSavingsOption => throw _privateConstructorUsedError;
   AmountInputLevels? get selectedInputLevel =>
       throw _privateConstructorUsedError;
   RequestStatus get status => throw _privateConstructorUsedError;
@@ -37,9 +38,12 @@ abstract class $SavingsStateCopyWith<$Res> {
   $Res call(
       {String amount,
       List<SavingsDto> savingOptions,
+      SavingsDto? selectedSavingsOption,
       AmountInputLevels? selectedInputLevel,
       RequestStatus status,
       String? error});
+
+  $SavingsDtoCopyWith<$Res>? get selectedSavingsOption;
 }
 
 /// @nodoc
@@ -57,6 +61,7 @@ class _$SavingsStateCopyWithImpl<$Res, $Val extends SavingsState>
   $Res call({
     Object? amount = null,
     Object? savingOptions = null,
+    Object? selectedSavingsOption = freezed,
     Object? selectedInputLevel = freezed,
     Object? status = null,
     Object? error = freezed,
@@ -70,6 +75,10 @@ class _$SavingsStateCopyWithImpl<$Res, $Val extends SavingsState>
           ? _value.savingOptions
           : savingOptions // ignore: cast_nullable_to_non_nullable
               as List<SavingsDto>,
+      selectedSavingsOption: freezed == selectedSavingsOption
+          ? _value.selectedSavingsOption
+          : selectedSavingsOption // ignore: cast_nullable_to_non_nullable
+              as SavingsDto?,
       selectedInputLevel: freezed == selectedInputLevel
           ? _value.selectedInputLevel
           : selectedInputLevel // ignore: cast_nullable_to_non_nullable
@@ -84,6 +93,18 @@ class _$SavingsStateCopyWithImpl<$Res, $Val extends SavingsState>
               as String?,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SavingsDtoCopyWith<$Res>? get selectedSavingsOption {
+    if (_value.selectedSavingsOption == null) {
+      return null;
+    }
+
+    return $SavingsDtoCopyWith<$Res>(_value.selectedSavingsOption!, (value) {
+      return _then(_value.copyWith(selectedSavingsOption: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -97,9 +118,13 @@ abstract class _$$InitialImplCopyWith<$Res>
   $Res call(
       {String amount,
       List<SavingsDto> savingOptions,
+      SavingsDto? selectedSavingsOption,
       AmountInputLevels? selectedInputLevel,
       RequestStatus status,
       String? error});
+
+  @override
+  $SavingsDtoCopyWith<$Res>? get selectedSavingsOption;
 }
 
 /// @nodoc
@@ -115,6 +140,7 @@ class __$$InitialImplCopyWithImpl<$Res>
   $Res call({
     Object? amount = null,
     Object? savingOptions = null,
+    Object? selectedSavingsOption = freezed,
     Object? selectedInputLevel = freezed,
     Object? status = null,
     Object? error = freezed,
@@ -128,6 +154,10 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value._savingOptions
           : savingOptions // ignore: cast_nullable_to_non_nullable
               as List<SavingsDto>,
+      selectedSavingsOption: freezed == selectedSavingsOption
+          ? _value.selectedSavingsOption
+          : selectedSavingsOption // ignore: cast_nullable_to_non_nullable
+              as SavingsDto?,
       selectedInputLevel: freezed == selectedInputLevel
           ? _value.selectedInputLevel
           : selectedInputLevel // ignore: cast_nullable_to_non_nullable
@@ -150,6 +180,7 @@ class _$InitialImpl implements _Initial {
   const _$InitialImpl(
       {required this.amount,
       required final List<SavingsDto> savingOptions,
+      this.selectedSavingsOption,
       required this.selectedInputLevel,
       required this.status,
       this.error})
@@ -166,6 +197,8 @@ class _$InitialImpl implements _Initial {
   }
 
   @override
+  final SavingsDto? selectedSavingsOption;
+  @override
   final AmountInputLevels? selectedInputLevel;
   @override
   final RequestStatus status;
@@ -174,7 +207,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'SavingsState(amount: $amount, savingOptions: $savingOptions, selectedInputLevel: $selectedInputLevel, status: $status, error: $error)';
+    return 'SavingsState(amount: $amount, savingOptions: $savingOptions, selectedSavingsOption: $selectedSavingsOption, selectedInputLevel: $selectedInputLevel, status: $status, error: $error)';
   }
 
   @override
@@ -185,6 +218,8 @@ class _$InitialImpl implements _Initial {
             (identical(other.amount, amount) || other.amount == amount) &&
             const DeepCollectionEquality()
                 .equals(other._savingOptions, _savingOptions) &&
+            (identical(other.selectedSavingsOption, selectedSavingsOption) ||
+                other.selectedSavingsOption == selectedSavingsOption) &&
             (identical(other.selectedInputLevel, selectedInputLevel) ||
                 other.selectedInputLevel == selectedInputLevel) &&
             (identical(other.status, status) || other.status == status) &&
@@ -196,6 +231,7 @@ class _$InitialImpl implements _Initial {
       runtimeType,
       amount,
       const DeepCollectionEquality().hash(_savingOptions),
+      selectedSavingsOption,
       selectedInputLevel,
       status,
       error);
@@ -211,6 +247,7 @@ abstract class _Initial implements SavingsState {
   const factory _Initial(
       {required final String amount,
       required final List<SavingsDto> savingOptions,
+      final SavingsDto? selectedSavingsOption,
       required final AmountInputLevels? selectedInputLevel,
       required final RequestStatus status,
       final String? error}) = _$InitialImpl;
@@ -219,6 +256,8 @@ abstract class _Initial implements SavingsState {
   String get amount;
   @override
   List<SavingsDto> get savingOptions;
+  @override
+  SavingsDto? get selectedSavingsOption;
   @override
   AmountInputLevels? get selectedInputLevel;
   @override

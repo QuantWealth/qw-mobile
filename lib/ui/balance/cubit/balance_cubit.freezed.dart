@@ -48,7 +48,7 @@ class _$BalanceStateCopyWithImpl<$Res, $Val extends BalanceState>
   @override
   $Res call({
     Object? assets = null,
-    Object? status = freezed,
+    Object? status = null,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
@@ -56,7 +56,7 @@ class _$BalanceStateCopyWithImpl<$Res, $Val extends BalanceState>
           ? _value.assets
           : assets // ignore: cast_nullable_to_non_nullable
               as List<AssetDto>,
-      status: freezed == status
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as RequestStatus,
@@ -91,7 +91,7 @@ class __$$InitialImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? assets = null,
-    Object? status = freezed,
+    Object? status = null,
     Object? error = freezed,
   }) {
     return _then(_$InitialImpl(
@@ -99,7 +99,7 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value._assets
           : assets // ignore: cast_nullable_to_non_nullable
               as List<AssetDto>,
-      status: freezed == status
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as RequestStatus,
@@ -144,16 +144,13 @@ class _$InitialImpl implements _Initial {
         (other.runtimeType == runtimeType &&
             other is _$InitialImpl &&
             const DeepCollectionEquality().equals(other._assets, _assets) &&
-            const DeepCollectionEquality().equals(other.status, status) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_assets),
-      const DeepCollectionEquality().hash(status),
-      error);
+      runtimeType, const DeepCollectionEquality().hash(_assets), status, error);
 
   @JsonKey(ignore: true)
   @override
