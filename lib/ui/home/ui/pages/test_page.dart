@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quantwealth/app/extensions.dart';
 import 'package:quantwealth/core/wallet/wallet_connect_provider.dart';
 import 'package:quantwealth/core/wallet/web3auth_provider.dart';
-import 'package:quantwealth/ui/auth/auth_page.dart';
+import 'package:quantwealth/ui/auth/pages/auth_page.dart';
 import 'package:quantwealth/ui/home/ui/pages/home_page.dart';
 import 'package:quantwealth/ui/savings/ui/pages/savings_page.dart';
 import 'package:web3modal_flutter/web3modal_flutter.dart';

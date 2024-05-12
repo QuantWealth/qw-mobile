@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:quantwealth/ui/auth/auth_page.dart';
+import 'package:quantwealth/ui/auth/pages/auth_page.dart';
 import 'package:web3modal_flutter/web3modal_flutter.dart';
 
 class QuantApp extends StatelessWidget {
