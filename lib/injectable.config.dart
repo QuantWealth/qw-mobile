@@ -13,9 +13,11 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:logger/logger.dart' as _i4;
 
-import 'di.dart' as _i8;
+import 'di.dart' as _i10;
 import 'ui/auth/cubit/auth_cubit.dart' as _i5;
-import 'ui/savings/cubit/savings_cubit.dart' as _i7;
+import 'ui/balance/cubit/balance_cubit.dart' as _i9;
+import 'ui/balance/infrastructure/repository/balance_repository.dart' as _i7;
+import 'ui/savings/cubit/savings_cubit.dart' as _i8;
 import 'ui/savings/infrastructure/repository/savings_repository.dart' as _i6;
 
 extension GetItInjectableX on _i1.GetIt {
@@ -37,10 +39,16 @@ extension GetItInjectableX on _i1.GetIt {
           dio: gh<_i3.Dio>(),
           logger: gh<_i4.Logger>(),
         ));
-    gh.lazySingleton<_i7.SavingsCubit>(
-        () => _i7.SavingsCubit(savingsRepository: gh<_i6.SavingsRepository>()));
+    gh.lazySingleton<_i7.BalanceRepository>(() => _i7.BalanceRepository(
+          dio: gh<_i3.Dio>(),
+          logger: gh<_i4.Logger>(),
+        ));
+    gh.lazySingleton<_i8.SavingsCubit>(
+        () => _i8.SavingsCubit(savingsRepository: gh<_i6.SavingsRepository>()));
+    gh.lazySingleton<_i9.BalanceCubit>(
+        () => _i9.BalanceCubit(balanceRepository: gh<_i7.BalanceRepository>()));
     return this;
   }
 }
 
-class _$DiModule extends _i8.DiModule {}
+class _$DiModule extends _i10.DiModule {}
