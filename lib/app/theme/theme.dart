@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 const bg = Colors.black;
 const white = Color(0xffFFFFFF);
+const bottomBarGrey = Color(0xff262626);
 
 const black100 = Color(0xff454545);
 const black200 = Color(0xff454545);

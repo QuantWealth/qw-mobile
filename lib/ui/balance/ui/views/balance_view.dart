@@ -71,13 +71,9 @@ class BalanceView extends StatelessWidget {
             ),
             labelColor: white,
             unselectedLabelColor: gray700,
-            indicatorSize: TabBarIndicatorSize.tab,
-            indicator: UnderlineTabIndicator(
-              borderSide: BorderSide(
-                width: 2.0,
-                color: white,
-              ),
-            ),
+            indicatorSize: TabBarIndicatorSize.label,
+            indicatorColor: white,
+            dividerColor: Colors.transparent,
             tabs: const [
               Tab(text: 'Assets'),
               Tab(text: 'Investments'),

@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
               blurRadius: 8.0,
             ),
           ],
-          color: white,
+          color: bottomBarGrey,
         ),
         child: Row(
           children: PageItems.values
@@ -87,7 +87,9 @@ class _HomePageState extends State<HomePage> {
                     icon: Icon(
                       e.icon,
                       size: 32.0,
-                      color: _activePage == e ? bg : gray700,
+                      color: _activePage == e
+                          ? Colors.white.withOpacity(0.2)
+                          : white,
                     ),
                   ),
                 ),

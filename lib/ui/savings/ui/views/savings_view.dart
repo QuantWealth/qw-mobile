@@ -27,8 +27,9 @@ class SavingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final inputStyle = TextStyle(
-      color: white.withOpacity(0.4),
-      fontSize: 24.0,
+      color: white,
+      fontWeight: FontWeight.bold,
+      fontSize: 46.0,
     );
 
     return ListView(
@@ -36,19 +37,42 @@ class SavingsView extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: TextFormField(
-            onChanged: onAmountChanged,
-            style: inputStyle,
-            keyboardType: TextInputType.number,
-            inputFormatters: [
-              FilteringTextInputFormatter.digitsOnly,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Column(
+                  children: [
+                    TextFormField(
+                      onChanged: onAmountChanged,
+                      style: inputStyle,
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [
+                        FilteringTextInputFormatter.digitsOnly,
+                      ],
+                      textAlign: TextAlign.center,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: Strings.hintAmountInput,
+                        hintStyle: inputStyle.copyWith(
+                          color: white.withOpacity(0.5),
+                        ),
+                        // prefixText: '\$',
+                      ),
+                    ),
+                    const SizedBox(height: 8.0),
+                    Text(
+                      'Input Amount (in USD)',
+                      style: TextStyle(
+                        color: white,
+                        fontWeight: FontWeight.normal,
+                        fontSize: 12.0,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
-            decoration: InputDecoration(
-              border: UnderlineInputBorder(),
-              hintText: Strings.hintAmountInput,
-              hintStyle: inputStyle,
-              prefixText: '\$',
-            ),
           ),
         ),
         const SizedBox(height: 32.0),

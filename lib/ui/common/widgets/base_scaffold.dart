@@ -49,6 +49,18 @@ class _BaseScaffoldState extends State<BaseScaffold> {
     return Stack(
       alignment: Alignment.bottomRight,
       children: [
+        // Container(
+        //   color: widget.backgroundColor ?? bg,
+        //   width: double.infinity,
+        //   height: double.infinity,
+        // ),
+        // Image.asset(
+        //   'assets/images/Grain.png',
+        //   color: Colors.white,
+        //   fit: BoxFit.fill,
+        //   width: double.infinity,
+        //   height: double.infinity,
+        // ),
         AnnotatedRegion<SystemUiOverlayStyle>(
           value: SystemUiOverlayStyle.light,
           child: Scaffold(
