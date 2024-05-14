@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quantwealth/app/theme/icons.dart';
+import 'package:quantwealth/injectable.dart';
 import 'package:quantwealth/ui/auth/cubit/auth_cubit.dart';
 import 'package:quantwealth/ui/common/icon_outlined_button.dart';
 import 'package:quantwealth/ui/common/icon_outlined_text_button.dart';
@@ -69,7 +70,7 @@ class _AuthViewState extends State<AuthView> {
                 IconOutlinedTextButton(
                   title: 'WalletConnect',
                   assetIcon: SvgIcons.walletConnect,
-                  onPressed: () {},
+                  onPressed: () => getIt<AuthCubit>().onWalletConnect(),
                 ),
               ],
             ),

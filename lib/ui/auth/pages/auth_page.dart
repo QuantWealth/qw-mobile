@@ -18,6 +18,10 @@ class AuthPage extends StatelessWidget {
         if (state.authStatus == RequestStatus.success) {
           context.navigator.push(HomePage().route());
         }
+
+        if (state.loginType == LoginType.walletConnect) {
+          getIt<AuthCubit>().service.openModal(context);
+        }
       },
       builder: (_, state) {
         return AuthView(

@@ -3,6 +3,7 @@ part of 'auth_cubit.dart';
 @freezed
 class AuthState with _$AuthState {
   const factory AuthState({
+    LoginType? loginType,
     required RequestStatus authStatus,
     String? error,
   }) = _Initial;
@@ -27,3 +28,5 @@ class AuthState with _$AuthState {
         error: null,
       );
 }
+
+enum LoginType { walletConnect }
