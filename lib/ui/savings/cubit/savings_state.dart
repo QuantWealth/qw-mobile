@@ -5,6 +5,7 @@ class SavingsState with _$SavingsState {
   const factory SavingsState({
     required String amount,
     required List<SavingsDto> savingOptions,
+    SavingsDto? selectedSavingsOption,
     required AmountInputLevels? selectedInputLevel,
     required RequestStatus status,
     String? error,
@@ -33,6 +34,7 @@ class SavingsState with _$SavingsState {
         amount: amount,
         savingOptions: savingOptions,
         selectedInputLevel: selectedInputLevel,
+        selectedSavingsOption: savingOptions.firstOrNull,
         status: RequestStatus.success,
       );
 

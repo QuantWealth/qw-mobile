@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:quantwealth/app/extensions.dart';
 import 'package:quantwealth/app/theme/icons.dart';
-import 'package:quantwealth/core/wallet/wallet_connect_provider.dart';
-import 'package:quantwealth/core/wallet/web3auth_provider.dart';
+import 'package:quantwealth/ui/auth/cubit/auth_cubit.dart';
 import 'package:quantwealth/ui/common/icon_outlined_button.dart';
 import 'package:quantwealth/ui/common/icon_outlined_text_button.dart';
-import 'package:quantwealth/ui/savings/ui/pages/savings_page.dart';
 
-class AuthPage extends StatefulWidget {
-  const AuthPage({super.key});
+class AuthView extends StatefulWidget {
+  final Function(SocialAuthType) onSocialAuth;
+
+  const AuthView({
+    super.key,
+    required this.onSocialAuth,
+  });
 
   @override
-  State<AuthPage> createState() => _AuthPageState();
+  State<AuthView> createState() => _AuthViewState();
 }
 
-class _AuthPageState extends State<AuthPage> {
-  final web3AuthProvider = Web3AuthProvider();
-  final wcAuthProvider = WalletConnectProvider();
-
+class _AuthViewState extends State<AuthView> {
   late final TextEditingController emailController;
 
   @override
@@ -31,7 +30,7 @@ class _AuthPageState extends State<AuthPage> {
 
   @override
   void dispose() {
-    wcAuthProvider.cleanupListeners();
+    emailController.dispose();
     super.dispose();
   }
 
@@ -70,8 +69,7 @@ class _AuthPageState extends State<AuthPage> {
                 IconOutlinedTextButton(
                   title: 'WalletConnect',
                   assetIcon: SvgIcons.walletConnect,
-                  onPressed: () async =>
-                      await wcAuthProvider.service.openModal(context),
+                  onPressed: () {},
                 ),
               ],
             ),
@@ -112,9 +110,7 @@ class _AuthPageState extends State<AuthPage> {
                     height: 68,
                     width: 54,
                     child: ElevatedButton(
-                      onPressed: () => context.navigator.push(
-                        SavingsPage().route(),
-                      ),
+                      onPressed: () {},
                       style: ElevatedButton.styleFrom(
                         elevation: .0,
                         padding: EdgeInsets.zero,
@@ -136,21 +132,18 @@ class _AuthPageState extends State<AuthPage> {
                 SvgOutlinedButton(
                   icon: SvgIcons.google,
                   padding: EdgeInsets.symmetric(vertical: 22),
-                  onPressed: () async =>
-                      await web3AuthProvider.loginWithGoogle(),
+                  onPressed: () => widget.onSocialAuth(SocialAuthType.google),
                 ),
                 SizedBox(width: 9),
                 IconOutlinedButton(
                   icon: Icons.apple,
-                  onPressed: () async =>
-                      await web3AuthProvider.loginWithApple(),
+                  onPressed: () => widget.onSocialAuth(SocialAuthType.apple),
                 ),
                 SizedBox(width: 9),
                 SvgOutlinedButton(
                   icon: SvgIcons.email,
                   padding: EdgeInsets.symmetric(vertical: 22),
-                  onPressed: () async =>
-                      await web3AuthProvider.loginWithEmail(),
+                  onPressed: () => widget.onSocialAuth(SocialAuthType.email),
                 ),
               ],
             )

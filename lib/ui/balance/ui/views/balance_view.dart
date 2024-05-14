@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:quantwealth/app/strings.dart';
 import 'package:quantwealth/app/theme/theme.dart';
+import 'package:quantwealth/ui/balance/infrastructure/datasource/asset_dto.dart';
+import 'package:quantwealth/ui/balance/ui/widgets/assets_listview.dart';
 import 'package:quantwealth/ui/common/widgets/default_button.dart';
 
 class BalanceView extends StatelessWidget {
   final VoidCallback onAddFunds;
-  const BalanceView({super.key, required this.onAddFunds});
+  final List<AssetDto> assets;
+
+  const BalanceView({
+    super.key,
+    required this.onAddFunds,
+    required this.assets,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -76,11 +84,17 @@ class BalanceView extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: 200, // You can adjust this as per your requirement
+            height: 400, // You can adjust this as per your requirement
             child: TabBarView(
-              children: const [
-                Icon(Icons.directions_car),
-                Icon(Icons.directions_transit),
+              children: [
+                AssetsListView(
+                  assets: assets,
+                  onClick: (asset) {},
+                ),
+                Icon(
+                  Icons.directions_transit,
+                  color: Colors.amber,
+                ),
               ],
             ),
           ),

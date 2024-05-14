@@ -26,10 +26,10 @@ class _SavingsPageState extends State<SavingsPage>
         return SavingsView(
           onAmountChanged: (val) {},
           onLevelChanged: (val) {},
-          onSelectSavings: (savings) {},
+          onSelectSavings: (op) => getIt<SavingsCubit>().switchOption(op),
           onInvest: () {},
           savings: state.savingOptions,
-          selectedSavings: state.savingOptions.firstOrNull,
+          selectedSavings: state.selectedSavingsOption,
         );
       },
     );
