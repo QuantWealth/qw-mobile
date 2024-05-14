@@ -19,7 +19,7 @@ class BalanceRepository {
     required String walletAddress,
     int next = 10,
     int limit = 10,
-    String sort = 'ascending',
+    String sort = 'asc',
   }) async {
     try {
       final response = await _dio.get(

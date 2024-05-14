@@ -27,6 +27,8 @@ mixin _$AssetDto {
   double get fiatPrice => throw _privateConstructorUsedError;
   String get network => throw _privateConstructorUsedError;
   int get totalCount => throw _privateConstructorUsedError;
+  double get percentageChange => throw _privateConstructorUsedError;
+  double get totalBalance => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,7 +48,9 @@ abstract class $AssetDtoCopyWith<$Res> {
       int quantity,
       double fiatPrice,
       String network,
-      int totalCount});
+      int totalCount,
+      double percentageChange,
+      double totalBalance});
 }
 
 /// @nodoc
@@ -69,6 +73,8 @@ class _$AssetDtoCopyWithImpl<$Res, $Val extends AssetDto>
     Object? fiatPrice = null,
     Object? network = null,
     Object? totalCount = null,
+    Object? percentageChange = null,
+    Object? totalBalance = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -99,6 +105,14 @@ class _$AssetDtoCopyWithImpl<$Res, $Val extends AssetDto>
           ? _value.totalCount
           : totalCount // ignore: cast_nullable_to_non_nullable
               as int,
+      percentageChange: null == percentageChange
+          ? _value.percentageChange
+          : percentageChange // ignore: cast_nullable_to_non_nullable
+              as double,
+      totalBalance: null == totalBalance
+          ? _value.totalBalance
+          : totalBalance // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 }
@@ -118,7 +132,9 @@ abstract class _$$AssetDtoImplCopyWith<$Res>
       int quantity,
       double fiatPrice,
       String network,
-      int totalCount});
+      int totalCount,
+      double percentageChange,
+      double totalBalance});
 }
 
 /// @nodoc
@@ -139,6 +155,8 @@ class __$$AssetDtoImplCopyWithImpl<$Res>
     Object? fiatPrice = null,
     Object? network = null,
     Object? totalCount = null,
+    Object? percentageChange = null,
+    Object? totalBalance = null,
   }) {
     return _then(_$AssetDtoImpl(
       name: null == name
@@ -169,6 +187,14 @@ class __$$AssetDtoImplCopyWithImpl<$Res>
           ? _value.totalCount
           : totalCount // ignore: cast_nullable_to_non_nullable
               as int,
+      percentageChange: null == percentageChange
+          ? _value.percentageChange
+          : percentageChange // ignore: cast_nullable_to_non_nullable
+              as double,
+      totalBalance: null == totalBalance
+          ? _value.totalBalance
+          : totalBalance // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -183,7 +209,9 @@ class _$AssetDtoImpl extends _AssetDto {
       required this.quantity,
       required this.fiatPrice,
       required this.network,
-      required this.totalCount})
+      required this.totalCount,
+      required this.percentageChange,
+      required this.totalBalance})
       : super._();
 
   factory _$AssetDtoImpl.fromJson(Map<String, dynamic> json) =>
@@ -203,10 +231,14 @@ class _$AssetDtoImpl extends _AssetDto {
   final String network;
   @override
   final int totalCount;
+  @override
+  final double percentageChange;
+  @override
+  final double totalBalance;
 
   @override
   String toString() {
-    return 'AssetDto(name: $name, symbol: $symbol, address: $address, quantity: $quantity, fiatPrice: $fiatPrice, network: $network, totalCount: $totalCount)';
+    return 'AssetDto(name: $name, symbol: $symbol, address: $address, quantity: $quantity, fiatPrice: $fiatPrice, network: $network, totalCount: $totalCount, percentageChange: $percentageChange, totalBalance: $totalBalance)';
   }
 
   @override
@@ -223,13 +255,17 @@ class _$AssetDtoImpl extends _AssetDto {
                 other.fiatPrice == fiatPrice) &&
             (identical(other.network, network) || other.network == network) &&
             (identical(other.totalCount, totalCount) ||
-                other.totalCount == totalCount));
+                other.totalCount == totalCount) &&
+            (identical(other.percentageChange, percentageChange) ||
+                other.percentageChange == percentageChange) &&
+            (identical(other.totalBalance, totalBalance) ||
+                other.totalBalance == totalBalance));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, name, symbol, address, quantity,
-      fiatPrice, network, totalCount);
+      fiatPrice, network, totalCount, percentageChange, totalBalance);
 
   @JsonKey(ignore: true)
   @override
@@ -253,7 +289,9 @@ abstract class _AssetDto extends AssetDto {
       required final int quantity,
       required final double fiatPrice,
       required final String network,
-      required final int totalCount}) = _$AssetDtoImpl;
+      required final int totalCount,
+      required final double percentageChange,
+      required final double totalBalance}) = _$AssetDtoImpl;
   const _AssetDto._() : super._();
 
   factory _AssetDto.fromJson(Map<String, dynamic> json) =
@@ -273,6 +311,10 @@ abstract class _AssetDto extends AssetDto {
   String get network;
   @override
   int get totalCount;
+  @override
+  double get percentageChange;
+  @override
+  double get totalBalance;
   @override
   @JsonKey(ignore: true)
   _$$AssetDtoImplCopyWith<_$AssetDtoImpl> get copyWith =>

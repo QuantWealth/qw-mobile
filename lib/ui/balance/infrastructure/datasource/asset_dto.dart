@@ -15,6 +15,8 @@ class AssetDto with _$AssetDto {
     required double fiatPrice,
     required String network,
     required int totalCount,
+    required double percentageChange,
+    required double totalBalance,
   }) = _AssetDto;
 
   factory AssetDto.fromJson(Map<String, Object?> json) =>

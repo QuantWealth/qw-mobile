@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AuthState {
-  LoginType? get loginType => throw _privateConstructorUsedError;
+  LoginType get loginType => throw _privateConstructorUsedError;
   RequestStatus get authStatus => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
 
@@ -30,7 +30,7 @@ abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res, AuthState>;
   @useResult
-  $Res call({LoginType? loginType, RequestStatus authStatus, String? error});
+  $Res call({LoginType loginType, RequestStatus authStatus, String? error});
 }
 
 /// @nodoc
@@ -46,15 +46,15 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? loginType = freezed,
+    Object? loginType = null,
     Object? authStatus = null,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
-      loginType: freezed == loginType
+      loginType: null == loginType
           ? _value.loginType
           : loginType // ignore: cast_nullable_to_non_nullable
-              as LoginType?,
+              as LoginType,
       authStatus: null == authStatus
           ? _value.authStatus
           : authStatus // ignore: cast_nullable_to_non_nullable
@@ -75,7 +75,7 @@ abstract class _$$InitialImplCopyWith<$Res>
       __$$InitialImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({LoginType? loginType, RequestStatus authStatus, String? error});
+  $Res call({LoginType loginType, RequestStatus authStatus, String? error});
 }
 
 /// @nodoc
@@ -89,15 +89,15 @@ class __$$InitialImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? loginType = freezed,
+    Object? loginType = null,
     Object? authStatus = null,
     Object? error = freezed,
   }) {
     return _then(_$InitialImpl(
-      loginType: freezed == loginType
+      loginType: null == loginType
           ? _value.loginType
           : loginType // ignore: cast_nullable_to_non_nullable
-              as LoginType?,
+              as LoginType,
       authStatus: null == authStatus
           ? _value.authStatus
           : authStatus // ignore: cast_nullable_to_non_nullable
@@ -113,10 +113,11 @@ class __$$InitialImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$InitialImpl implements _Initial {
-  const _$InitialImpl({this.loginType, required this.authStatus, this.error});
+  const _$InitialImpl(
+      {required this.loginType, required this.authStatus, this.error});
 
   @override
-  final LoginType? loginType;
+  final LoginType loginType;
   @override
   final RequestStatus authStatus;
   @override
@@ -151,12 +152,12 @@ class _$InitialImpl implements _Initial {
 
 abstract class _Initial implements AuthState {
   const factory _Initial(
-      {final LoginType? loginType,
+      {required final LoginType loginType,
       required final RequestStatus authStatus,
       final String? error}) = _$InitialImpl;
 
   @override
-  LoginType? get loginType;
+  LoginType get loginType;
   @override
   RequestStatus get authStatus;
   @override

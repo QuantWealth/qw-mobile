@@ -53,28 +53,34 @@ class Web3AuthProvider implements WalletProvider {
     );
   }
 
-  Future<void> loginWithGoogle() async {
+  Future<String?> loginWithGoogle() async {
     final Web3AuthResponse response = await Web3AuthFlutter.login(
       LoginParams(loginProvider: Provider.google),
     );
 
     log('Response: $response', name: 'Web3AuthProvider');
+
+    return response.privKey;
   }
 
-  Future<void> loginWithApple() async {
+  Future<String?> loginWithApple() async {
     final Web3AuthResponse response = await Web3AuthFlutter.login(
       LoginParams(loginProvider: Provider.apple),
     );
 
     log('Response: $response', name: 'Web3AuthProvider');
+
+    return response.privKey;
   }
 
-  Future<void> loginWithEmail() async {
+  Future<String?> loginWithEmail() async {
     final Web3AuthResponse response = await Web3AuthFlutter.login(
       LoginParams(loginProvider: Provider.email_passwordless),
     );
 
     log('Response: $response', name: 'Web3AuthProvider');
+
+    return response.privKey;
   }
 
   @override
