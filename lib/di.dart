@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:logger/logger.dart';
 import 'package:injectable/injectable.dart';
 
@@ -13,4 +14,7 @@ abstract class DiModule {
 
   @singleton
   Logger get logger => Logger();
+
+  @singleton
+  FlutterSecureStorage get storage => FlutterSecureStorage();
 }
