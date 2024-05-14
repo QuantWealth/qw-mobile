@@ -23,8 +23,6 @@ class _AuthViewState extends State<AuthView> {
   @override
   void initState() {
     emailController = TextEditingController();
-    wcAuthProvider.init();
-    web3AuthProvider.init();
     super.initState();
   }
   // column payment task will mammal attract mouse direct can modify loud expand
