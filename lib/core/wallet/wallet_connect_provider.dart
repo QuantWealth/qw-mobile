@@ -65,20 +65,31 @@ class WalletConnectProvider implements WalletProvider {
     );
 
     await service.init();
-    await _setupListeners();
   }
 
-  Future<void> _setupListeners() async {
+  Future<void> logout() async {
+    await service.disconnect();
+    await service.dispose();
+  }
+
+  Future<void> setupListeners({
+    Function(ModalConnect?)? onConnect,
+    Function(ModalDisconnect?)? onDisconnect,
+    Function(ModalError?)? onError,
+  }) async {
     service.onModalConnect.subscribe((args) {
       log('Modal connect: $args', name: 'WcProvider');
+      onConnect?.call(args);
     });
 
     service.onModalDisconnect.subscribe((args) {
       log('Modal disconnect: $args', name: 'WcProvider');
+      onDisconnect?.call(args);
     });
 
     service.onModalError.subscribe((args) {
       log('Modal error: $args', name: 'WcProvider');
+      onError?.call(args);
     });
 
     service.onSessionExpireEvent.subscribe((args) {

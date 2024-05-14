@@ -53,6 +53,10 @@ class Web3AuthProvider implements WalletProvider {
     );
   }
 
+  Future<void> logout() async {
+    await Web3AuthFlutter.logout();
+  }
+
   Future<String?> loginWithGoogle() async {
     final Web3AuthResponse response = await Web3AuthFlutter.login(
       LoginParams(loginProvider: Provider.google),

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quantwealth/app/extensions.dart';
 import 'package:quantwealth/injectable.dart';
 import 'package:quantwealth/ui/auth/cubit/auth_cubit.dart';
 import 'package:quantwealth/ui/auth/views/auth_view.dart';
-import 'package:quantwealth/ui/home/ui/pages/home_page.dart';
-import 'package:quantwealth/ui/savings/cubit/savings_cubit.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
@@ -13,12 +10,11 @@ class AuthPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
-      bloc: getIt<AuthCubit>()..onStart(),
+      bloc: getIt<AuthCubit>(),
+      listenWhen: (previous, current) =>
+          previous.authStatus == AuthStatus.disconnected &&
+          current.loginType == LoginType.walletConnect,
       listener: (_, state) {
-        if (state.authStatus == RequestStatus.success) {
-          context.navigator.push(HomePage().route());
-        }
-
         if (state.loginType == LoginType.walletConnect) {
           getIt<AuthCubit>().service.openModal(context);
         }

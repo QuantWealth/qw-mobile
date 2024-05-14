@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$AuthState {
   LoginType get loginType => throw _privateConstructorUsedError;
-  RequestStatus get authStatus => throw _privateConstructorUsedError;
+  AuthStatus get authStatus => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +30,7 @@ abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res, AuthState>;
   @useResult
-  $Res call({LoginType loginType, RequestStatus authStatus, String? error});
+  $Res call({LoginType loginType, AuthStatus authStatus, String? error});
 }
 
 /// @nodoc
@@ -58,7 +58,7 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
       authStatus: null == authStatus
           ? _value.authStatus
           : authStatus // ignore: cast_nullable_to_non_nullable
-              as RequestStatus,
+              as AuthStatus,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -75,7 +75,7 @@ abstract class _$$InitialImplCopyWith<$Res>
       __$$InitialImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({LoginType loginType, RequestStatus authStatus, String? error});
+  $Res call({LoginType loginType, AuthStatus authStatus, String? error});
 }
 
 /// @nodoc
@@ -101,7 +101,7 @@ class __$$InitialImplCopyWithImpl<$Res>
       authStatus: null == authStatus
           ? _value.authStatus
           : authStatus // ignore: cast_nullable_to_non_nullable
-              as RequestStatus,
+              as AuthStatus,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -119,7 +119,7 @@ class _$InitialImpl implements _Initial {
   @override
   final LoginType loginType;
   @override
-  final RequestStatus authStatus;
+  final AuthStatus authStatus;
   @override
   final String? error;
 
@@ -153,13 +153,13 @@ class _$InitialImpl implements _Initial {
 abstract class _Initial implements AuthState {
   const factory _Initial(
       {required final LoginType loginType,
-      required final RequestStatus authStatus,
+      required final AuthStatus authStatus,
       final String? error}) = _$InitialImpl;
 
   @override
   LoginType get loginType;
   @override
-  RequestStatus get authStatus;
+  AuthStatus get authStatus;
   @override
   String? get error;
   @override
