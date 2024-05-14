@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -31,19 +33,35 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> onSocialAuth(SocialAuthType authType) async {
-    emit(AuthState.loading());
+    late final String? privKey;
+
+    emit(AuthState.loading().copyWith(
+      loginType: LoginType.web3Auth,
+    ));
+
     switch (authType) {
       case SocialAuthType.google:
-        await _web3AuthProvider.loginWithGoogle();
+        privKey = await _web3AuthProvider.loginWithGoogle();
         break;
       case SocialAuthType.apple:
-        await _web3AuthProvider.loginWithApple();
+        privKey = await _web3AuthProvider.loginWithApple();
         break;
       case SocialAuthType.email:
-        await _web3AuthProvider.loginWithEmail();
+        privKey = await _web3AuthProvider.loginWithEmail();
         break;
     }
-    emit(AuthState.success());
+
+    log('PrivKey: $privKey', name: 'AuthCubit');
+
+    if (privKey != null) {
+      emit(AuthState.success().copyWith(
+        loginType: LoginType.web3Auth,
+      ));
+    } else {
+      emit(AuthState.error('Failed to login').copyWith(
+        loginType: LoginType.web3Auth,
+      ));
+    }
   }
 
   @override

@@ -15,6 +15,8 @@ _$AssetDtoImpl _$$AssetDtoImplFromJson(Map<String, dynamic> json) =>
       fiatPrice: (json['fiatPrice'] as num).toDouble(),
       network: json['network'] as String,
       totalCount: (json['totalCount'] as num).toInt(),
+      percentageChange: (json['percentageChange'] as num).toDouble(),
+      totalBalance: (json['totalBalance'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$$AssetDtoImplToJson(_$AssetDtoImpl instance) =>
@@ -26,4 +28,6 @@ Map<String, dynamic> _$$AssetDtoImplToJson(_$AssetDtoImpl instance) =>
       'fiatPrice': instance.fiatPrice,
       'network': instance.network,
       'totalCount': instance.totalCount,
+      'percentageChange': instance.percentageChange,
+      'totalBalance': instance.totalBalance,
     };

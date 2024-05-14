@@ -25,6 +25,7 @@ class AuthPage extends StatelessWidget {
       },
       builder: (_, state) {
         return AuthView(
+          onWalletConnect: () => getIt<AuthCubit>().onWalletConnect(),
           onSocialAuth: (type) => getIt<AuthCubit>().onSocialAuth(type),
         );
       },

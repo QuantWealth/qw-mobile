@@ -62,11 +62,11 @@ class AssetListTile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Text(
-            '\$${asset.fiatPrice * asset.quantity}',
+            '\$${asset.totalBalance}',
             style: fontSB(18),
           ),
           Text(
-            '${asset.network}%',
+            '${asset.percentageChange}%',
             style: fontR(14, color: Colors.greenAccent),
           ),
         ],
