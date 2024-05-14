@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:quantwealth/ui/auth/pages/auth_page.dart';
+import 'package:quantwealth/ui/home/ui/pages/test_page.dart';
 import 'package:web3modal_flutter/web3modal_flutter.dart';
 
 class QuantApp extends StatelessWidget {
@@ -8,15 +7,15 @@ class QuantApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final baseTheme =
+        ThemeData(useMaterial3: true, fontFamily: 'GalanoGrotesque');
+
     return Web3ModalTheme(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         themeMode: ThemeMode.dark,
-        theme: ThemeData(
-          useMaterial3: true,
-          fontFamily: GoogleFonts.rubik().fontFamily,
-        ),
-        home: AuthPage(),
+        theme: baseTheme,
+        home: TestPage(),
       ),
     );
   }

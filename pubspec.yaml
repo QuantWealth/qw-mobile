@@ -44,3 +44,42 @@ flutter:
   uses-material-design: true
   assets:
     - assets/icons/
+  fonts:
+    - family: GalanoGrotesque
+      fonts:
+        - asset: assets/fonts/GalanoGrotesque/GalanoGrotesqueThin.otf
+          weight: 100
+        - asset: assets/fonts/GalanoGrotesque/GalanoGrotesqueExtraLight.otf
+          weight: 200
+        - asset: assets/fonts/GalanoGrotesque/GalanoGrotesqueLight.otf
+          weight: 300
+        - asset: assets/fonts/GalanoGrotesque/GalanoGrotesqueRegular.otf
+          weight: 400
+        - asset: assets/fonts/GalanoGrotesque/GalanoGrotesqueMedium.otf
+          weight: 500
+        - asset: assets/fonts/GalanoGrotesque/GalanoGrotesqueSemiBold.otf
+          weight: 600
+        - asset: assets/fonts/GalanoGrotesque/GalanoGrotesqueBold.otf
+          weight: 700
+        - asset: assets/fonts/GalanoGrotesque/GalanoGrotesqueExtraBold.otf
+          weight: 800
+        - asset: assets/fonts/GalanoGrotesque/GalanoGrotesqueBlack.otf
+          weight: 900
+
+  
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
