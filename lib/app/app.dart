@@ -6,7 +6,6 @@ import 'package:quantwealth/ui/auth/cubit/auth_cubit.dart';
 import 'package:quantwealth/ui/auth/pages/auth_page.dart';
 import 'package:quantwealth/ui/auth/pages/auth_status_page.dart';
 import 'package:quantwealth/ui/home/ui/pages/home_page.dart';
-import 'package:quantwealth/ui/savings/cubit/savings_cubit.dart';
 import 'package:web3modal_flutter/web3modal_flutter.dart';
 
 class QuantApp extends StatefulWidget {

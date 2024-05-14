@@ -5,6 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:quantwealth/core/wallet/wallet_connect_provider.dart';
 import 'package:quantwealth/core/wallet/web3auth_provider.dart';
+import 'package:quantwealth/ui/auth/infrastructure/repository/auth_repository.dart';
 import 'package:web3modal_flutter/web3modal_flutter.dart';
 
 part 'auth_state.dart';
@@ -14,12 +15,15 @@ part 'auth_cubit.freezed.dart';
 class AuthCubit extends Cubit<AuthState> {
   final Web3AuthProvider _web3AuthProvider;
   final WalletConnectProvider _walletConnectProvider;
+  final AuthRepository _authRepository;
 
   W3MService get service => _walletConnectProvider.service;
 
-  AuthCubit()
-      : _web3AuthProvider = Web3AuthProvider(),
+  AuthCubit({
+    required AuthRepository authRepository,
+  })  : _web3AuthProvider = Web3AuthProvider(),
         _walletConnectProvider = WalletConnectProvider(),
+        _authRepository = authRepository,
         super(AuthState.initial());
 
   Future<void> onStart() async {
@@ -42,10 +46,16 @@ class AuthCubit extends Cubit<AuthState> {
       },
     );
 
+    final key = await _authRepository.getPrivateKey();
     if (_walletConnectProvider.service.isConnected) {
       log('WalletConnect is connected', name: 'AuthCubit');
       emit(AuthState.success().copyWith(
         loginType: LoginType.walletConnect,
+      ));
+    } else if (key != null) {
+      log('Web3Auth is connected', name: 'AuthCubit');
+      emit(AuthState.success().copyWith(
+        loginType: LoginType.web3Auth,
       ));
     } else {
       emit(AuthState.disconnected());
@@ -89,6 +99,7 @@ class AuthCubit extends Cubit<AuthState> {
     log('PrivKey: $privKey', name: 'AuthCubit');
 
     if (privKey != null) {
+      await _authRepository.savePrivateKey(privKey);
       emit(AuthState.success().copyWith(
         loginType: LoginType.web3Auth,
       ));

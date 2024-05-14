@@ -10,6 +10,5 @@ class AuthLocalDatasource {
   Future<void> savePrivateKey(String value) =>
       _secureStorage.write(key: 'privateKey', value: value);
 
-  Future<String?> getPrivateKey(String value) =>
-      _secureStorage.read(key: 'privateKey');
+  Future<String?> getPrivateKey() => _secureStorage.read(key: 'privateKey');
 }
