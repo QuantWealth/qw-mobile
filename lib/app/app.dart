@@ -36,30 +36,21 @@ class _QuantAppState extends State<QuantApp> {
       listeners: [
         BlocListener<AuthCubit, AuthState>(
           bloc: getIt<AuthCubit>(),
+          listenWhen: (previous, current) =>
+              previous.authStatus != current.authStatus,
           listener: (context, state) {
             switch (state.authStatus) {
               case AuthStatus.connected:
                 _navigatorKey.currentContext?.navigator
-                    .pushReplacement(HomePage().route());
+                    .pushAndRemoveUntil(HomePage().route(), (route) => false);
                 break;
               case AuthStatus.disconnected:
                 _navigatorKey.currentContext?.navigator
-                    .pushReplacement(AuthPage().route());
+                    .pushAndRemoveUntil(AuthPage().route(), (route) => false);
                 break;
               default:
                 break;
             }
-          },
-        ),
-        BlocListener<AuthCubit, AuthState>(
-          bloc: getIt<AuthCubit>(),
-          listenWhen: (previous, current) {
-            return previous.authStatus == AuthStatus.connected &&
-                current.authStatus == AuthStatus.disconnected;
-          },
-          listener: (context, state) {
-            _navigatorKey.currentContext?.navigator
-                .pushReplacement(AuthStatusPage().route());
           },
         ),
       ],

@@ -37,7 +37,7 @@ class AuthCubit extends Cubit<AuthState> {
       },
       onError: (error) {
         emit(AuthState.error('WalletConnect error').copyWith(
-          loginType: LoginType.walletConnect,
+          loginType: LoginType.none,
         ));
       },
     );
@@ -52,10 +52,6 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future<void> onWalletConnect() async {
-    emit(state.copyWith(loginType: LoginType.walletConnect));
-  }
-
   Future<void> logout() async {
     switch (state.loginType) {
       case LoginType.walletConnect:
@@ -67,7 +63,7 @@ class AuthCubit extends Cubit<AuthState> {
       case LoginType.none:
         break;
     }
-
+    emit(AuthState.disconnected());
     await onStart();
   }
 
