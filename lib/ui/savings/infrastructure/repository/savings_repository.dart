@@ -31,4 +31,25 @@ class SavingsRepository {
       return right(Exception(e.toString()));
     }
   }
+
+  Future<Option<Exception>> invest({
+    required String type,
+    required int amount,
+  }) async {
+    try {
+      final response = await _dio.post(
+        '/saving/create/transaction',
+        data: {
+          'savingType': type,
+          'amount': amount,
+        },
+      );
+
+      _logger.d(response);
+      return none();
+    } catch (e) {
+      _logger.e(e);
+      return some(Exception(e.toString()));
+    }
+  }
 }

@@ -21,6 +21,7 @@ mixin _$SavingsState {
   SavingsDto? get selectedSavingsOption => throw _privateConstructorUsedError;
   AmountInputLevels? get selectedInputLevel =>
       throw _privateConstructorUsedError;
+  RequestStatus get investmentStatus => throw _privateConstructorUsedError;
   RequestStatus get status => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
 
@@ -40,6 +41,7 @@ abstract class $SavingsStateCopyWith<$Res> {
       List<SavingsDto> savingOptions,
       SavingsDto? selectedSavingsOption,
       AmountInputLevels? selectedInputLevel,
+      RequestStatus investmentStatus,
       RequestStatus status,
       String? error});
 
@@ -63,6 +65,7 @@ class _$SavingsStateCopyWithImpl<$Res, $Val extends SavingsState>
     Object? savingOptions = null,
     Object? selectedSavingsOption = freezed,
     Object? selectedInputLevel = freezed,
+    Object? investmentStatus = null,
     Object? status = null,
     Object? error = freezed,
   }) {
@@ -83,6 +86,10 @@ class _$SavingsStateCopyWithImpl<$Res, $Val extends SavingsState>
           ? _value.selectedInputLevel
           : selectedInputLevel // ignore: cast_nullable_to_non_nullable
               as AmountInputLevels?,
+      investmentStatus: null == investmentStatus
+          ? _value.investmentStatus
+          : investmentStatus // ignore: cast_nullable_to_non_nullable
+              as RequestStatus,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -120,6 +127,7 @@ abstract class _$$InitialImplCopyWith<$Res>
       List<SavingsDto> savingOptions,
       SavingsDto? selectedSavingsOption,
       AmountInputLevels? selectedInputLevel,
+      RequestStatus investmentStatus,
       RequestStatus status,
       String? error});
 
@@ -142,6 +150,7 @@ class __$$InitialImplCopyWithImpl<$Res>
     Object? savingOptions = null,
     Object? selectedSavingsOption = freezed,
     Object? selectedInputLevel = freezed,
+    Object? investmentStatus = null,
     Object? status = null,
     Object? error = freezed,
   }) {
@@ -162,6 +171,10 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value.selectedInputLevel
           : selectedInputLevel // ignore: cast_nullable_to_non_nullable
               as AmountInputLevels?,
+      investmentStatus: null == investmentStatus
+          ? _value.investmentStatus
+          : investmentStatus // ignore: cast_nullable_to_non_nullable
+              as RequestStatus,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -181,7 +194,8 @@ class _$InitialImpl implements _Initial {
       {required this.amount,
       required final List<SavingsDto> savingOptions,
       this.selectedSavingsOption,
-      required this.selectedInputLevel,
+      this.selectedInputLevel,
+      required this.investmentStatus,
       required this.status,
       this.error})
       : _savingOptions = savingOptions;
@@ -201,13 +215,15 @@ class _$InitialImpl implements _Initial {
   @override
   final AmountInputLevels? selectedInputLevel;
   @override
+  final RequestStatus investmentStatus;
+  @override
   final RequestStatus status;
   @override
   final String? error;
 
   @override
   String toString() {
-    return 'SavingsState(amount: $amount, savingOptions: $savingOptions, selectedSavingsOption: $selectedSavingsOption, selectedInputLevel: $selectedInputLevel, status: $status, error: $error)';
+    return 'SavingsState(amount: $amount, savingOptions: $savingOptions, selectedSavingsOption: $selectedSavingsOption, selectedInputLevel: $selectedInputLevel, investmentStatus: $investmentStatus, status: $status, error: $error)';
   }
 
   @override
@@ -222,6 +238,8 @@ class _$InitialImpl implements _Initial {
                 other.selectedSavingsOption == selectedSavingsOption) &&
             (identical(other.selectedInputLevel, selectedInputLevel) ||
                 other.selectedInputLevel == selectedInputLevel) &&
+            (identical(other.investmentStatus, investmentStatus) ||
+                other.investmentStatus == investmentStatus) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.error, error) || other.error == error));
   }
@@ -233,6 +251,7 @@ class _$InitialImpl implements _Initial {
       const DeepCollectionEquality().hash(_savingOptions),
       selectedSavingsOption,
       selectedInputLevel,
+      investmentStatus,
       status,
       error);
 
@@ -248,7 +267,8 @@ abstract class _Initial implements SavingsState {
       {required final String amount,
       required final List<SavingsDto> savingOptions,
       final SavingsDto? selectedSavingsOption,
-      required final AmountInputLevels? selectedInputLevel,
+      final AmountInputLevels? selectedInputLevel,
+      required final RequestStatus investmentStatus,
       required final RequestStatus status,
       final String? error}) = _$InitialImpl;
 
@@ -260,6 +280,8 @@ abstract class _Initial implements SavingsState {
   SavingsDto? get selectedSavingsOption;
   @override
   AmountInputLevels? get selectedInputLevel;
+  @override
+  RequestStatus get investmentStatus;
   @override
   RequestStatus get status;
   @override

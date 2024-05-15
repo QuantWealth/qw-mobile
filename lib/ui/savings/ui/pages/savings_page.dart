@@ -20,14 +20,33 @@ class _SavingsPageState extends State<SavingsPage>
   Widget build(BuildContext context) {
     super.build(context);
 
-    return BlocBuilder<SavingsCubit, SavingsState>(
+    return BlocConsumer<SavingsCubit, SavingsState>(
       bloc: getIt<SavingsCubit>()..onStart(),
+      listener: (_, state) {
+        if (state.investmentStatus == RequestStatus.success) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Investment successful'),
+              backgroundColor: Colors.green,
+            ),
+          );
+        }
+      },
       builder: (context, state) {
+        switch (state.status) {
+          case RequestStatus.loading:
+            return const Center(child: CircularProgressIndicator.adaptive());
+          case RequestStatus.failure:
+            return Center(child: Text(state.error ?? 'An error occurred'));
+          default:
+            break;
+        }
+
         return SavingsView(
-          onAmountChanged: (val) {},
+          onAmountChanged: (val) => getIt<SavingsCubit>().amountChanged(val),
           onLevelChanged: (val) {},
           onSelectSavings: (op) => getIt<SavingsCubit>().switchOption(op),
-          onInvest: () {},
+          onInvest: () => getIt<SavingsCubit>().invest(),
           savings: state.savingOptions,
           selectedSavings: state.selectedSavingsOption,
         );

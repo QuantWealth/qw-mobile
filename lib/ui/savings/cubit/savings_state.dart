@@ -6,7 +6,8 @@ class SavingsState with _$SavingsState {
     required String amount,
     required List<SavingsDto> savingOptions,
     SavingsDto? selectedSavingsOption,
-    required AmountInputLevels? selectedInputLevel,
+    AmountInputLevels? selectedInputLevel,
+    required RequestStatus investmentStatus,
     required RequestStatus status,
     String? error,
   }) = _Initial;
@@ -15,6 +16,7 @@ class SavingsState with _$SavingsState {
         amount: '',
         savingOptions: [],
         selectedInputLevel: AmountInputLevels.l0,
+        investmentStatus: RequestStatus.initial,
         status: RequestStatus.initial,
       );
 
@@ -22,27 +24,33 @@ class SavingsState with _$SavingsState {
         amount: '',
         savingOptions: [],
         selectedInputLevel: AmountInputLevels.l0,
+        investmentStatus: RequestStatus.loading,
         status: RequestStatus.loading,
       );
 
   factory SavingsState.success({
     required String amount,
+    required RequestStatus investmentStatus,
     required List<SavingsDto> savingOptions,
-    required AmountInputLevels selectedInputLevel,
   }) =>
       SavingsState(
         amount: amount,
         savingOptions: savingOptions,
-        selectedInputLevel: selectedInputLevel,
         selectedSavingsOption: savingOptions.firstOrNull,
+        investmentStatus: investmentStatus,
         status: RequestStatus.success,
       );
 
-  factory SavingsState.failure(String error) => SavingsState(
+  factory SavingsState.failure(
+    String error, {
+    RequestStatus investmentStatus = RequestStatus.failure,
+  }) =>
+      SavingsState(
         amount: '',
         savingOptions: [],
         selectedInputLevel: AmountInputLevels.l0,
         status: RequestStatus.failure,
+        investmentStatus: investmentStatus,
         error: error,
       );
 }

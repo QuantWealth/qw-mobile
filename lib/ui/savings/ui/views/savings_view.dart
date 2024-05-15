@@ -116,7 +116,9 @@ class SavingsView extends StatelessWidget {
               onPressed: () => onSelectSavings(savings),
               style: TextButton.styleFrom(
                 padding: const EdgeInsets.symmetric(
-                    horizontal: 24.0, vertical: 20.0),
+                  horizontal: 24.0,
+                  vertical: 20.0,
+                ),
                 foregroundColor: white,
                 backgroundColor: Colors.transparent,
                 textStyle: TextStyle(

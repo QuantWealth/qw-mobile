@@ -22,11 +22,40 @@ class SavingsCubit extends Cubit<SavingsState> {
     result.fold(
       (savings) => emit(SavingsState.success(
         amount: state.amount,
+        investmentStatus: RequestStatus.initial,
         savingOptions: savings,
-        selectedInputLevel: AmountInputLevels.l0,
       )),
-      (error) => emit(SavingsState.failure(error.toString())),
+      (error) => emit(SavingsState.failure(
+        error.toString(),
+        investmentStatus: RequestStatus.initial,
+      )),
     );
+  }
+
+  Future<void> invest() async {
+    if (state.selectedSavingsOption == null) {
+      emit(SavingsState.failure('Invalid savings option'));
+      return;
+    }
+
+    emit(state.copyWith(status: RequestStatus.loading));
+    final result = await _repository.invest(
+      type: state.selectedSavingsOption!.type,
+      amount: int.tryParse(state.amount) ?? 0,
+    );
+
+    result.fold(
+      () => emit(SavingsState.success(
+        amount: state.amount,
+        investmentStatus: RequestStatus.success,
+        savingOptions: state.savingOptions,
+      )),
+      (e) => emit(SavingsState.failure(e.toString())),
+    );
+  }
+
+  void amountChanged(String amount) {
+    emit(state.copyWith(amount: amount));
   }
 
   void switchOption(SavingsDto option) {
