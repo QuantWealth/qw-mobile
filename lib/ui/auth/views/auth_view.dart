@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:quantwealth/app/theme/icons.dart';
+import 'package:quantwealth/app/theme/theme.dart';
 import 'package:quantwealth/ui/auth/cubit/auth_cubit.dart';
 import 'package:quantwealth/ui/common/icon_outlined_button.dart';
 import 'package:quantwealth/ui/common/icon_outlined_text_button.dart';
+import 'package:quantwealth/ui/common/widgets/base_scaffold.dart';
 
 class AuthView extends StatefulWidget {
   final Function() onWalletConnect;
@@ -36,14 +38,19 @@ class _AuthViewState extends State<AuthView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BaseScaffold(
+      bgImage: 'assets/images/qw_login_bg.png',
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               'Let\'s setup your account',
-              style: TextStyle(fontSize: 24),
+              style: TextStyle(
+                fontSize: 18,
+                color: white,
+                fontFamily: 'GalanoGrotesque',
+              ),
             ),
             SizedBox(height: 40),
             Row(
@@ -53,12 +60,12 @@ class _AuthViewState extends State<AuthView> {
                 IconOutlinedTextButton(
                   title: 'MetaMask',
                   assetIcon: SvgIcons.metamask,
-                  onPressed: () {},
+                  onPressed: () => widget.onWalletConnect(),
                 ),
                 IconOutlinedTextButton(
                   title: 'Coinbase',
                   assetIcon: SvgIcons.coinbase,
-                  onPressed: () {},
+                  onPressed: () => widget.onWalletConnect(),
                 ),
               ],
             ),
@@ -76,7 +83,11 @@ class _AuthViewState extends State<AuthView> {
             SizedBox(height: 80),
             Text(
               'or continue with socials',
-              style: TextStyle(fontSize: 24),
+              style: TextStyle(
+                fontSize: 18,
+                color: white,
+                fontFamily: 'GalanoGrotesque',
+              ),
             ),
             Padding(
               padding: EdgeInsets.symmetric(
@@ -89,6 +100,10 @@ class _AuthViewState extends State<AuthView> {
                     child: TextField(
                       controller: emailController,
                       decoration: InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(
+                          horizontal: 24,
+                          vertical: 20,
+                        ),
                         hintText: 'Enter your email...',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
@@ -98,9 +113,10 @@ class _AuthViewState extends State<AuthView> {
                           borderSide: BorderSide(color: Color(0xFFE2E8F0)),
                         ),
                         hintStyle: TextStyle(
-                          color: Colors.grey,
+                          color: white.withOpacity(0.4),
                           fontWeight: FontWeight.normal,
-                          fontSize: 18,
+                          fontSize: 14,
+                          fontFamily: 'GalanoGrotesque',
                         ),
                       ),
                     ),
@@ -137,6 +153,7 @@ class _AuthViewState extends State<AuthView> {
                 SizedBox(width: 9),
                 IconOutlinedButton(
                   icon: Icons.apple,
+                  color: Colors.white,
                   onPressed: () => widget.onSocialAuth(SocialAuthType.apple),
                 ),
                 SizedBox(width: 9),

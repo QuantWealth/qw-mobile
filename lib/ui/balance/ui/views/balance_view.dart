@@ -33,6 +33,7 @@ class BalanceView extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 20,
                       color: white,
+                      fontFamily: 'GalanoGrotesque',
                     ),
                   ),
                   SizedBox(height: 8.0),
@@ -42,6 +43,7 @@ class BalanceView extends StatelessWidget {
                       fontSize: 64,
                       color: white,
                       fontWeight: FontWeight.bold,
+                      fontFamily: 'GalanoGrotesque',
                     ),
                   ),
                 ],
@@ -68,6 +70,7 @@ class BalanceView extends StatelessWidget {
             labelStyle: TextStyle(
               fontSize: 16.0,
               fontWeight: FontWeight.bold,
+              fontFamily: 'GalanoGrotesque',
             ),
             labelColor: white,
             unselectedLabelColor: gray700,

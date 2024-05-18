@@ -7,6 +7,7 @@ class AuthStatusPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
+      bgImage: 'assets/images/qw_login_bg.png',
       body: Center(child: CircularProgressIndicator.adaptive()),
     );
   }

@@ -7,8 +7,11 @@ class Styles {
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10.0),
     ),
-    textStyle: TextStyle(fontWeight: FontWeight.bold),
+    textStyle: TextStyle(
+      fontWeight: FontWeight.bold,
+      fontFamily: 'GalanoGrotesque',
+    ),
     padding: EdgeInsets.symmetric(vertical: 16),
-    side: BorderSide(width: 2, color: Color(0xFFE2E8F0)),
+    side: BorderSide(width: 0.84, color: Color(0xFFE2E8F0)),
   );
 }

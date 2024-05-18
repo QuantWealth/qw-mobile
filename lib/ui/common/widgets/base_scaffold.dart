@@ -7,6 +7,7 @@ import 'default_loading.dart';
 
 class BaseScaffold extends StatefulWidget {
   final String? title;
+  final String? bgImage;
   final Widget? titleWidget;
   final Function? onBack;
   final Widget? suffix;
@@ -21,6 +22,7 @@ class BaseScaffold extends StatefulWidget {
   const BaseScaffold({
     super.key,
     this.safeArea = true,
+    this.bgImage,
     this.backgroundColor,
     this.isCenterTitle = false,
     this.title,
@@ -42,46 +44,43 @@ class _BaseScaffoldState extends State<BaseScaffold> {
 
   @override
   Widget build(BuildContext context) {
-    return body(context);
-  }
-
-  Widget body(BuildContext context) {
     return Stack(
       alignment: Alignment.bottomRight,
       children: [
-        // Container(
-        //   color: widget.backgroundColor ?? bg,
-        //   width: double.infinity,
-        //   height: double.infinity,
-        // ),
-        // Image.asset(
-        //   'assets/images/Grain.png',
-        //   color: Colors.white,
-        //   fit: BoxFit.fill,
-        //   width: double.infinity,
-        //   height: double.infinity,
-        // ),
-        AnnotatedRegion<SystemUiOverlayStyle>(
-          value: SystemUiOverlayStyle.light,
-          child: Scaffold(
-            backgroundColor: widget.backgroundColor ?? bg,
-            appBar: PreferredSize(
-              preferredSize: Size.fromHeight(APPBAR_HEIGHT),
-              child: widget.titleWidget ??
-                  Container(
-                    color: Colors.transparent,
-                    height: double.infinity,
-                    width: double.infinity,
-                    child: _appBar(),
-                  ),
+        Container(
+          color: widget.backgroundColor ?? bg,
+          width: double.infinity,
+          height: double.infinity,
+        ),
+        Image.asset(
+          widget.bgImage ?? 'assets/images/qw_bg.png',
+          fit: BoxFit.cover,
+          width: double.infinity,
+          height: double.infinity,
+        ),
+        GestureDetector(
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
+          child: AnnotatedRegion<SystemUiOverlayStyle>(
+            value: SystemUiOverlayStyle.light,
+            child: Scaffold(
+              backgroundColor: Colors.transparent,
+              appBar: widget.title != null || widget.titleWidget != null
+                  ? PreferredSize(
+                      preferredSize: Size.fromHeight(70.0),
+                      child: widget.titleWidget ??
+                          Container(
+                            color: Colors.transparent,
+                            height: double.infinity,
+                            width: double.infinity,
+                            child: _appBar(),
+                          ),
+                    )
+                  : null,
+              body: widget.body,
+              bottomNavigationBar: widget.bottomNavigationBar,
             ),
-            body: GestureDetector(
-              onTap: () {
-                FocusScope.of(context).unfocus();
-              },
-              child: widget.body,
-            ),
-            bottomNavigationBar: widget.bottomNavigationBar,
           ),
         ),
         if (widget.onLoading) const DefaultLoading(),
@@ -97,7 +96,7 @@ class _BaseScaffoldState extends State<BaseScaffold> {
     if (enableBack || enableSuffix || enableTitle) {
       return Container(
         padding: const EdgeInsets.symmetric(horizontal: 4),
-        color: widget.backgroundColor ?? bg,
+        color: Colors.transparent, // widget.backgroundColor ?? bg,
         height: APPBAR_HEIGHT,
         alignment: Alignment.center,
         child: Stack(

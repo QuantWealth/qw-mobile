@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:quantwealth/app/strings.dart';
 import 'package:quantwealth/app/theme/theme.dart';
+import 'package:quantwealth/injectable.dart';
+import 'package:quantwealth/ui/auth/cubit/auth_cubit.dart';
 import 'package:quantwealth/ui/balance/ui/pages/balance_page.dart';
 import 'package:quantwealth/ui/common/widgets/base_scaffold.dart';
-import 'package:quantwealth/ui/home/ui/pages/profile_page.dart';
 import 'package:quantwealth/ui/savings/ui/pages/savings_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -35,11 +36,32 @@ class _HomePageState extends State<HomePage> {
       titleWidget: _activePage == PageItems.balance
           ? Padding(
               padding: const EdgeInsets.only(top: 40.0),
-              child: SizedBox(
-                height: 100.0,
-                width: 100.0,
-                child: SvgPicture.asset('assets/icons/logo.svg'),
+              child: Stack(
+                children: [
+                  Center(
+                    child: SizedBox(
+                      height: 100.0,
+                      width: 100.0,
+                      child: SvgPicture.asset('assets/icons/logo.svg'),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: IconButton(
+                      onPressed: () => getIt<AuthCubit>().logout(),
+                      icon: Icon(Icons.logout_outlined),
+                      color: white,
+                    ),
+                  )
+                ],
               ),
+            )
+          : null,
+      suffix: _activePage != PageItems.balance
+          ? IconButton(
+              onPressed: () => getIt<AuthCubit>().logout(),
+              icon: Icon(Icons.logout_outlined),
+              color: white,
             )
           : null,
       isCenterTitle: true,
@@ -53,8 +75,8 @@ class _HomePageState extends State<HomePage> {
         children: const [
           BalancePage(),
           SavingsPage(),
-          Placeholder(),
-          ProfilePage(),
+          ComingSoon(),
+          ComingSoon(),
         ],
       ),
       bottomNavigationBar: Container(
@@ -85,17 +107,37 @@ class _HomePageState extends State<HomePage> {
                         curve: Curves.easeInOut,
                       );
                     },
-                    icon: Icon(
-                      e.icon,
-                      size: 32.0,
-                      color: _activePage == e
-                          ? Colors.white.withOpacity(0.2)
-                          : white,
+                    icon: SizedBox(
+                      height: 32.0,
+                      width: 32.0,
+                      child: SvgPicture.asset(
+                          _activePage == e ? e.activeIcon : e.icon),
                     ),
                   ),
                 ),
               )
               .toList(),
+        ),
+      ),
+    );
+  }
+}
+
+class ComingSoon extends StatelessWidget {
+  const ComingSoon({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(
+        'Coming Soon...',
+        style: TextStyle(
+          color: white,
+          fontSize: 24.0,
+          fontWeight: FontWeight.w500,
+          fontFamily: 'GalanoGrotesque',
         ),
       ),
     );
@@ -108,16 +150,29 @@ enum PageItems {
   investments,
   profile;
 
-  IconData get icon {
+  String get icon {
     switch (this) {
       case PageItems.balance:
-        return Icons.wallet_outlined;
+        return 'assets/icons/bottomOne.svg';
       case PageItems.savings:
-        return Icons.monetization_on_outlined;
+        return 'assets/icons/bottomTwo.svg';
       case PageItems.investments:
-        return Icons.money_outlined;
+        return 'assets/icons/bottomThree.svg';
       case PageItems.profile:
-        return Icons.person_2_outlined;
+        return 'assets/icons/bottomFour.svg';
+    }
+  }
+
+  String get activeIcon {
+    switch (this) {
+      case PageItems.balance:
+        return 'assets/icons/bottomOneActive.svg';
+      case PageItems.savings:
+        return 'assets/icons/bottomTwoActive.svg';
+      case PageItems.investments:
+        return 'assets/icons/bottomThreeActive.svg';
+      case PageItems.profile:
+        return 'assets/icons/bottomFourActive.svg';
     }
   }
 

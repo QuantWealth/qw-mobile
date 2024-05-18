@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-const bg = Colors.black;
+const bg = black;
+const black = Colors.black;
 const white = Color(0xffFFFFFF);
 const bottomBarGrey = Color(0xff262626);
+const qw1D1D1D = Color(0xff1D1D1D);
+const qw444444 = Color(0xff444444);
 
 const black100 = Color(0xff454545);
 const black200 = Color(0xff454545);

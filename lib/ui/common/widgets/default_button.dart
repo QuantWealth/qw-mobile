@@ -35,6 +35,7 @@ class DefaultButton extends StatelessWidget {
           backgroundColor: Colors.transparent,
           textStyle: TextStyle(
             fontSize: fontSize,
+            fontFamily: 'GalanoGrotesque',
             fontWeight: FontWeight.w500,
           )),
       child: Text(label),

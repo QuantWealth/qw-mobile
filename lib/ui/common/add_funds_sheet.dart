@@ -18,6 +18,7 @@ class AddFundsSheet extends StatelessWidget {
             style: TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.w900,
+              fontFamily: 'GalanoGrotesque',
             ),
           ),
           SizedBox(height: 24),

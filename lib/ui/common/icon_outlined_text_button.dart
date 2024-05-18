@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:quantwealth/app/theme/styles.dart';
+import 'package:quantwealth/app/theme/theme.dart';
 
 class IconOutlinedTextButton extends StatelessWidget {
   final String title;
@@ -14,7 +15,7 @@ class IconOutlinedTextButton extends StatelessWidget {
     required this.title,
     required this.assetIcon,
     this.elevation = 0.0,
-    this.primaryColor = Colors.black,
+    this.primaryColor = white,
     this.onPressed,
   });
 
@@ -36,7 +37,10 @@ class IconOutlinedTextButton extends StatelessWidget {
           SizedBox(width: 6),
           Text(
             title,
-            style: TextStyle(color: primaryColor),
+            style: TextStyle(
+              color: primaryColor,
+              fontFamily: 'GalanoGrotesque',
+            ),
           ),
         ],
       ),

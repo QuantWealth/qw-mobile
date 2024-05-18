@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:quantwealth/app/theme/styles.dart';
 
-class TextOutlinedButton extends StatelessWidget {
+class TextFilledButton extends StatelessWidget {
   final String text;
   final EdgeInsetsGeometry? padding;
   final TextStyle? textStyle;
   final Function()? onPressed;
 
-  const TextOutlinedButton({
+  const TextFilledButton({
     super.key,
     this.onPressed,
     required this.text,
@@ -22,6 +22,9 @@ class TextOutlinedButton extends StatelessWidget {
       child: OutlinedButton(
         onPressed: onPressed,
         style: Styles.outlinedButtonStyle.copyWith(
+          backgroundColor: MaterialStatePropertyAll(
+            Colors.black,
+          ),
           padding: MaterialStatePropertyAll(
             padding ??
                 EdgeInsets.symmetric(
