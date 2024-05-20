@@ -8,7 +8,7 @@ abstract class DiModule {
   @singleton
   Dio get dio => Dio(
         BaseOptions(
-          baseUrl: 'https://ffcf-101-0-63-102.ngrok-free.app',
+          baseUrl: 'http://172.26.185.87:3000',
         ),
       );
 

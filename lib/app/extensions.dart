@@ -32,3 +32,12 @@ extension WidgetExtensions on Widget {
 
   Route<dynamic> route({bool material = true}) => material ? _mRoute : _cRoute;
 }
+
+extension StringExtensions on String {
+  String truncate() {
+    if (length < 12) {
+      return this;
+    }
+    return '${substring(0, 6)}...${substring(length - 6)}';
+  }
+}

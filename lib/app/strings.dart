@@ -6,4 +6,7 @@ abstract class Strings {
   static const hintAmountInput = '\$1000';
   static const labelInvest = 'Invest';
   static const labelAddFunds = 'Add Funds';
+  static const labelYourAddress = 'Your Address';
+  static const labelInfoAddress =
+      'Use this address to receive tokens and collectibles.';
 }

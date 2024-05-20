@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:quantwealth/app/extensions.dart';
 import 'package:quantwealth/ui/common/text_outlined_button.dart';
+import 'package:quantwealth/ui/receive/ui/receive_page.dart';
 
 class AddFundsSheet extends StatelessWidget {
   const AddFundsSheet({super.key});
@@ -24,7 +26,11 @@ class AddFundsSheet extends StatelessWidget {
           SizedBox(height: 24),
           TextOutlinedButton(
             text: 'Bank Transfer',
-            onPressed: () {},
+            onPressed: () => context.navigator.push(
+              ReceivePage(
+                address: '0x665d8a50912FC42A88233e9eA53e70980dcb9Ecd',
+              ).route(),
+            ),
           ),
           SizedBox(height: 18),
           TextOutlinedButton(
