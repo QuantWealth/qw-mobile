@@ -9,4 +9,5 @@ abstract class Strings {
   static const labelYourAddress = 'Your Address';
   static const labelInfoAddress =
       'Use this address to receive tokens and collectibles.';
+  static const labelShare = 'Share';
 }

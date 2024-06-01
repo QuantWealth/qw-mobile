@@ -47,6 +47,31 @@ android {
         versionName flutterVersionName
     }
 
+    productFlavors {
+        alpha {
+            dimension "default"
+            resValue "string", "app_name", "Quant Wealth"
+            versionNameSuffix "-alpha"
+        }
+
+        dev {
+            dimension "default"
+            applicationIdSuffix ".dev"
+            resValue "string", "app_name", "Quant Wealth Dev"
+        }
+
+        staging {
+            dimension "default"
+            applicationIdSuffix ".staging"
+            resValue "string", "app_name", "Quant Wealth Uat"
+        }
+
+        prod {
+            dimension "default"
+            resValue "string", "app_name", "Quant Wealth"
+        }
+    }
+
     buildTypes {
         release {
             signingConfig signingConfigs.debug
