@@ -42,19 +42,32 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0165813C7C192E023B99B642 /* Pods-RunnerTests.profile-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile-dev.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile-dev.xcconfig"; sourceTree = "<group>"; };
+		029E1321223464F0825AB977 /* Pods-RunnerTests.profile-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile-prod.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile-prod.xcconfig"; sourceTree = "<group>"; };
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
+		1BA86D40E8491711B312E866 /* Pods-RunnerTests.debug-staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.debug-staging.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.debug-staging.xcconfig"; sourceTree = "<group>"; };
 		28F31D6070A614413253EE08 /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
+		2B11802C136BA777D7F9CA3F /* Pods-Runner.release-alpha.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release-alpha.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release-alpha.xcconfig"; sourceTree = "<group>"; };
 		331C807B294A618700263BE5 /* RunnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerTests.swift; sourceTree = "<group>"; };
 		331C8081294A63A400263BE5 /* RunnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		35521EE31075F43E2F6DB24F /* Pods-Runner.debug-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug-dev.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug-dev.xcconfig"; sourceTree = "<group>"; };
 		39854B882850555FBD17E04C /* Pods-RunnerTests.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile.xcconfig"; sourceTree = "<group>"; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
 		3E6843F5D16D3ABB7AB40C5E /* Pods-RunnerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.debug.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3EABDF7A0A34552917859271 /* Pods-RunnerTests.profile-alpha.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile-alpha.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile-alpha.xcconfig"; sourceTree = "<group>"; };
 		463DB2DFE9AF6480845CAD70 /* Pods-RunnerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release.xcconfig"; sourceTree = "<group>"; };
+		4B6B3D6C65EA900A0C92A725 /* Pods-RunnerTests.profile-staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile-staging.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile-staging.xcconfig"; sourceTree = "<group>"; };
+		4D6A0504F6DC526AABB5E06B /* Pods-Runner.release-staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release-staging.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release-staging.xcconfig"; sourceTree = "<group>"; };
+		4FFE07DAB3B7173D032125BB /* Pods-Runner.debug-alpha.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug-alpha.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug-alpha.xcconfig"; sourceTree = "<group>"; };
 		552D0A48DC8E822E75D5DA45 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
+		601254DDFFBDFD1873AB76DB /* Pods-Runner.release-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release-prod.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release-prod.xcconfig"; sourceTree = "<group>"; };
+		60D4A58E538D466EBE3E5665 /* Pods-RunnerTests.debug-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.debug-dev.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.debug-dev.xcconfig"; sourceTree = "<group>"; };
+		6B38E74DADA9134937D0758B /* Pods-Runner.release-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release-dev.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release-dev.xcconfig"; sourceTree = "<group>"; };
 		74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
 		74858FAE1ED2DC5600515810 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7AFA3C8E1D35360C0083082E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = Flutter/Release.xcconfig; sourceTree = "<group>"; };
+		946607E4499127D45F1EEF77 /* Pods-Runner.debug-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug-prod.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug-prod.xcconfig"; sourceTree = "<group>"; };
 		9740EEB21CF90195004384FC /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Debug.xcconfig; path = Flutter/Debug.xcconfig; sourceTree = "<group>"; };
 		9740EEB31CF90195004384FC /* Generated.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Generated.xcconfig; path = Flutter/Generated.xcconfig; sourceTree = "<group>"; };
 		97C146EE1CF9000F007C117D /* Runner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,7 +77,18 @@
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D53C31B843DBB64D3BA9D61 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
 		9D6E759741DEB7517941E371 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9DAC0007E1AEFD1866A75B18 /* Pods-Runner.profile-alpha.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile-alpha.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile-alpha.xcconfig"; sourceTree = "<group>"; };
 		A31026E265E37704015FBD05 /* Pods_RunnerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunnerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8AB8C097DEC1E5354B33B1B /* Pods-Runner.profile-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile-prod.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile-prod.xcconfig"; sourceTree = "<group>"; };
+		BA520A21D1E92B473B0E686A /* Pods-RunnerTests.release-staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release-staging.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release-staging.xcconfig"; sourceTree = "<group>"; };
+		C16758C851454C61C9CCF13E /* Pods-Runner.debug-staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug-staging.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug-staging.xcconfig"; sourceTree = "<group>"; };
+		C46890DB7E9752CDC3CB4B62 /* Pods-RunnerTests.release-alpha.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release-alpha.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release-alpha.xcconfig"; sourceTree = "<group>"; };
+		D15883A9FE5527FD12F28111 /* Pods-RunnerTests.debug-alpha.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.debug-alpha.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.debug-alpha.xcconfig"; sourceTree = "<group>"; };
+		E1F50376B90BA50E64867987 /* Pods-RunnerTests.release-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release-dev.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release-dev.xcconfig"; sourceTree = "<group>"; };
+		EC51418B0C79CF96C4A6A127 /* Pods-RunnerTests.debug-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.debug-prod.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.debug-prod.xcconfig"; sourceTree = "<group>"; };
+		F12BA309E6EFBBB29AB36A11 /* Pods-Runner.profile-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile-dev.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile-dev.xcconfig"; sourceTree = "<group>"; };
+		FABDDA36CF71F735766D52AE /* Pods-Runner.profile-staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile-staging.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile-staging.xcconfig"; sourceTree = "<group>"; };
+		FD2043120B04941233263481 /* Pods-RunnerTests.release-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release-prod.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release-prod.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +137,30 @@
 				3E6843F5D16D3ABB7AB40C5E /* Pods-RunnerTests.debug.xcconfig */,
 				463DB2DFE9AF6480845CAD70 /* Pods-RunnerTests.release.xcconfig */,
 				39854B882850555FBD17E04C /* Pods-RunnerTests.profile.xcconfig */,
+				4FFE07DAB3B7173D032125BB /* Pods-Runner.debug-alpha.xcconfig */,
+				35521EE31075F43E2F6DB24F /* Pods-Runner.debug-dev.xcconfig */,
+				946607E4499127D45F1EEF77 /* Pods-Runner.debug-prod.xcconfig */,
+				C16758C851454C61C9CCF13E /* Pods-Runner.debug-staging.xcconfig */,
+				2B11802C136BA777D7F9CA3F /* Pods-Runner.release-alpha.xcconfig */,
+				6B38E74DADA9134937D0758B /* Pods-Runner.release-dev.xcconfig */,
+				601254DDFFBDFD1873AB76DB /* Pods-Runner.release-prod.xcconfig */,
+				4D6A0504F6DC526AABB5E06B /* Pods-Runner.release-staging.xcconfig */,
+				9DAC0007E1AEFD1866A75B18 /* Pods-Runner.profile-alpha.xcconfig */,
+				F12BA309E6EFBBB29AB36A11 /* Pods-Runner.profile-dev.xcconfig */,
+				A8AB8C097DEC1E5354B33B1B /* Pods-Runner.profile-prod.xcconfig */,
+				FABDDA36CF71F735766D52AE /* Pods-Runner.profile-staging.xcconfig */,
+				D15883A9FE5527FD12F28111 /* Pods-RunnerTests.debug-alpha.xcconfig */,
+				60D4A58E538D466EBE3E5665 /* Pods-RunnerTests.debug-dev.xcconfig */,
+				EC51418B0C79CF96C4A6A127 /* Pods-RunnerTests.debug-prod.xcconfig */,
+				1BA86D40E8491711B312E866 /* Pods-RunnerTests.debug-staging.xcconfig */,
+				C46890DB7E9752CDC3CB4B62 /* Pods-RunnerTests.release-alpha.xcconfig */,
+				E1F50376B90BA50E64867987 /* Pods-RunnerTests.release-dev.xcconfig */,
+				FD2043120B04941233263481 /* Pods-RunnerTests.release-prod.xcconfig */,
+				BA520A21D1E92B473B0E686A /* Pods-RunnerTests.release-staging.xcconfig */,
+				3EABDF7A0A34552917859271 /* Pods-RunnerTests.profile-alpha.xcconfig */,
+				0165813C7C192E023B99B642 /* Pods-RunnerTests.profile-dev.xcconfig */,
+				029E1321223464F0825AB977 /* Pods-RunnerTests.profile-prod.xcconfig */,
+				4B6B3D6C65EA900A0C92A725 /* Pods-RunnerTests.profile-staging.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -473,7 +521,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 49YAZ524K5;
+				DEVELOPMENT_TEAM = 84FF5B5YCT;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = QuantWealth;
@@ -482,7 +530,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.quant.wealth;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.quantwealth.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -612,7 +660,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 49YAZ524K5;
+				DEVELOPMENT_TEAM = 84FF5B5YCT;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = QuantWealth;
@@ -621,7 +669,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.quant.wealth;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.quantwealth.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -632,13 +680,13 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_SUFFIX = "-alpha";
+				VERSION_INFO_SUFFIX = "";
 			};
 			name = "Debug-alpha";
 		};
 		52D041392C0B670D004A4400 /* Debug-alpha */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3E6843F5D16D3ABB7AB40C5E /* Pods-RunnerTests.debug.xcconfig */;
+			baseConfigurationReference = D15883A9FE5527FD12F28111 /* Pods-RunnerTests.debug-alpha.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -713,12 +761,12 @@
 		};
 		52D0413B2C0B6736004A4400 /* Release-alpha */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 28F31D6070A614413253EE08 /* Pods-Runner.release.xcconfig */;
+			baseConfigurationReference = 2B11802C136BA777D7F9CA3F /* Pods-Runner.release-alpha.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 49YAZ524K5;
+				DEVELOPMENT_TEAM = 84FF5B5YCT;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = QuantWealth;
@@ -727,7 +775,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.quant.wealth;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.quantwealth.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -737,13 +785,13 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_SUFFIX = "-alpha";
+				VERSION_INFO_SUFFIX = "";
 			};
 			name = "Release-alpha";
 		};
 		52D0413C2C0B6736004A4400 /* Release-alpha */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 463DB2DFE9AF6480845CAD70 /* Pods-RunnerTests.release.xcconfig */;
+			baseConfigurationReference = C46890DB7E9752CDC3CB4B62 /* Pods-RunnerTests.release-alpha.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -814,12 +862,12 @@
 		};
 		52D0413E2C0B673D004A4400 /* Profile-alpha */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9D53C31B843DBB64D3BA9D61 /* Pods-Runner.profile.xcconfig */;
+			baseConfigurationReference = 9DAC0007E1AEFD1866A75B18 /* Pods-Runner.profile-alpha.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 49YAZ524K5;
+				DEVELOPMENT_TEAM = 84FF5B5YCT;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = QuantWealth;
@@ -828,7 +876,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.quant.wealth;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.quantwealth.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -838,13 +886,13 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_SUFFIX = "-alpha";
+				VERSION_INFO_SUFFIX = "";
 			};
 			name = "Profile-alpha";
 		};
 		52D0413F2C0B673D004A4400 /* Profile-alpha */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 39854B882850555FBD17E04C /* Pods-RunnerTests.profile.xcconfig */;
+			baseConfigurationReference = 3EABDF7A0A34552917859271 /* Pods-RunnerTests.profile-alpha.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -925,7 +973,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 49YAZ524K5;
+				DEVELOPMENT_TEAM = 84FF5B5YCT;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = QuantWealth;
@@ -934,7 +982,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.quant.wealth.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.quantwealth.app.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -950,7 +998,7 @@
 		};
 		52D041422C0B6848004A4400 /* Debug-dev */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3E6843F5D16D3ABB7AB40C5E /* Pods-RunnerTests.debug.xcconfig */;
+			baseConfigurationReference = 60D4A58E538D466EBE3E5665 /* Pods-RunnerTests.debug-dev.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1033,7 +1081,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 49YAZ524K5;
+				DEVELOPMENT_TEAM = 84FF5B5YCT;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = QuantWealth;
@@ -1042,7 +1090,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.quant.wealth;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.quantwealth.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1058,7 +1106,7 @@
 		};
 		52D041452C0B6852004A4400 /* Debug-prod */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3E6843F5D16D3ABB7AB40C5E /* Pods-RunnerTests.debug.xcconfig */;
+			baseConfigurationReference = EC51418B0C79CF96C4A6A127 /* Pods-RunnerTests.debug-prod.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1141,7 +1189,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 49YAZ524K5;
+				DEVELOPMENT_TEAM = 84FF5B5YCT;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = QuantWealth;
@@ -1150,7 +1198,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.quant.wealth.staging;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.quantwealth.app.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1166,7 +1214,7 @@
 		};
 		52D041482C0B685C004A4400 /* Debug-staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3E6843F5D16D3ABB7AB40C5E /* Pods-RunnerTests.debug.xcconfig */;
+			baseConfigurationReference = 1BA86D40E8491711B312E866 /* Pods-RunnerTests.debug-staging.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1241,12 +1289,12 @@
 		};
 		52D0414A2C0B6865004A4400 /* Release-dev */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 28F31D6070A614413253EE08 /* Pods-Runner.release.xcconfig */;
+			baseConfigurationReference = 6B38E74DADA9134937D0758B /* Pods-Runner.release-dev.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 49YAZ524K5;
+				DEVELOPMENT_TEAM = 84FF5B5YCT;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = QuantWealth;
@@ -1255,7 +1303,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.quant.wealth.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.quantwealth.app.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1270,7 +1318,7 @@
 		};
 		52D0414B2C0B6865004A4400 /* Release-dev */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 463DB2DFE9AF6480845CAD70 /* Pods-RunnerTests.release.xcconfig */;
+			baseConfigurationReference = E1F50376B90BA50E64867987 /* Pods-RunnerTests.release-dev.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1343,12 +1391,12 @@
 		};
 		52D0414D2C0B686B004A4400 /* Release-prod */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 28F31D6070A614413253EE08 /* Pods-Runner.release.xcconfig */;
+			baseConfigurationReference = 601254DDFFBDFD1873AB76DB /* Pods-Runner.release-prod.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 49YAZ524K5;
+				DEVELOPMENT_TEAM = 84FF5B5YCT;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = QuantWealth;
@@ -1357,7 +1405,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.quant.wealth;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.quantwealth.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1372,7 +1420,7 @@
 		};
 		52D0414E2C0B686B004A4400 /* Release-prod */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 463DB2DFE9AF6480845CAD70 /* Pods-RunnerTests.release.xcconfig */;
+			baseConfigurationReference = FD2043120B04941233263481 /* Pods-RunnerTests.release-prod.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1445,12 +1493,12 @@
 		};
 		52D041502C0B6871004A4400 /* Release-staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 28F31D6070A614413253EE08 /* Pods-Runner.release.xcconfig */;
+			baseConfigurationReference = 4D6A0504F6DC526AABB5E06B /* Pods-Runner.release-staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 49YAZ524K5;
+				DEVELOPMENT_TEAM = 84FF5B5YCT;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = QuantWealth;
@@ -1459,7 +1507,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.quant.wealth.staging;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.quantwealth.app.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1474,7 +1522,7 @@
 		};
 		52D041512C0B6871004A4400 /* Release-staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 463DB2DFE9AF6480845CAD70 /* Pods-RunnerTests.release.xcconfig */;
+			baseConfigurationReference = BA520A21D1E92B473B0E686A /* Pods-RunnerTests.release-staging.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1545,12 +1593,12 @@
 		};
 		52D041532C0B6878004A4400 /* Profile-dev */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9D53C31B843DBB64D3BA9D61 /* Pods-Runner.profile.xcconfig */;
+			baseConfigurationReference = F12BA309E6EFBBB29AB36A11 /* Pods-Runner.profile-dev.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 49YAZ524K5;
+				DEVELOPMENT_TEAM = 84FF5B5YCT;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = QuantWealth;
@@ -1559,7 +1607,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.quant.wealth.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.quantwealth.app.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1574,7 +1622,7 @@
 		};
 		52D041542C0B6878004A4400 /* Profile-dev */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 39854B882850555FBD17E04C /* Pods-RunnerTests.profile.xcconfig */;
+			baseConfigurationReference = 0165813C7C192E023B99B642 /* Pods-RunnerTests.profile-dev.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1645,12 +1693,12 @@
 		};
 		52D041562C0B687C004A4400 /* Profile-prod */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9D53C31B843DBB64D3BA9D61 /* Pods-Runner.profile.xcconfig */;
+			baseConfigurationReference = A8AB8C097DEC1E5354B33B1B /* Pods-Runner.profile-prod.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 49YAZ524K5;
+				DEVELOPMENT_TEAM = 84FF5B5YCT;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = QuantWealth;
@@ -1659,7 +1707,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.quant.wealth;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.quantwealth.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1674,7 +1722,7 @@
 		};
 		52D041572C0B687C004A4400 /* Profile-prod */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 39854B882850555FBD17E04C /* Pods-RunnerTests.profile.xcconfig */;
+			baseConfigurationReference = 029E1321223464F0825AB977 /* Pods-RunnerTests.profile-prod.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1745,12 +1793,12 @@
 		};
 		52D041592C0B6880004A4400 /* Profile-staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9D53C31B843DBB64D3BA9D61 /* Pods-Runner.profile.xcconfig */;
+			baseConfigurationReference = FABDDA36CF71F735766D52AE /* Pods-Runner.profile-staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 49YAZ524K5;
+				DEVELOPMENT_TEAM = 84FF5B5YCT;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = QuantWealth;
@@ -1759,7 +1807,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.quant.wealth.staging;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.quantwealth.app.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1774,7 +1822,7 @@
 		};
 		52D0415A2C0B6880004A4400 /* Profile-staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 39854B882850555FBD17E04C /* Pods-RunnerTests.profile.xcconfig */;
+			baseConfigurationReference = 4B6B3D6C65EA900A0C92A725 /* Pods-RunnerTests.profile-staging.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1912,7 +1960,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 49YAZ524K5;
+				DEVELOPMENT_TEAM = 84FF5B5YCT;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = QuantWealth;
@@ -1921,7 +1969,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.quant.wealth;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.quantwealth.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1942,7 +1990,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 49YAZ524K5;
+				DEVELOPMENT_TEAM = 84FF5B5YCT;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = QuantWealth;
@@ -1951,7 +1999,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.quant.wealth;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.quantwealth.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

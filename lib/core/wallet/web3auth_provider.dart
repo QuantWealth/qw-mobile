@@ -33,9 +33,9 @@ class Web3AuthProvider implements WalletProvider {
     late final Uri redirectUrl;
 
     if (Platform.isAndroid) {
-      redirectUrl = Uri.parse('quantwealth://app.quant.wealth/auth');
+      redirectUrl = Uri.parse('quantwealth://xyz.quantwealth.app/auth');
     } else {
-      redirectUrl = Uri.parse('app.quant.wealth://auth');
+      redirectUrl = Uri.parse('xyz.quantwealth.app://auth');
     }
 
     await Web3AuthFlutter.init(Web3AuthOptions(

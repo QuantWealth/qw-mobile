@@ -32,7 +32,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="quantwealth"
-                      android:host="app.quant.wealth"
+                      android:host="xyz.quantwealth.app"
                       android:path="/auth" />
                 <!-- Accept URIs: w3a://com.example.w3aflutter/auth -->
             </intent-filter>
