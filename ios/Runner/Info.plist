@@ -3,19 +3,19 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleTypeRole</key>
-    <string>Editor</string>
-    <key>CFBundleURLName</key>
-    <string>app.quant.wealth</string>
-    <key>CFBundleURLSchemes</key>
-    <array>
-      <string>quantwealth</string>
-    </array>
+	<string>Editor</string>
+	<key>CFBundleURLName</key>
+	<string>app.quant.wealth</string>
+	<key>CFBundleURLSchemes</key>
+	<array>
+		<string>quantwealth</string>
+	</array>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Quantwealth</string>
+	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
