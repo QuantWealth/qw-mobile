@@ -47,11 +47,13 @@ android {
         versionName flutterVersionName
     }
 
+    flavorDimensions "default"
+
     productFlavors {
         alpha {
             dimension "default"
-            resValue "string", "app_name", "Quant Wealth"
             versionNameSuffix "-alpha"
+            resValue "string", "app_name", "Quant Wealth"
         }
 
         dev {

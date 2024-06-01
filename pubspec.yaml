@@ -33,6 +33,7 @@ dependencies:
   collection: ^1.18.0
   pretty_qr_code: ^3.3.0
   share_plus: ^9.0.0
+  envied: ^0.5.4+1
 
 dev_dependencies:
   flutter_test:
@@ -42,6 +43,7 @@ dev_dependencies:
   freezed: ^2.5.2
   json_serializable: ^6.8.0
   injectable_generator: ^2.6.1
+  envied_generator: ^0.5.4+1
 
 flutter:
   uses-material-design: true
