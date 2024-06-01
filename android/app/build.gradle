@@ -22,6 +22,12 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
 android {
     namespace "app.quant.wealth"
     compileSdk 34
@@ -45,6 +51,15 @@ android {
         targetSdkVersion 34
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+    }
+
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            storePassword keystoreProperties['storePassword']
+        }
     }
 
     flavorDimensions "default"
@@ -76,7 +91,10 @@ android {
 
     buildTypes {
         release {
-            signingConfig signingConfigs.debug
+            productFlavors.dev.signingConfig signingConfigs.debug
+            productFlavors.staging.signingConfig signingConfigs.debug
+            productFlavors.prod.signingConfig signingConfigs.release
+            productFlavors.alpha.signingConfig signingConfigs.release
         }
     }
 }
