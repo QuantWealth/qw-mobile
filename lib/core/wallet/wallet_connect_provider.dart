@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:quantwealth/core/env/app_env.dart';
 import 'package:web3modal_flutter/web3modal_flutter.dart';
 import 'wallet_provider.dart';
 
@@ -29,8 +30,9 @@ class WalletConnectProvider implements WalletProvider {
 
   @override
   Future<void> init() async {
+    log('project id: ${appEnv.wcProjectId}', name: 'WcProvider');
     service = W3MService(
-      projectId: '68c90d8869309432fa62984b6a792a16',
+      projectId: appEnv.wcProjectId,
       logLevel: LogLevel.debug,
       requiredNamespaces: {
         'eip155': W3MNamespace(
