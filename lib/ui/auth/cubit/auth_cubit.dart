@@ -6,6 +6,7 @@ import 'package:injectable/injectable.dart';
 import 'package:quantwealth/core/wallet/wallet_connect_provider.dart';
 import 'package:quantwealth/core/wallet/web3auth_provider.dart';
 import 'package:quantwealth/ui/auth/infrastructure/repository/auth_repository.dart';
+import 'package:quantwealth/ui/home/infrastructure/repository/home_repository.dart';
 import 'package:web3modal_flutter/web3modal_flutter.dart';
 
 part 'auth_state.dart';
@@ -16,22 +17,36 @@ class AuthCubit extends Cubit<AuthState> {
   final Web3AuthProvider _web3AuthProvider;
   final WalletConnectProvider _walletConnectProvider;
   final AuthRepository _authRepository;
+  final HomeRepository _homeRepository;
 
   W3MService get service => _walletConnectProvider.service;
 
   AuthCubit({
     required AuthRepository authRepository,
+    required HomeRepository homeRepository,
   })  : _web3AuthProvider = Web3AuthProvider(),
         _walletConnectProvider = WalletConnectProvider(),
         _authRepository = authRepository,
+        _homeRepository = homeRepository,
         super(AuthState.initial());
 
   Future<void> onStart() async {
     _web3AuthProvider.init();
     await _walletConnectProvider.init();
     await _walletConnectProvider.setupListeners(
-      onConnect: (connect) {
+      onConnect: (connect) async {
         log('WalletConnect is connected', name: 'AuthCubit');
+        if (connect?.session == null) {
+          emit(AuthState.error('WalletConnect error').copyWith(
+            loginType: LoginType.none,
+          ));
+          return;
+        }
+
+        await _homeRepository.initUser(
+          walletAddress: connect!.session.address!,
+          provider: connect.session.peer!.metadata.name,
+        );
         emit(AuthState.success().copyWith(
           loginType: LoginType.walletConnect,
         ));
@@ -100,6 +115,10 @@ class AuthCubit extends Cubit<AuthState> {
 
     if (privKey != null) {
       await _authRepository.savePrivateKey(privKey);
+      await _homeRepository.initUser(
+        walletAddress: _web3AuthProvider.creds.address.hex,
+        provider: authType.name,
+      );
       emit(AuthState.success().copyWith(
         loginType: LoginType.web3Auth,
       ));
