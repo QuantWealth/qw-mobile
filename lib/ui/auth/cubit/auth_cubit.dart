@@ -43,7 +43,7 @@ class AuthCubit extends Cubit<AuthState> {
           return;
         }
 
-        await _homeRepository.initUser(
+        _homeRepository.initUser(
           walletAddress: connect!.session.address!,
           provider: connect.session.peer!.metadata.name,
         );
@@ -115,8 +115,9 @@ class AuthCubit extends Cubit<AuthState> {
 
     if (privKey != null) {
       await _authRepository.savePrivateKey(privKey);
-      await _homeRepository.initUser(
-        walletAddress: _web3AuthProvider.creds.address.hex,
+      final creds = EthPrivateKey.fromHex(privKey);
+      _homeRepository.initUser(
+        walletAddress: creds.address.hex,
         provider: authType.name,
       );
       emit(AuthState.success().copyWith(
