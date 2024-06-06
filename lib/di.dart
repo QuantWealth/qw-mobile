@@ -8,7 +8,7 @@ abstract class DiModule {
   @singleton
   Dio get dio => Dio(
         BaseOptions(
-          baseUrl: 'http://192.168.29.25:3000',
+          baseUrl: 'https://api-alpha.quantwealth.xyz',
         ),
       );
 
