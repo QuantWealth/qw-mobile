@@ -139,8 +139,12 @@ class _SavingsViewState extends State<SavingsView> {
                                   foregroundColor: white,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8.0),
-                                    side: BorderSide(color: white),
+                                    side: BorderSide(
+                                      color: Colors.grey.withOpacity(.3),
+                                    ),
                                   ),
+                                  elevation: 10,
+                                  shadowColor: Colors.grey.shade600,
                                   backgroundColor: Colors.transparent,
                                   textStyle: TextStyle(
                                     fontSize: 16.0,

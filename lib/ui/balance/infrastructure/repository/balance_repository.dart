@@ -33,7 +33,9 @@ class BalanceRepository {
       );
       final data = response.data as Map<String, dynamic>;
 
-      final assets = (data['data'] as List<dynamic>)
+      _logger.i('Response: ${data['data']['items']}');
+
+      final assets = (data['data']['items'] as List<dynamic>)
           .map((e) => AssetDto.fromJson(e as Map<String, Object?>))
           .toList();
 

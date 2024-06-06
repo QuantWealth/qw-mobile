@@ -43,18 +43,14 @@ class AssetListTile extends StatelessWidget {
       minVerticalPadding: 20,
       leading: CircleAvatar(
         backgroundColor: Colors.white,
-        child: Icon(
-          Icons.attach_money_outlined,
-          size: 30,
-          color: Colors.black,
-        ),
+        child: Image.network(asset.logoUrls.tokenLogo),
       ),
       title: Text(
         asset.name,
         style: fontSB(18),
       ),
       subtitle: Text(
-        '${asset.quantity} ${asset.symbol}',
+        '${asset.balance.substring(0, 1)} ${asset.symbol}',
         style: fontR(14),
       ),
       trailing: Column(
@@ -62,11 +58,11 @@ class AssetListTile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Text(
-            '\$${asset.totalBalance}',
+            '\$${asset.balance.substring(0, 3)}',
             style: fontSB(18),
           ),
           Text(
-            '${asset.percentageChange}%',
+            '${10}%',
             style: fontR(14, color: Colors.greenAccent),
           ),
         ],

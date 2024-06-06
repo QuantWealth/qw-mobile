@@ -12,5 +12,7 @@ class AuthRepository {
   Future<void> savePrivateKey(String value) =>
       _authLocalDatasource.savePrivateKey(value);
 
+  Future<void> deletePrivateKey() => _authLocalDatasource.deletePrivateKey();
+
   Future<String?> getPrivateKey() => _authLocalDatasource.getPrivateKey();
 }

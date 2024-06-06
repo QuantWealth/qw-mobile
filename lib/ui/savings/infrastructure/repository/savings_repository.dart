@@ -21,7 +21,7 @@ class SavingsRepository {
     try {
       final response = await _dio.get(
         '/saving/all',
-        data: {'scwAddress': address},
+        queryParameters: {'scwAddress': address},
       );
       final data = response.data as Map<String, dynamic>;
 

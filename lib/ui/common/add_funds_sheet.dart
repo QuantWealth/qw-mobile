@@ -26,11 +26,7 @@ class AddFundsSheet extends StatelessWidget {
           SizedBox(height: 24),
           TextOutlinedButton(
             text: 'Bank Transfer',
-            onPressed: () => context.navigator.push(
-              ReceivePage(
-                address: '0x665d8a50912FC42A88233e9eA53e70980dcb9Ecd',
-              ).route(),
-            ),
+            onPressed: () {},
           ),
           SizedBox(height: 18),
           TextOutlinedButton(
@@ -40,7 +36,11 @@ class AddFundsSheet extends StatelessWidget {
           SizedBox(height: 18),
           TextOutlinedButton(
             text: 'Crypto Transfer',
-            onPressed: () {},
+            onPressed: () => context.navigator.push(
+              ReceivePage(
+                address: '0x665d8a50912FC42A88233e9eA53e70980dcb9Ecd',
+              ).route(),
+            ),
           ),
           SizedBox(height: 18),
           TextOutlinedButton(

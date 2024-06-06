@@ -18,7 +18,9 @@ class SavingsCubit extends Cubit<SavingsState> {
 
   Future<void> onStart() async {
     emit(SavingsState.loading());
-    final result = await _repository.getSavingOptions(address: '');
+    final result = await _repository.getSavingOptions(
+      address: '0x665d8a50912FC42A88233e9eA53e70980dcb9Ecd',
+    );
     result.fold(
       (savings) => emit(SavingsState.success(
         amount: state.amount,

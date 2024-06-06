@@ -88,6 +88,7 @@ class AuthCubit extends Cubit<AuthState> {
       case LoginType.none:
         break;
     }
+    await _authRepository.deletePrivateKey();
     emit(AuthState.disconnected());
     await onStart();
   }
