@@ -50,9 +50,9 @@ class _SavingsPageState extends State<SavingsPage>
             // getIt<SavingsCubit>().switchOption(op);
             InvestConfirmPopup.show(
               context,
-              title: 'Flexbile details',
+              title: '${op.name} details',
               description:
-                  'lorem ipsum dolor sit amrut some sample strafyergy rtext to be written here lorem ipsum dolor sit amrut some sample strafyergy rtext to be written here',
+                  'You are about to invest in the ${op.name.toLowerCase()} savings option. Are you sure you want to continue?',
               onContinue: () {
                 getIt<SavingsCubit>().switchOption(op);
                 getIt<SavingsCubit>().invest();

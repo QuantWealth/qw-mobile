@@ -7,6 +7,7 @@ import 'package:quantwealth/core/wallet/wallet_connect_provider.dart';
 import 'package:quantwealth/core/wallet/web3auth_provider.dart';
 import 'package:quantwealth/ui/auth/infrastructure/repository/auth_repository.dart';
 import 'package:quantwealth/ui/home/infrastructure/repository/home_repository.dart';
+import 'package:quantwealth/ui/profile/cubit/profile_cubit.dart';
 import 'package:web3modal_flutter/web3modal_flutter.dart';
 
 part 'auth_state.dart';
@@ -17,17 +18,18 @@ class AuthCubit extends Cubit<AuthState> {
   final Web3AuthProvider _web3AuthProvider;
   final WalletConnectProvider _walletConnectProvider;
   final AuthRepository _authRepository;
-  final HomeRepository _homeRepository;
+  final ProfileCubit _profileCubit;
 
   W3MService get service => _walletConnectProvider.service;
 
   AuthCubit({
     required AuthRepository authRepository,
     required HomeRepository homeRepository,
+    required ProfileCubit profileCubit,
   })  : _web3AuthProvider = Web3AuthProvider(),
         _walletConnectProvider = WalletConnectProvider(),
         _authRepository = authRepository,
-        _homeRepository = homeRepository,
+        _profileCubit = profileCubit,
         super(AuthState.initial());
 
   Future<void> onStart() async {
@@ -43,7 +45,8 @@ class AuthCubit extends Cubit<AuthState> {
           return;
         }
 
-        _homeRepository.initUser(
+        _profileCubit.initUser(
+          type: LoginType.walletConnect,
           walletAddress: connect!.session.address!,
           provider: connect.session.peer!.metadata.name,
         );
@@ -117,7 +120,8 @@ class AuthCubit extends Cubit<AuthState> {
     if (privKey != null) {
       await _authRepository.savePrivateKey(privKey);
       final creds = EthPrivateKey.fromHex(privKey);
-      _homeRepository.initUser(
+      _profileCubit.initUser(
+        type: LoginType.web3Auth,
         walletAddress: creds.address.hex,
         provider: authType.name,
       );
