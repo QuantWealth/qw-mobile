@@ -12,10 +12,10 @@ class ProfileState {
   });
 
   factory ProfileState.initial() => ProfileState(
-    loginType: LoginType.none,
-    walletAddress: '',
-    scwAddress: '',
-  );
+        loginType: LoginType.none,
+        walletAddress: '',
+        scwAddress: '',
+      );
 
   ProfileState copyWith({
     LoginType? loginType,
@@ -27,5 +27,10 @@ class ProfileState {
       walletAddress: walletAddress ?? this.walletAddress,
       scwAddress: scwAddress ?? this.scwAddress,
     );
+  }
+
+  @override
+  String toString() {
+    return 'ProfileState(loginType: $loginType, walletAddress: $walletAddress, scwAddress: $scwAddress)';
   }
 }

@@ -67,11 +67,22 @@ class AuthCubit extends Cubit<AuthState> {
     final key = await _authRepository.getPrivateKey();
     if (_walletConnectProvider.service.isConnected) {
       log('WalletConnect is connected', name: 'AuthCubit');
+      _profileCubit.initUser(
+        type: LoginType.walletConnect,
+        walletAddress: _walletConnectProvider.service.session!.address!,
+        provider: _walletConnectProvider.service.session!.peer!.metadata.name,
+      );
       emit(AuthState.success().copyWith(
         loginType: LoginType.walletConnect,
       ));
     } else if (key != null) {
       log('Web3Auth is connected', name: 'AuthCubit');
+      final creds = EthPrivateKey.fromHex(key);
+      _profileCubit.initUser(
+        type: LoginType.web3Auth,
+        walletAddress: creds.address.hex,
+        provider: 'Web3Auth',
+      );
       emit(AuthState.success().copyWith(
         loginType: LoginType.web3Auth,
       ));

@@ -15,16 +15,16 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:logger/logger.dart' as _i4;
 
 import 'di.dart' as _i17;
-import 'ui/auth/cubit/auth_cubit.dart' as _i16;
+import 'ui/auth/cubit/auth_cubit.dart' as _i15;
 import 'ui/auth/infrastructure/datasources/auth_local_datasource.dart' as _i7;
 import 'ui/auth/infrastructure/datasources/auth_remote_datasource.dart' as _i6;
 import 'ui/auth/infrastructure/repositories/auth_repository.dart' as _i8;
-import 'ui/auth/infrastructure/repository/auth_repository.dart' as _i14;
-import 'ui/balance/cubit/balance_cubit.dart' as _i15;
+import 'ui/auth/infrastructure/repository/auth_repository.dart' as _i13;
+import 'ui/balance/cubit/balance_cubit.dart' as _i14;
 import 'ui/balance/infrastructure/repository/balance_repository.dart' as _i9;
 import 'ui/home/infrastructure/repository/home_repository.dart' as _i10;
-import 'ui/profile/cubit/profile_cubit.dart' as _i13;
-import 'ui/savings/cubit/savings_cubit.dart' as _i12;
+import 'ui/profile/cubit/profile_cubit.dart' as _i12;
+import 'ui/savings/cubit/savings_cubit.dart' as _i16;
 import 'ui/savings/infrastructure/repository/savings_repository.dart' as _i11;
 
 extension GetItInjectableX on _i1.GetIt {
@@ -61,18 +61,20 @@ extension GetItInjectableX on _i1.GetIt {
           dio: gh<_i3.Dio>(),
           logger: gh<_i4.Logger>(),
         ));
-    gh.lazySingleton<_i12.SavingsCubit>(() =>
-        _i12.SavingsCubit(savingsRepository: gh<_i11.SavingsRepository>()));
-    gh.lazySingleton<_i13.ProfileCubit>(
-        () => _i13.ProfileCubit(homeRepository: gh<_i10.HomeRepository>()));
-    gh.lazySingleton<_i14.AuthRepository>(() => _i14.AuthRepository(
+    gh.lazySingleton<_i12.ProfileCubit>(
+        () => _i12.ProfileCubit(homeRepository: gh<_i10.HomeRepository>()));
+    gh.lazySingleton<_i13.AuthRepository>(() => _i13.AuthRepository(
         authLocalDatasource: gh<_i7.AuthLocalDatasource>()));
-    gh.lazySingleton<_i15.BalanceCubit>(() =>
-        _i15.BalanceCubit(balanceRepository: gh<_i9.BalanceRepository>()));
-    gh.lazySingleton<_i16.AuthCubit>(() => _i16.AuthCubit(
-          authRepository: gh<_i14.AuthRepository>(),
+    gh.lazySingleton<_i14.BalanceCubit>(() =>
+        _i14.BalanceCubit(balanceRepository: gh<_i9.BalanceRepository>()));
+    gh.lazySingleton<_i15.AuthCubit>(() => _i15.AuthCubit(
+          authRepository: gh<_i13.AuthRepository>(),
           homeRepository: gh<_i10.HomeRepository>(),
-          profileCubit: gh<_i13.ProfileCubit>(),
+          profileCubit: gh<_i12.ProfileCubit>(),
+        ));
+    gh.lazySingleton<_i16.SavingsCubit>(() => _i16.SavingsCubit(
+          savingsRepository: gh<_i11.SavingsRepository>(),
+          profileCubit: gh<_i12.ProfileCubit>(),
         ));
     return this;
   }

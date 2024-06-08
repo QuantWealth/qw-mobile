@@ -1,6 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:quantwealth/ui/auth/cubit/auth_cubit.dart';
+import 'package:quantwealth/ui/profile/cubit/profile_cubit.dart';
 import 'package:quantwealth/ui/savings/infrastructure/datasource/savings_dto.dart';
 import 'package:quantwealth/ui/savings/infrastructure/repository/savings_repository.dart';
 
@@ -10,10 +13,13 @@ part 'savings_cubit.freezed.dart';
 @lazySingleton
 class SavingsCubit extends Cubit<SavingsState> {
   final SavingsRepository _repository;
+  final ProfileCubit _profileCubit;
 
   SavingsCubit({
     required SavingsRepository savingsRepository,
+    required ProfileCubit profileCubit,
   })  : _repository = savingsRepository,
+        _profileCubit = profileCubit,
         super(SavingsState.initial());
 
   Future<void> onStart() async {
@@ -31,6 +37,21 @@ class SavingsCubit extends Cubit<SavingsState> {
         error.toString(),
         investmentStatus: RequestStatus.initial,
       )),
+    );
+  }
+
+  Future<void> sendApprove() async {
+    final profile = _profileCubit.state;
+    final approvedTx = await _repository.createApprove(
+      walletAddress: profile.scwAddress,
+      amount: 2000000,
+    );
+
+    approvedTx.fold(
+      (tx) {
+        debugPrint(tx.toString());
+      },
+      (error) => emit(SavingsState.failure(error.toString())),
     );
   }
 

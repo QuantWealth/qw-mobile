@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quantwealth/injectable.dart';
+import 'package:quantwealth/ui/auth/cubit/auth_cubit.dart';
+import 'package:quantwealth/ui/profile/cubit/profile_cubit.dart';
 import 'package:quantwealth/ui/savings/cubit/savings_cubit.dart';
 import 'package:quantwealth/ui/savings/ui/views/savings_view.dart';
 import 'package:quantwealth/ui/savings/ui/widgets/invest_confirm_popup.dart';
@@ -55,11 +57,12 @@ class _SavingsPageState extends State<SavingsPage>
                   'You are about to invest in the ${op.name.toLowerCase()} savings option. Are you sure you want to continue?',
               onContinue: () {
                 getIt<SavingsCubit>().switchOption(op);
-                getIt<SavingsCubit>().invest();
+                // getIt<SavingsCubit>().invest();
+                getIt<SavingsCubit>().sendApprove();
               },
             );
           },
-          onInvest: () => getIt<SavingsCubit>().invest(),
+          onInvest: () {},
           savings: state.savingOptions,
           selectedSavings: state.selectedSavingsOption,
           balance: '\$5500',
