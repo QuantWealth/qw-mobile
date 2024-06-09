@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:quantwealth/ui/auth/cubit/auth_cubit.dart';
 import 'package:quantwealth/ui/profile/cubit/profile_cubit.dart';
 import 'package:quantwealth/ui/savings/infrastructure/datasource/savings_dto.dart';
 import 'package:quantwealth/ui/savings/infrastructure/repository/savings_repository.dart';
@@ -23,9 +21,11 @@ class SavingsCubit extends Cubit<SavingsState> {
         super(SavingsState.initial());
 
   Future<void> onStart() async {
+    final profile = _profileCubit.state;
+
     emit(SavingsState.loading());
     final result = await _repository.getSavingOptions(
-      address: '0x665d8a50912FC42A88233e9eA53e70980dcb9Ecd',
+      address: profile.walletAddress,
     );
     result.fold(
       (savings) => emit(SavingsState.success(
@@ -37,21 +37,6 @@ class SavingsCubit extends Cubit<SavingsState> {
         error.toString(),
         investmentStatus: RequestStatus.initial,
       )),
-    );
-  }
-
-  Future<void> sendApprove() async {
-    final profile = _profileCubit.state;
-    final approvedTx = await _repository.createApprove(
-      walletAddress: profile.scwAddress,
-      amount: 2000000,
-    );
-
-    approvedTx.fold(
-      (tx) {
-        debugPrint(tx.toString());
-      },
-      (error) => emit(SavingsState.failure(error.toString())),
     );
   }
 

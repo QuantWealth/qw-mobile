@@ -60,7 +60,6 @@ class SavingsRepository {
   }
 
   Future<Either<ApprovedTxDto, Exception>> createApprove({
-    required String walletAddress,
     String assetAddress = '0x83A9aE82b26249EC6e01498F5aDf0Ec20fF3Da9C',
     required int amount,
   }) async {
@@ -69,12 +68,11 @@ class SavingsRepository {
         '/orderbook/create-approve',
         queryParameters: {
           'assetAddress': assetAddress,
-          'walletAddress': walletAddress,
           'amount': amount,
         },
       );
 
-      _logger.i('Response: ${response.data}');
+      _logger.d('Response: ${response.data}');
       return Left(ApprovedTxDto.fromJson(response.data['data']));
     } on Exception catch (e) {
       _logger.e('Error: $e');
@@ -103,7 +101,7 @@ class SavingsRepository {
         },
       );
 
-      _logger.i('Response: ${response.data}');
+      _logger.d('Response: ${response.data}');
       return left(response.data['data']);
     } on Exception catch (e) {
       _logger.e('Error: $e');
