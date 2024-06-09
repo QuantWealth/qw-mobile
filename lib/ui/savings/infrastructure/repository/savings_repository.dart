@@ -102,7 +102,7 @@ class SavingsRepository {
       );
 
       _logger.d('Response: ${response.data}');
-      return left(response.data['data']);
+      return left(response.data['data']['taskId']);
     } on Exception catch (e) {
       _logger.e('Error: $e');
       return right(e);

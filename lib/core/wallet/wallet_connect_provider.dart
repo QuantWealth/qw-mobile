@@ -152,8 +152,6 @@ class WalletConnectProvider implements WalletProvider {
         ),
       );
 
-      service.launchConnectedWallet();
-
       log('Personal sign result: $result', name: 'WcProvider');
 
       return result;

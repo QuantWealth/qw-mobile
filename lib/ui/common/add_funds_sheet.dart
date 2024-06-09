@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:quantwealth/app/extensions.dart';
+import 'package:quantwealth/injectable.dart';
 import 'package:quantwealth/ui/common/text_outlined_button.dart';
+import 'package:quantwealth/ui/profile/cubit/profile_cubit.dart';
 import 'package:quantwealth/ui/receive/ui/receive_page.dart';
-import 'package:quantwealth/ui/savings/infrastructure/datasource/approved_tx_dto.dart';
 
 class AddFundsSheet extends StatelessWidget {
   const AddFundsSheet({super.key});
@@ -39,7 +40,7 @@ class AddFundsSheet extends StatelessWidget {
             text: 'Crypto Transfer',
             onPressed: () => context.navigator.push(
               ReceivePage(
-                address: '0x665d8a50912FC42A88233e9eA53e70980dcb9Ecd',
+                address: getIt<ProfileCubit>().state.walletAddress,
               ).route(),
             ),
           ),

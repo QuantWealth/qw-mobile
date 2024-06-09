@@ -9,6 +9,7 @@ import 'package:quantwealth/ui/auth/cubit/auth_cubit.dart';
 import 'package:quantwealth/ui/profile/cubit/profile_cubit.dart';
 import 'package:quantwealth/ui/savings/infrastructure/datasource/approved_tx_dto.dart';
 import 'package:quantwealth/ui/savings/infrastructure/repository/savings_repository.dart';
+import 'package:web3modal_flutter/web3modal_flutter.dart';
 
 part 'tx_state.dart';
 part 'tx_cubit.freezed.dart';
@@ -41,12 +42,30 @@ class TxCubit extends Cubit<TxState> {
 
   Future<void> sendTxApproval({
     required ApprovedTxDto tx,
+    required String strategy,
   }) async {
     final profile = _profileCubit.state;
     switch (profile.loginType) {
       case LoginType.walletConnect:
+        _walletConnectProvider.service.launchConnectedWallet();
         final sig = await _walletConnectProvider.personalSign(tx.typedData);
-        debugPrint(sig);
+        final confirmedTxResp = await _repository.sendApprove(
+          walletAddress: profile.scwAddress,
+          signerAddress: profile.walletAddress,
+          metaTransaction: tx.txData,
+          amount: state.amount!,
+          strategy: strategy.toUpperCase(),
+          signature: sig,
+        );
+
+        confirmedTxResp.fold(
+          (tx) {
+            debugPrint(tx.toString());
+            emit(TxState.success(state.amount!));
+          },
+          (error) => emit(TxState.failure(error.toString())),
+        );
+
         break;
 
       case LoginType.web3Auth:
