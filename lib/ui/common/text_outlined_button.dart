@@ -6,6 +6,7 @@ class TextOutlinedButton extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final TextStyle? textStyle;
   final Function()? onPressed;
+  final Color borderColor;
 
   const TextOutlinedButton({
     super.key,
@@ -13,6 +14,7 @@ class TextOutlinedButton extends StatelessWidget {
     required this.text,
     this.padding,
     this.textStyle,
+    this.borderColor = Colors.black,
   });
 
   @override
@@ -30,9 +32,7 @@ class TextOutlinedButton extends StatelessWidget {
                 ),
           ),
           side: WidgetStateProperty.all(
-            BorderSide(
-              color: Colors.black,
-            ),
+            BorderSide(color: borderColor),
           ),
         ),
         child: Text(

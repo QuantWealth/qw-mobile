@@ -22,4 +22,6 @@ class SavingsDto with _$SavingsDto {
       _$SavingsDtoFromJson(json);
 
   String get name => type == 'flexi' ? 'Flexible' : 'Fixed';
+
+  String get apiName => type == 'flexi' ? 'flexi' : 'fixed';
 }

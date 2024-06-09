@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quantwealth/app/extensions.dart';
 import 'package:quantwealth/injectable.dart';
+import 'package:quantwealth/ui/auth/cubit/auth_cubit.dart';
+import 'package:quantwealth/ui/common/tx_sign_sheet.dart';
+import 'package:quantwealth/ui/profile/cubit/profile_cubit.dart';
 import 'package:quantwealth/ui/savings/cubit/savings_cubit.dart';
 import 'package:quantwealth/ui/savings/cubit/tx_cubit.dart';
 import 'package:quantwealth/ui/savings/ui/views/savings_view.dart';
@@ -53,17 +57,36 @@ class _SavingsPageState extends State<SavingsPage>
         return BlocListener<TxCubit, TxState>(
           bloc: getIt<TxCubit>(),
           listener: (ctx, txState) {
+            final profileState = getIt<ProfileCubit>().state;
             if (txState.status == TxStatus.pending) {
-              // showModalBottomSheet(
-              //   context: ctx,
-              //   builder: (_) => SizedBox(
-              //     child: Text(txState.tx.toString()),
-              //   ),
-              // );
-              getIt<TxCubit>().sendTxApproval(
-                tx: txState.tx!,
-                strategy: state.selectedSavingsOption!.type,
-              );
+              switch (profileState.loginType) {
+                case LoginType.walletConnect:
+                  getIt<TxCubit>().sendTxApproval(
+                    tx: txState.tx!,
+                    strategy: state.selectedSavingsOption!.apiName,
+                  );
+                  break;
+
+                case LoginType.web3Auth:
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: Color(0xFF121212),
+                    builder: (_) => TxSignSheet(
+                      tx: txState.tx!,
+                      onSign: () {
+                        context.navigator.pop();
+                        getIt<TxCubit>().sendTxApproval(
+                          tx: txState.tx!,
+                          strategy: state.selectedSavingsOption!.apiName,
+                        );
+                      },
+                    ),
+                  );
+                  break;
+                default:
+                  break;
+              }
             }
 
             if (txState.status == TxStatus.success) {

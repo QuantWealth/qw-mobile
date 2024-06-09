@@ -109,6 +109,9 @@ class Web3AuthProvider implements WalletProvider {
 
   @override
   Future<String> personalSign(String msg) async {
+    final privKey = await Web3AuthFlutter.getPrivKey();
+    creds = EthPrivateKey.fromHex(privKey);
+
     final signed = creds.signPersonalMessageToUint8List(
       Uint8List.fromList(msg.codeUnits),
     );
