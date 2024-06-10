@@ -15,4 +15,12 @@ final class ProdEnv implements AppEnv, AppEnvFields {
 
   @override
   final Level logLevel = Level.off;
+
+  @override
+  @EnviedField(varName: 'WC_PROJECT_ID', obfuscate: true)
+  final String wcProjectId = _Env.wcProjectId;
+
+  @override
+  @EnviedField(varName: 'W3_CLIENT_ID', obfuscate: true)
+  final String w3ClientId = _Env.w3ClientId;
 }

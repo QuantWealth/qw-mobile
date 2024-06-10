@@ -22,17 +22,17 @@ class TextFilledButton extends StatelessWidget {
       child: OutlinedButton(
         onPressed: onPressed,
         style: Styles.outlinedButtonStyle.copyWith(
-          backgroundColor: MaterialStatePropertyAll(
+          backgroundColor: WidgetStatePropertyAll(
             Colors.black,
           ),
-          padding: MaterialStatePropertyAll(
+          padding: WidgetStatePropertyAll(
             padding ??
                 EdgeInsets.symmetric(
                   vertical: 16,
                   horizontal: 32,
                 ),
           ),
-          side: MaterialStateProperty.all(
+          side: WidgetStateProperty.all(
             BorderSide(
               color: Colors.black,
             ),

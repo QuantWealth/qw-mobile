@@ -10,6 +10,8 @@ PODS:
     - CoinbaseWalletSDK/Client
   - CryptoSwift (1.8.2)
   - Flutter (1.0.0)
+  - flutter_native_splash (0.0.1):
+    - Flutter
   - flutter_secure_storage (6.0.0):
     - Flutter
   - flutter_timezone (0.0.1):
@@ -57,6 +59,7 @@ DEPENDENCIES:
   - appcheck (from `.symlinks/plugins/appcheck/ios`)
   - coinbase_wallet_sdk (from `.symlinks/plugins/coinbase_wallet_sdk/ios`)
   - Flutter (from `Flutter`)
+  - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
   - flutter_timezone (from `.symlinks/plugins/flutter_timezone/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
@@ -88,6 +91,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/coinbase_wallet_sdk/ios"
   Flutter:
     :path: Flutter
+  flutter_native_splash:
+    :path: ".symlinks/plugins/flutter_native_splash/ios"
   flutter_secure_storage:
     :path: ".symlinks/plugins/flutter_secure_storage/ios"
   flutter_timezone:
@@ -116,6 +121,7 @@ SPEC CHECKSUMS:
   CoinbaseWalletSDK: ea1f37512bbc69ebe07416e3b29bf840f5cc3152
   CryptoSwift: c63a805d8bb5e5538e88af4e44bb537776af11ea
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  flutter_native_splash: edf599c81f74d093a4daf8e17bd7a018854bc778
   flutter_secure_storage: d33dac7ae2ea08509be337e775f6b59f1ff45f12
   flutter_timezone: ffb07bdad3c6276af8dada0f11978d8a1f8a20bb
   GenericJSON: 79a840eeb77030962e8cf02a62d36bd413b67626
@@ -134,6 +140,6 @@ SPEC CHECKSUMS:
   web3auth_flutter: 86975c81b0271df0955b22dc34a532351eab6358
   webview_flutter_wkwebview: be0f0d33777f1bfd0c9fdcb594786704dbf65f36
 
-PODFILE CHECKSUM: 51c1c5465e13ad3dc034a20f3a9fcf0c7aa9436a
+PODFILE CHECKSUM: 07b9abc5dd7eede349b16aec52e2b4d39f3c7741
 
 COCOAPODS: 1.15.2

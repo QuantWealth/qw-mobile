@@ -8,17 +8,28 @@ class AssetDto with _$AssetDto {
   const AssetDto._();
 
   const factory AssetDto({
-    required String name,
-    required String symbol,
-    required String address,
-    required int quantity,
-    required double fiatPrice,
-    required String network,
-    required int totalCount,
-    required double percentageChange,
-    required double totalBalance,
+    @JsonKey(name: 'contract_name') required String name,
+    @JsonKey(name: 'contract_ticker_symbol') required String symbol,
+    @JsonKey(name: 'contract_address') required String address,
+    required String balance,
+    @JsonKey(name: 'logo_url') required String logoUrl,
+    @JsonKey(name: 'logo_urls') required LogoUrls logoUrls,
+    @JsonKey(name: 'quote_rate') String? rate,
   }) = _AssetDto;
 
   factory AssetDto.fromJson(Map<String, Object?> json) =>
       _$AssetDtoFromJson(json);
+}
+
+@freezed
+class LogoUrls with _$LogoUrls {
+  const LogoUrls._();
+
+  const factory LogoUrls({
+    @JsonKey(name: 'token_logo_url') required String tokenLogo,
+    @JsonKey(name: 'chain_logo_url') required String chainLogo,
+  }) = _LogoUrls;
+
+  factory LogoUrls.fromJson(Map<String, Object?> json) =>
+      _$LogoUrlsFromJson(json);
 }

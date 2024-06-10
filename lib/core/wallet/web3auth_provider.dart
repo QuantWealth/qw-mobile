@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:hex/hex.dart';
+import 'package:quantwealth/core/env/app_env.dart';
 import 'package:quantwealth/core/wallet/wallet_connect_provider.dart';
 import 'package:quantwealth/core/wallet/wallet_provider.dart';
 import 'package:walletconnect_flutter_v2/walletconnect_flutter_v2.dart';
@@ -39,8 +40,7 @@ class Web3AuthProvider implements WalletProvider {
     }
 
     await Web3AuthFlutter.init(Web3AuthOptions(
-      clientId:
-          'BHykbPZYH7oVMpiCugpp6DGovePXukzttx6bsqt5u3ftQZGBwKdDwRPEWQpOPftsm-HRk0YYl0ieVJjZA1tBu64',
+      clientId: appEnv.w3ClientId,
       network: Network.sapphire_devnet,
       redirectUrl: redirectUrl,
     ));
@@ -109,6 +109,9 @@ class Web3AuthProvider implements WalletProvider {
 
   @override
   Future<String> personalSign(String msg) async {
+    final privKey = await Web3AuthFlutter.getPrivKey();
+    creds = EthPrivateKey.fromHex(privKey);
+
     final signed = creds.signPersonalMessageToUint8List(
       Uint8List.fromList(msg.codeUnits),
     );

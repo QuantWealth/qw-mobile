@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:quantwealth/core/env/app_env.dart';
 import 'package:web3modal_flutter/web3modal_flutter.dart';
 import 'wallet_provider.dart';
 
@@ -29,8 +30,9 @@ class WalletConnectProvider implements WalletProvider {
 
   @override
   Future<void> init() async {
+    log('project id: ${appEnv.wcProjectId}', name: 'WcProvider');
     service = W3MService(
-      projectId: '68c90d8869309432fa62984b6a792a16',
+      projectId: appEnv.wcProjectId,
       logLevel: LogLevel.debug,
       requiredNamespaces: {
         'eip155': W3MNamespace(
@@ -130,27 +132,33 @@ class WalletConnectProvider implements WalletProvider {
 
   @override
   Future<String> personalSign(String msg) async {
-    if (service.session == null) {
-      throw Exception('Wallet not connected');
+    try {
+      if (service.session == null) {
+        log('Wallet not connected', name: 'WcProvider');
+        throw Exception('Wallet not connected');
+      }
+
+      if (service.session!.topic == null) {
+        log('Topic not set', name: 'WcProvider');
+        throw Exception('Topic not set');
+      }
+
+      final result = await service.request(
+        topic: service.session!.topic!,
+        chainId: 'eip155:${service.session!.chainId}',
+        request: SessionRequestParams(
+          method: 'personal_sign',
+          params: [msg, service.session!.address!],
+        ),
+      );
+
+      log('Personal sign result: $result', name: 'WcProvider');
+
+      return result;
+    } catch (e) {
+      log('Personal sign error: $e', name: 'WcProvider');
+      rethrow;
     }
-
-    if (service.session!.topic == null) {
-      throw Exception('Topic not set');
-    }
-
-    final result = await service.request(
-      topic: service.session!.topic!,
-      chainId: 'eip155:${service.session!.chainId}',
-      request: SessionRequestParams(
-        method: 'personal_sign',
-        params: [msg, service.session!.address!],
-      ),
-    );
-    service.launchConnectedWallet();
-
-    log('Personal sign result: $result', name: 'WcProvider');
-
-    return result;
   }
 
   @override

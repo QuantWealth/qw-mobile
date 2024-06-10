@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quantwealth/app/extensions.dart';
+import 'package:quantwealth/injectable.dart';
 import 'package:quantwealth/ui/common/text_outlined_button.dart';
+import 'package:quantwealth/ui/profile/cubit/profile_cubit.dart';
 import 'package:quantwealth/ui/receive/ui/receive_page.dart';
 
 class AddFundsSheet extends StatelessWidget {
@@ -26,11 +28,7 @@ class AddFundsSheet extends StatelessWidget {
           SizedBox(height: 24),
           TextOutlinedButton(
             text: 'Bank Transfer',
-            onPressed: () => context.navigator.push(
-              ReceivePage(
-                address: '0x665d8a50912FC42A88233e9eA53e70980dcb9Ecd',
-              ).route(),
-            ),
+            onPressed: () {},
           ),
           SizedBox(height: 18),
           TextOutlinedButton(
@@ -40,7 +38,11 @@ class AddFundsSheet extends StatelessWidget {
           SizedBox(height: 18),
           TextOutlinedButton(
             text: 'Crypto Transfer',
-            onPressed: () {},
+            onPressed: () => context.navigator.push(
+              ReceivePage(
+                address: getIt<ProfileCubit>().state.walletAddress,
+              ).route(),
+            ),
           ),
           SizedBox(height: 18),
           TextOutlinedButton(

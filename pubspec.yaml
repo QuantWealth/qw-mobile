@@ -1,7 +1,7 @@
 name: quantwealth
 description: "A new Flutter project."
 publish_to: "none"
-version: 0.0.1+0
+version: 0.0.2+1
 
 environment:
   sdk: ">=3.3.4 <4.0.0"
@@ -34,6 +34,8 @@ dependencies:
   pretty_qr_code: ^3.3.0
   share_plus: ^9.0.0
   envied: ^0.5.4+1
+  flutter_native_splash: ^2.4.0
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:

@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quantwealth/app/extensions.dart';
 import 'package:quantwealth/injectable.dart';
+import 'package:quantwealth/ui/auth/cubit/auth_cubit.dart';
+import 'package:quantwealth/ui/common/tx_sign_sheet.dart';
+import 'package:quantwealth/ui/profile/cubit/profile_cubit.dart';
 import 'package:quantwealth/ui/savings/cubit/savings_cubit.dart';
+import 'package:quantwealth/ui/savings/cubit/tx_cubit.dart';
 import 'package:quantwealth/ui/savings/ui/views/savings_view.dart';
 import 'package:quantwealth/ui/savings/ui/widgets/invest_confirm_popup.dart';
 
@@ -15,6 +20,12 @@ class SavingsPage extends StatefulWidget {
 class _SavingsPageState extends State<SavingsPage>
     with AutomaticKeepAliveClientMixin {
   @override
+  void initState() {
+    getIt<SavingsCubit>().onStart();
+    super.initState();
+  }
+
+  @override
   bool get wantKeepAlive => true;
 
   @override
@@ -22,7 +33,7 @@ class _SavingsPageState extends State<SavingsPage>
     super.build(context);
 
     return BlocConsumer<SavingsCubit, SavingsState>(
-      bloc: getIt<SavingsCubit>()..onStart(),
+      bloc: getIt<SavingsCubit>(),
       listener: (_, state) {
         if (state.investmentStatus == RequestStatus.success) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -43,26 +54,73 @@ class _SavingsPageState extends State<SavingsPage>
             break;
         }
 
-        return SavingsView(
-          onAmountChanged: (val) => getIt<SavingsCubit>().amountChanged(val),
-          onLevelChanged: (val) {},
-          onSelectSavings: (op) {
-            // getIt<SavingsCubit>().switchOption(op);
-            InvestConfirmPopup.show(
-              context,
-              title: 'Flexbile details',
-              description:
-                  'lorem ipsum dolor sit amrut some sample strafyergy rtext to be written here lorem ipsum dolor sit amrut some sample strafyergy rtext to be written here',
-              onContinue: () {
-                getIt<SavingsCubit>().switchOption(op);
-                getIt<SavingsCubit>().invest();
-              },
-            );
+        return BlocListener<TxCubit, TxState>(
+          bloc: getIt<TxCubit>(),
+          listener: (ctx, txState) {
+            final profileState = getIt<ProfileCubit>().state;
+            if (txState.status == TxStatus.pending) {
+              switch (profileState.loginType) {
+                case LoginType.walletConnect:
+                  getIt<TxCubit>().sendTxApproval(
+                    tx: txState.tx!,
+                    strategy: state.selectedSavingsOption!.apiName,
+                  );
+                  break;
+
+                case LoginType.web3Auth:
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: Color(0xFF121212),
+                    builder: (_) => TxSignSheet(
+                      tx: txState.tx!,
+                      onSign: () {
+                        context.navigator.pop();
+                        getIt<TxCubit>().sendTxApproval(
+                          tx: txState.tx!,
+                          strategy: state.selectedSavingsOption!.apiName,
+                        );
+                      },
+                    ),
+                  );
+                  break;
+                default:
+                  break;
+              }
+            }
+
+            if (txState.status == TxStatus.success) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Task Created!'),
+                  backgroundColor: Colors.green,
+                ),
+              );
+            }
           },
-          onInvest: () => getIt<SavingsCubit>().invest(),
-          savings: state.savingOptions,
-          selectedSavings: state.selectedSavingsOption,
-          balance: '\$5500',
+          child: SavingsView(
+            onAmountChanged: (val) => getIt<SavingsCubit>().amountChanged(val),
+            onLevelChanged: (val) {},
+            onSelectSavings: (op) {
+              getIt<SavingsCubit>().switchOption(op);
+              InvestConfirmPopup.show(
+                context,
+                title: '${op.name} details',
+                description:
+                    'You are about to invest in the ${op.name.toLowerCase()} savings option. Are you sure you want to continue?',
+                onContinue: () {
+                  // getIt<SavingsCubit>().invest();
+                  getIt<TxCubit>().sendApprove(
+                    amount: int.tryParse(state.amount) ?? 0,
+                  );
+                },
+              );
+            },
+            onInvest: () {},
+            savings: state.savingOptions,
+            selectedSavings: state.selectedSavingsOption,
+            balance: '\$5500',
+          ),
         );
       },
     );

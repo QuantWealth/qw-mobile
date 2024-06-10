@@ -6,6 +6,8 @@ import 'package:injectable/injectable.dart';
 import 'package:quantwealth/core/wallet/wallet_connect_provider.dart';
 import 'package:quantwealth/core/wallet/web3auth_provider.dart';
 import 'package:quantwealth/ui/auth/infrastructure/repository/auth_repository.dart';
+import 'package:quantwealth/ui/home/infrastructure/repository/home_repository.dart';
+import 'package:quantwealth/ui/profile/cubit/profile_cubit.dart';
 import 'package:web3modal_flutter/web3modal_flutter.dart';
 
 part 'auth_state.dart';
@@ -16,22 +18,38 @@ class AuthCubit extends Cubit<AuthState> {
   final Web3AuthProvider _web3AuthProvider;
   final WalletConnectProvider _walletConnectProvider;
   final AuthRepository _authRepository;
+  final ProfileCubit _profileCubit;
 
   W3MService get service => _walletConnectProvider.service;
 
   AuthCubit({
     required AuthRepository authRepository,
+    required HomeRepository homeRepository,
+    required ProfileCubit profileCubit,
   })  : _web3AuthProvider = Web3AuthProvider(),
         _walletConnectProvider = WalletConnectProvider(),
         _authRepository = authRepository,
+        _profileCubit = profileCubit,
         super(AuthState.initial());
 
   Future<void> onStart() async {
     _web3AuthProvider.init();
     await _walletConnectProvider.init();
     await _walletConnectProvider.setupListeners(
-      onConnect: (connect) {
+      onConnect: (connect) async {
         log('WalletConnect is connected', name: 'AuthCubit');
+        if (connect?.session == null) {
+          emit(AuthState.error('WalletConnect error').copyWith(
+            loginType: LoginType.none,
+          ));
+          return;
+        }
+
+        _profileCubit.initUser(
+          type: LoginType.walletConnect,
+          walletAddress: connect!.session.address!,
+          provider: connect.session.peer!.metadata.name,
+        );
         emit(AuthState.success().copyWith(
           loginType: LoginType.walletConnect,
         ));
@@ -49,11 +67,22 @@ class AuthCubit extends Cubit<AuthState> {
     final key = await _authRepository.getPrivateKey();
     if (_walletConnectProvider.service.isConnected) {
       log('WalletConnect is connected', name: 'AuthCubit');
+      _profileCubit.initUser(
+        type: LoginType.walletConnect,
+        walletAddress: _walletConnectProvider.service.session!.address!,
+        provider: _walletConnectProvider.service.session!.peer!.metadata.name,
+      );
       emit(AuthState.success().copyWith(
         loginType: LoginType.walletConnect,
       ));
     } else if (key != null) {
       log('Web3Auth is connected', name: 'AuthCubit');
+      final creds = EthPrivateKey.fromHex(key);
+      _profileCubit.initUser(
+        type: LoginType.web3Auth,
+        walletAddress: creds.address.hex,
+        provider: 'Web3Auth',
+      );
       emit(AuthState.success().copyWith(
         loginType: LoginType.web3Auth,
       ));
@@ -73,6 +102,7 @@ class AuthCubit extends Cubit<AuthState> {
       case LoginType.none:
         break;
     }
+    await _authRepository.deletePrivateKey();
     emit(AuthState.disconnected());
     await onStart();
   }
@@ -100,6 +130,12 @@ class AuthCubit extends Cubit<AuthState> {
 
     if (privKey != null) {
       await _authRepository.savePrivateKey(privKey);
+      final creds = EthPrivateKey.fromHex(privKey);
+      _profileCubit.initUser(
+        type: LoginType.web3Auth,
+        walletAddress: creds.address.hex,
+        provider: authType.name,
+      );
       emit(AuthState.success().copyWith(
         loginType: LoginType.web3Auth,
       ));

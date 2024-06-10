@@ -20,15 +20,19 @@ AssetDto _$AssetDtoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AssetDto {
+  @JsonKey(name: 'contract_name')
   String get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'contract_ticker_symbol')
   String get symbol => throw _privateConstructorUsedError;
+  @JsonKey(name: 'contract_address')
   String get address => throw _privateConstructorUsedError;
-  int get quantity => throw _privateConstructorUsedError;
-  double get fiatPrice => throw _privateConstructorUsedError;
-  String get network => throw _privateConstructorUsedError;
-  int get totalCount => throw _privateConstructorUsedError;
-  double get percentageChange => throw _privateConstructorUsedError;
-  double get totalBalance => throw _privateConstructorUsedError;
+  String get balance => throw _privateConstructorUsedError;
+  @JsonKey(name: 'logo_url')
+  String get logoUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'logo_urls')
+  LogoUrls get logoUrls => throw _privateConstructorUsedError;
+  @JsonKey(name: 'quote_rate')
+  String? get rate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,15 +46,15 @@ abstract class $AssetDtoCopyWith<$Res> {
       _$AssetDtoCopyWithImpl<$Res, AssetDto>;
   @useResult
   $Res call(
-      {String name,
-      String symbol,
-      String address,
-      int quantity,
-      double fiatPrice,
-      String network,
-      int totalCount,
-      double percentageChange,
-      double totalBalance});
+      {@JsonKey(name: 'contract_name') String name,
+      @JsonKey(name: 'contract_ticker_symbol') String symbol,
+      @JsonKey(name: 'contract_address') String address,
+      String balance,
+      @JsonKey(name: 'logo_url') String logoUrl,
+      @JsonKey(name: 'logo_urls') LogoUrls logoUrls,
+      @JsonKey(name: 'quote_rate') String? rate});
+
+  $LogoUrlsCopyWith<$Res> get logoUrls;
 }
 
 /// @nodoc
@@ -69,12 +73,10 @@ class _$AssetDtoCopyWithImpl<$Res, $Val extends AssetDto>
     Object? name = null,
     Object? symbol = null,
     Object? address = null,
-    Object? quantity = null,
-    Object? fiatPrice = null,
-    Object? network = null,
-    Object? totalCount = null,
-    Object? percentageChange = null,
-    Object? totalBalance = null,
+    Object? balance = null,
+    Object? logoUrl = null,
+    Object? logoUrls = null,
+    Object? rate = freezed,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -89,31 +91,31 @@ class _$AssetDtoCopyWithImpl<$Res, $Val extends AssetDto>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
-      quantity: null == quantity
-          ? _value.quantity
-          : quantity // ignore: cast_nullable_to_non_nullable
-              as int,
-      fiatPrice: null == fiatPrice
-          ? _value.fiatPrice
-          : fiatPrice // ignore: cast_nullable_to_non_nullable
-              as double,
-      network: null == network
-          ? _value.network
-          : network // ignore: cast_nullable_to_non_nullable
+      balance: null == balance
+          ? _value.balance
+          : balance // ignore: cast_nullable_to_non_nullable
               as String,
-      totalCount: null == totalCount
-          ? _value.totalCount
-          : totalCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      percentageChange: null == percentageChange
-          ? _value.percentageChange
-          : percentageChange // ignore: cast_nullable_to_non_nullable
-              as double,
-      totalBalance: null == totalBalance
-          ? _value.totalBalance
-          : totalBalance // ignore: cast_nullable_to_non_nullable
-              as double,
+      logoUrl: null == logoUrl
+          ? _value.logoUrl
+          : logoUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      logoUrls: null == logoUrls
+          ? _value.logoUrls
+          : logoUrls // ignore: cast_nullable_to_non_nullable
+              as LogoUrls,
+      rate: freezed == rate
+          ? _value.rate
+          : rate // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $LogoUrlsCopyWith<$Res> get logoUrls {
+    return $LogoUrlsCopyWith<$Res>(_value.logoUrls, (value) {
+      return _then(_value.copyWith(logoUrls: value) as $Val);
+    });
   }
 }
 
@@ -126,15 +128,16 @@ abstract class _$$AssetDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String name,
-      String symbol,
-      String address,
-      int quantity,
-      double fiatPrice,
-      String network,
-      int totalCount,
-      double percentageChange,
-      double totalBalance});
+      {@JsonKey(name: 'contract_name') String name,
+      @JsonKey(name: 'contract_ticker_symbol') String symbol,
+      @JsonKey(name: 'contract_address') String address,
+      String balance,
+      @JsonKey(name: 'logo_url') String logoUrl,
+      @JsonKey(name: 'logo_urls') LogoUrls logoUrls,
+      @JsonKey(name: 'quote_rate') String? rate});
+
+  @override
+  $LogoUrlsCopyWith<$Res> get logoUrls;
 }
 
 /// @nodoc
@@ -151,12 +154,10 @@ class __$$AssetDtoImplCopyWithImpl<$Res>
     Object? name = null,
     Object? symbol = null,
     Object? address = null,
-    Object? quantity = null,
-    Object? fiatPrice = null,
-    Object? network = null,
-    Object? totalCount = null,
-    Object? percentageChange = null,
-    Object? totalBalance = null,
+    Object? balance = null,
+    Object? logoUrl = null,
+    Object? logoUrls = null,
+    Object? rate = freezed,
   }) {
     return _then(_$AssetDtoImpl(
       name: null == name
@@ -171,30 +172,22 @@ class __$$AssetDtoImplCopyWithImpl<$Res>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
-      quantity: null == quantity
-          ? _value.quantity
-          : quantity // ignore: cast_nullable_to_non_nullable
-              as int,
-      fiatPrice: null == fiatPrice
-          ? _value.fiatPrice
-          : fiatPrice // ignore: cast_nullable_to_non_nullable
-              as double,
-      network: null == network
-          ? _value.network
-          : network // ignore: cast_nullable_to_non_nullable
+      balance: null == balance
+          ? _value.balance
+          : balance // ignore: cast_nullable_to_non_nullable
               as String,
-      totalCount: null == totalCount
-          ? _value.totalCount
-          : totalCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      percentageChange: null == percentageChange
-          ? _value.percentageChange
-          : percentageChange // ignore: cast_nullable_to_non_nullable
-              as double,
-      totalBalance: null == totalBalance
-          ? _value.totalBalance
-          : totalBalance // ignore: cast_nullable_to_non_nullable
-              as double,
+      logoUrl: null == logoUrl
+          ? _value.logoUrl
+          : logoUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      logoUrls: null == logoUrls
+          ? _value.logoUrls
+          : logoUrls // ignore: cast_nullable_to_non_nullable
+              as LogoUrls,
+      rate: freezed == rate
+          ? _value.rate
+          : rate // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -203,42 +196,42 @@ class __$$AssetDtoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AssetDtoImpl extends _AssetDto {
   const _$AssetDtoImpl(
-      {required this.name,
-      required this.symbol,
-      required this.address,
-      required this.quantity,
-      required this.fiatPrice,
-      required this.network,
-      required this.totalCount,
-      required this.percentageChange,
-      required this.totalBalance})
+      {@JsonKey(name: 'contract_name') required this.name,
+      @JsonKey(name: 'contract_ticker_symbol') required this.symbol,
+      @JsonKey(name: 'contract_address') required this.address,
+      required this.balance,
+      @JsonKey(name: 'logo_url') required this.logoUrl,
+      @JsonKey(name: 'logo_urls') required this.logoUrls,
+      @JsonKey(name: 'quote_rate') this.rate})
       : super._();
 
   factory _$AssetDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$AssetDtoImplFromJson(json);
 
   @override
+  @JsonKey(name: 'contract_name')
   final String name;
   @override
+  @JsonKey(name: 'contract_ticker_symbol')
   final String symbol;
   @override
+  @JsonKey(name: 'contract_address')
   final String address;
   @override
-  final int quantity;
+  final String balance;
   @override
-  final double fiatPrice;
+  @JsonKey(name: 'logo_url')
+  final String logoUrl;
   @override
-  final String network;
+  @JsonKey(name: 'logo_urls')
+  final LogoUrls logoUrls;
   @override
-  final int totalCount;
-  @override
-  final double percentageChange;
-  @override
-  final double totalBalance;
+  @JsonKey(name: 'quote_rate')
+  final String? rate;
 
   @override
   String toString() {
-    return 'AssetDto(name: $name, symbol: $symbol, address: $address, quantity: $quantity, fiatPrice: $fiatPrice, network: $network, totalCount: $totalCount, percentageChange: $percentageChange, totalBalance: $totalBalance)';
+    return 'AssetDto(name: $name, symbol: $symbol, address: $address, balance: $balance, logoUrl: $logoUrl, logoUrls: $logoUrls, rate: $rate)';
   }
 
   @override
@@ -249,23 +242,17 @@ class _$AssetDtoImpl extends _AssetDto {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.symbol, symbol) || other.symbol == symbol) &&
             (identical(other.address, address) || other.address == address) &&
-            (identical(other.quantity, quantity) ||
-                other.quantity == quantity) &&
-            (identical(other.fiatPrice, fiatPrice) ||
-                other.fiatPrice == fiatPrice) &&
-            (identical(other.network, network) || other.network == network) &&
-            (identical(other.totalCount, totalCount) ||
-                other.totalCount == totalCount) &&
-            (identical(other.percentageChange, percentageChange) ||
-                other.percentageChange == percentageChange) &&
-            (identical(other.totalBalance, totalBalance) ||
-                other.totalBalance == totalBalance));
+            (identical(other.balance, balance) || other.balance == balance) &&
+            (identical(other.logoUrl, logoUrl) || other.logoUrl == logoUrl) &&
+            (identical(other.logoUrls, logoUrls) ||
+                other.logoUrls == logoUrls) &&
+            (identical(other.rate, rate) || other.rate == rate));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, symbol, address, quantity,
-      fiatPrice, network, totalCount, percentageChange, totalBalance);
+  int get hashCode => Object.hash(
+      runtimeType, name, symbol, address, balance, logoUrl, logoUrls, rate);
 
   @JsonKey(ignore: true)
   @override
@@ -283,40 +270,210 @@ class _$AssetDtoImpl extends _AssetDto {
 
 abstract class _AssetDto extends AssetDto {
   const factory _AssetDto(
-      {required final String name,
-      required final String symbol,
-      required final String address,
-      required final int quantity,
-      required final double fiatPrice,
-      required final String network,
-      required final int totalCount,
-      required final double percentageChange,
-      required final double totalBalance}) = _$AssetDtoImpl;
+      {@JsonKey(name: 'contract_name') required final String name,
+      @JsonKey(name: 'contract_ticker_symbol') required final String symbol,
+      @JsonKey(name: 'contract_address') required final String address,
+      required final String balance,
+      @JsonKey(name: 'logo_url') required final String logoUrl,
+      @JsonKey(name: 'logo_urls') required final LogoUrls logoUrls,
+      @JsonKey(name: 'quote_rate') final String? rate}) = _$AssetDtoImpl;
   const _AssetDto._() : super._();
 
   factory _AssetDto.fromJson(Map<String, dynamic> json) =
       _$AssetDtoImpl.fromJson;
 
   @override
+  @JsonKey(name: 'contract_name')
   String get name;
   @override
+  @JsonKey(name: 'contract_ticker_symbol')
   String get symbol;
   @override
+  @JsonKey(name: 'contract_address')
   String get address;
   @override
-  int get quantity;
+  String get balance;
   @override
-  double get fiatPrice;
+  @JsonKey(name: 'logo_url')
+  String get logoUrl;
   @override
-  String get network;
+  @JsonKey(name: 'logo_urls')
+  LogoUrls get logoUrls;
   @override
-  int get totalCount;
-  @override
-  double get percentageChange;
-  @override
-  double get totalBalance;
+  @JsonKey(name: 'quote_rate')
+  String? get rate;
   @override
   @JsonKey(ignore: true)
   _$$AssetDtoImplCopyWith<_$AssetDtoImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+LogoUrls _$LogoUrlsFromJson(Map<String, dynamic> json) {
+  return _LogoUrls.fromJson(json);
+}
+
+/// @nodoc
+mixin _$LogoUrls {
+  @JsonKey(name: 'token_logo_url')
+  String get tokenLogo => throw _privateConstructorUsedError;
+  @JsonKey(name: 'chain_logo_url')
+  String get chainLogo => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LogoUrlsCopyWith<LogoUrls> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LogoUrlsCopyWith<$Res> {
+  factory $LogoUrlsCopyWith(LogoUrls value, $Res Function(LogoUrls) then) =
+      _$LogoUrlsCopyWithImpl<$Res, LogoUrls>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'token_logo_url') String tokenLogo,
+      @JsonKey(name: 'chain_logo_url') String chainLogo});
+}
+
+/// @nodoc
+class _$LogoUrlsCopyWithImpl<$Res, $Val extends LogoUrls>
+    implements $LogoUrlsCopyWith<$Res> {
+  _$LogoUrlsCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? tokenLogo = null,
+    Object? chainLogo = null,
+  }) {
+    return _then(_value.copyWith(
+      tokenLogo: null == tokenLogo
+          ? _value.tokenLogo
+          : tokenLogo // ignore: cast_nullable_to_non_nullable
+              as String,
+      chainLogo: null == chainLogo
+          ? _value.chainLogo
+          : chainLogo // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$LogoUrlsImplCopyWith<$Res>
+    implements $LogoUrlsCopyWith<$Res> {
+  factory _$$LogoUrlsImplCopyWith(
+          _$LogoUrlsImpl value, $Res Function(_$LogoUrlsImpl) then) =
+      __$$LogoUrlsImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'token_logo_url') String tokenLogo,
+      @JsonKey(name: 'chain_logo_url') String chainLogo});
+}
+
+/// @nodoc
+class __$$LogoUrlsImplCopyWithImpl<$Res>
+    extends _$LogoUrlsCopyWithImpl<$Res, _$LogoUrlsImpl>
+    implements _$$LogoUrlsImplCopyWith<$Res> {
+  __$$LogoUrlsImplCopyWithImpl(
+      _$LogoUrlsImpl _value, $Res Function(_$LogoUrlsImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? tokenLogo = null,
+    Object? chainLogo = null,
+  }) {
+    return _then(_$LogoUrlsImpl(
+      tokenLogo: null == tokenLogo
+          ? _value.tokenLogo
+          : tokenLogo // ignore: cast_nullable_to_non_nullable
+              as String,
+      chainLogo: null == chainLogo
+          ? _value.chainLogo
+          : chainLogo // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$LogoUrlsImpl extends _LogoUrls {
+  const _$LogoUrlsImpl(
+      {@JsonKey(name: 'token_logo_url') required this.tokenLogo,
+      @JsonKey(name: 'chain_logo_url') required this.chainLogo})
+      : super._();
+
+  factory _$LogoUrlsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LogoUrlsImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'token_logo_url')
+  final String tokenLogo;
+  @override
+  @JsonKey(name: 'chain_logo_url')
+  final String chainLogo;
+
+  @override
+  String toString() {
+    return 'LogoUrls(tokenLogo: $tokenLogo, chainLogo: $chainLogo)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LogoUrlsImpl &&
+            (identical(other.tokenLogo, tokenLogo) ||
+                other.tokenLogo == tokenLogo) &&
+            (identical(other.chainLogo, chainLogo) ||
+                other.chainLogo == chainLogo));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, tokenLogo, chainLogo);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LogoUrlsImplCopyWith<_$LogoUrlsImpl> get copyWith =>
+      __$$LogoUrlsImplCopyWithImpl<_$LogoUrlsImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$LogoUrlsImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _LogoUrls extends LogoUrls {
+  const factory _LogoUrls(
+          {@JsonKey(name: 'token_logo_url') required final String tokenLogo,
+          @JsonKey(name: 'chain_logo_url') required final String chainLogo}) =
+      _$LogoUrlsImpl;
+  const _LogoUrls._() : super._();
+
+  factory _LogoUrls.fromJson(Map<String, dynamic> json) =
+      _$LogoUrlsImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'token_logo_url')
+  String get tokenLogo;
+  @override
+  @JsonKey(name: 'chain_logo_url')
+  String get chainLogo;
+  @override
+  @JsonKey(ignore: true)
+  _$$LogoUrlsImplCopyWith<_$LogoUrlsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
