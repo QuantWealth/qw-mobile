@@ -23,6 +23,10 @@ abstract class WalletProvider {
     required String tx,
   });
 
+  Future<String> signTypedDataV4(
+    String data,
+  );
+
   Future<String> personalSign(
     String msg,
   );

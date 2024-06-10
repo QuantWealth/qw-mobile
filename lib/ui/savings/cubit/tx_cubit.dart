@@ -34,7 +34,10 @@ class TxCubit extends Cubit<TxState> {
     required int amount,
   }) async {
     final amt = (amount * pow(10, 6)).toInt();
-    final approvedTx = await _repository.createApprove(amount: amt);
+    final approvedTx = await _repository.createApprove(
+      walletAddress: _profileCubit.state.scwAddress,
+      amount: amt,
+    );
 
     approvedTx.fold(
       (tx) => emit(TxState.loading(amount: amt, tx: tx)),
@@ -52,11 +55,11 @@ class TxCubit extends Cubit<TxState> {
     switch (profile.loginType) {
       case LoginType.walletConnect:
         _walletConnectProvider.service.launchConnectedWallet();
-        sig = await _walletConnectProvider.personalSign(tx.typedData);
+        sig = await _walletConnectProvider.signTypedDataV4(tx.typedData);
         break;
 
       case LoginType.web3Auth:
-        sig = await _web3AuthProvider.personalSign(tx.typedData);
+        sig = await _web3AuthProvider.signTypedDataV4(tx.typedData);
         break;
 
       default:

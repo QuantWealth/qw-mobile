@@ -42,6 +42,7 @@ class WalletConnectProvider implements WalletProvider {
             'eth_sign',
             'personal_sign',
             'eth_sendRawTransaction',
+            'eth_signTypedData_v4',
           ],
           events: [
             'chainChanged',
@@ -184,6 +185,30 @@ class WalletConnectProvider implements WalletProvider {
     service.launchConnectedWallet();
 
     log('Send tx result: $result', name: 'WcProvider');
+  }
+
+  @override
+  Future<String> signTypedDataV4(String data) async {
+    if (service.session == null) {
+      throw Exception('Wallet not connected');
+    }
+
+    if (service.session!.topic == null) {
+      throw Exception('Topic not set');
+    }
+
+    final result = await service.request(
+      topic: service.session!.topic!,
+      chainId: service.session!.chainId,
+      request: SessionRequestParams(
+        method: 'eth_signTypedData_v4',
+        params: [service.session!.address!, data],
+      ),
+    );
+
+    log('Sign typed data result: $result', name: 'WcProvider');
+
+    return result;
   }
 
   @override

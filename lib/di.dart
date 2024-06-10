@@ -8,7 +8,7 @@ abstract class DiModule {
   @singleton
   Dio get dio => Dio(
         BaseOptions(
-          baseUrl: 'http://192.168.29.50:3000',
+          baseUrl: 'http://172.26.185.87:3000',
         ),
       );
 

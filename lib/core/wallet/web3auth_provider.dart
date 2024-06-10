@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:eth_sig_util/eth_sig_util.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hex/hex.dart';
 import 'package:quantwealth/core/env/app_env.dart';
@@ -121,6 +122,21 @@ class Web3AuthProvider implements WalletProvider {
     log('Signature: $result', name: 'Web3AuthProvider');
 
     return result;
+  }
+
+  @override
+  Future<String> signTypedDataV4(String data) async {
+    final privKey = await Web3AuthFlutter.getPrivKey();
+
+    final signature = EthSigUtil.signTypedData(
+      jsonData: data,
+      privateKey: privKey,
+      version: TypedDataVersion.V4,
+    );
+
+    log('Signature: $signature', name: 'Web3AuthProvider');
+
+    return signature;
   }
 
   @override

@@ -61,6 +61,7 @@ class SavingsRepository {
 
   Future<Either<ApprovedTxDto, Exception>> createApprove({
     String assetAddress = '0x83A9aE82b26249EC6e01498F5aDf0Ec20fF3Da9C',
+    required String walletAddress,
     required int amount,
   }) async {
     try {
@@ -68,6 +69,7 @@ class SavingsRepository {
         '/orderbook/create-approve',
         queryParameters: {
           'assetAddress': assetAddress,
+          'walletAddress': walletAddress,
           'amount': amount,
         },
       );
