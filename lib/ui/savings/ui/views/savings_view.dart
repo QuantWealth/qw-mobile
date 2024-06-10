@@ -33,10 +33,13 @@ class SavingsView extends StatefulWidget {
 
 class _SavingsViewState extends State<SavingsView> {
   final FocusNode _focusNode = FocusNode();
+  late TextEditingController _amountController;
   bool _fieldInFocus = false;
 
   @override
   void initState() {
+    _amountController = TextEditingController();
+    _amountController.value = TextEditingValue(text: '200');
     _focusNode.addListener(() {
       setState(() {
         _fieldInFocus = _focusNode.hasFocus;
@@ -94,6 +97,7 @@ class _SavingsViewState extends State<SavingsView> {
                           child: Column(
                             children: [
                               TextFormField(
+                                controller: _amountController,
                                 focusNode: _focusNode,
                                 onChanged: widget.onAmountChanged,
                                 style: inputStyle,
@@ -105,6 +109,12 @@ class _SavingsViewState extends State<SavingsView> {
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
                                   hintText: Strings.hintAmountInput,
+                                  prefix: Text(
+                                    '\$',
+                                    style: inputStyle.copyWith(
+                                      color: white.withOpacity(0.5),
+                                    ),
+                                  ),
                                   hintStyle: inputStyle.copyWith(
                                     color: white.withOpacity(0.5),
                                   ),
@@ -206,6 +216,15 @@ class _SavingsViewState extends State<SavingsView> {
                   ),
                 ),
               ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 43.0),
+              child: SavingsItemButton(
+                onPressed: () {},
+                name: 'Custom',
+                apy: '15-30%',
+                isSelected: false,
+              ),
+            ),
             // const SizedBox(height: 100.0),
             // Row(
             //   mainAxisAlignment: MainAxisAlignment.center,

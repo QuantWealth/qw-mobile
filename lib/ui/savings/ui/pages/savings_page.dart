@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quantwealth/app/extensions.dart';
 import 'package:quantwealth/injectable.dart';
 import 'package:quantwealth/ui/auth/cubit/auth_cubit.dart';
+import 'package:quantwealth/ui/common/add_funds_sheet.dart';
 import 'package:quantwealth/ui/common/tx_sign_sheet.dart';
 import 'package:quantwealth/ui/profile/cubit/profile_cubit.dart';
 import 'package:quantwealth/ui/savings/cubit/savings_cubit.dart';
@@ -47,7 +48,11 @@ class _SavingsPageState extends State<SavingsPage>
       builder: (context, state) {
         switch (state.status) {
           case RequestStatus.loading:
-            return const Center(child: CircularProgressIndicator.adaptive());
+            return const Center(
+              child: CircularProgressIndicator.adaptive(
+                valueColor: AlwaysStoppedAnimation(Colors.white),
+              ),
+            );
           case RequestStatus.failure:
             return Center(child: Text(state.error ?? 'An error occurred'));
           default:
@@ -76,9 +81,9 @@ class _SavingsPageState extends State<SavingsPage>
                       tx: txState.tx!,
                       onSign: () {
                         context.navigator.pop();
-                        getIt<TxCubit>().sendTxApproval(
-                          tx: txState.tx!,
-                          strategy: state.selectedSavingsOption!.apiName,
+                        showDialog(
+                          context: context,
+                          builder: (_) => SuccessDialog(),
                         );
                       },
                     ),

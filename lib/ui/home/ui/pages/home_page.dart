@@ -6,6 +6,8 @@ import 'package:quantwealth/injectable.dart';
 import 'package:quantwealth/ui/auth/cubit/auth_cubit.dart';
 import 'package:quantwealth/ui/balance/ui/pages/balance_page.dart';
 import 'package:quantwealth/ui/common/widgets/base_scaffold.dart';
+import 'package:quantwealth/ui/home/ui/pages/search_page.dart';
+import 'package:quantwealth/ui/home/ui/pages/staking_page.dart';
 import 'package:quantwealth/ui/savings/ui/pages/savings_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -75,7 +77,8 @@ class _HomePageState extends State<HomePage> {
         children: const [
           BalancePage(),
           SavingsPage(),
-          ComingSoon(),
+          SearchPage(),
+          StakingPage(),
           ComingSoon(),
         ],
       ),
@@ -111,7 +114,11 @@ class _HomePageState extends State<HomePage> {
                       height: 32.0,
                       width: 32.0,
                       child: SvgPicture.asset(
-                          _activePage == e ? e.activeIcon : e.icon),
+                        color: _activePage == e
+                            ? Colors.grey.withOpacity(.9)
+                            : white,
+                        e.icon,
+                      ),
                     ),
                   ),
                 ),
@@ -147,6 +154,7 @@ class ComingSoon extends StatelessWidget {
 enum PageItems {
   balance,
   savings,
+  search,
   investments,
   profile;
 
@@ -158,6 +166,8 @@ enum PageItems {
         return 'assets/icons/bottomTwo.svg';
       case PageItems.investments:
         return 'assets/icons/bottomThree.svg';
+      case PageItems.search:
+        return 'assets/icons/search.svg';
       case PageItems.profile:
         return 'assets/icons/bottomFour.svg';
     }
@@ -171,6 +181,8 @@ enum PageItems {
         return 'assets/icons/bottomTwoActive.svg';
       case PageItems.investments:
         return 'assets/icons/bottomThreeActive.svg';
+      case PageItems.search:
+        return 'assets/icons/search.svg';
       case PageItems.profile:
         return 'assets/icons/bottomFourActive.svg';
     }
@@ -183,7 +195,10 @@ enum PageItems {
       case PageItems.savings:
         return Strings.titleSavings;
       case PageItems.investments:
-        return Strings.titleInvestments;
+        // return Strings.titleInvestments;
+        return 'Staking';
+      case PageItems.search:
+        return 'Invest';
       case PageItems.profile:
         return Strings.titleProfile;
     }
@@ -196,8 +211,10 @@ enum PageItems {
       case 1:
         return PageItems.savings;
       case 2:
-        return PageItems.investments;
+        return PageItems.search;
       case 3:
+        return PageItems.investments;
+      case 4:
         return PageItems.profile;
     }
     return null;

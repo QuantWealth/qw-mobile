@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quantwealth/app/extensions.dart';
+import 'package:quantwealth/app/theme/theme.dart';
 import 'package:quantwealth/injectable.dart';
 import 'package:quantwealth/ui/common/text_outlined_button.dart';
 import 'package:quantwealth/ui/profile/cubit/profile_cubit.dart';
@@ -57,6 +58,44 @@ class AddFundsSheet extends StatelessWidget {
           SizedBox(height: 50),
         ],
       ),
+    );
+  }
+}
+
+class SuccessDialog extends StatelessWidget {
+  const SuccessDialog({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      backgroundColor: Color(0xFF121212),
+      title: Center(
+        child: Text(
+          'Investment Successful!',
+          style: fontB(20),
+        ),
+      ),
+      content: Text(
+        'You have successfully invested in the selected strategy.',
+        style: fontR(16),
+        textAlign: TextAlign.center,
+      ),
+      actions: [
+        Center(
+          child: SizedBox(
+            width: double.infinity,
+            child: TextButton(
+              onPressed: () => context.navigator.pop(),
+              child: Text(
+                'OK',
+                style: fontB(20),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

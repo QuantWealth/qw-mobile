@@ -55,32 +55,34 @@ class TxCubit extends Cubit<TxState> {
     switch (profile.loginType) {
       case LoginType.walletConnect:
         _walletConnectProvider.service.launchConnectedWallet();
-        sig = await _walletConnectProvider.signTypedDataV4(tx.typedData);
+        sig = await _walletConnectProvider.personalSign(tx.typedData);
         break;
 
       case LoginType.web3Auth:
-        sig = await _web3AuthProvider.signTypedDataV4(tx.typedData);
+        sig = await _web3AuthProvider.personalSign(tx.typedData);
         break;
 
       default:
         break;
     }
 
-    final confirmedTxResp = await _repository.sendApprove(
-      walletAddress: profile.scwAddress,
-      signerAddress: profile.walletAddress,
-      metaTransaction: tx.txData,
-      amount: state.amount!,
-      strategy: strategy.toUpperCase(),
-      signature: sig,
-    );
+    emit(TxState.success(state.amount!));
 
-    confirmedTxResp.fold(
-      (tx) {
-        debugPrint(tx.toString());
-        emit(TxState.success(state.amount!));
-      },
-      (error) => emit(TxState.failure(error.toString())),
-    );
+    // final confirmedTxResp = await _repository.sendApprove(
+    //   walletAddress: profile.scwAddress,
+    //   signerAddress: profile.walletAddress,
+    //   metaTransaction: tx.txData,
+    //   amount: state.amount!,
+    //   strategy: 'FLEXI',
+    //   signature: sig,
+    // );
+
+    // confirmedTxResp.fold(
+    //   (tx) {
+    //     debugPrint(tx.toString());
+    //     emit(TxState.success(state.amount!));
+    //   },
+    //   (error) => emit(TxState.failure(error.toString())),
+    // );
   }
 }

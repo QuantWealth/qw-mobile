@@ -70,6 +70,7 @@ class _InvestConfirmPopupState extends State<InvestConfirmPopup> {
                   fontWeight: FontWeight.w500,
                   fontFamily: 'GalanoGrotesque',
                 ),
+                textAlign: TextAlign.center,
               ),
               const SizedBox(height: 16.0),
               GestureDetector(

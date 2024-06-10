@@ -21,7 +21,7 @@ class SavingsDto with _$SavingsDto {
   factory SavingsDto.fromJson(Map<String, Object?> json) =>
       _$SavingsDtoFromJson(json);
 
-  String get name => type == 'flexi' ? 'Flexible' : 'Fixed';
+  String get name => type == 'flexi' ? 'Flexi' : 'Fixed';
 
   String get apiName => type == 'flexi' ? 'flexi' : 'fixed';
 }

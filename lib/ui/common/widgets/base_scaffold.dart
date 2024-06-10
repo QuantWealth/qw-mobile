@@ -18,6 +18,7 @@ class BaseScaffold extends StatefulWidget {
   final bool isFirstPage;
   final bool safeArea;
   final Widget? bottomNavigationBar;
+  final Widget? floatingActionButton;
 
   const BaseScaffold({
     super.key,
@@ -33,6 +34,7 @@ class BaseScaffold extends StatefulWidget {
     this.onLoading = false,
     this.isFirstPage = false,
     this.bottomNavigationBar,
+    this.floatingActionButton,
   });
 
   @override
@@ -80,6 +82,9 @@ class _BaseScaffoldState extends State<BaseScaffold> {
                   : null,
               body: widget.body,
               bottomNavigationBar: widget.bottomNavigationBar,
+              floatingActionButton: widget.floatingActionButton,
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerFloat,
             ),
           ),
         ),

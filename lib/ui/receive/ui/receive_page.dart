@@ -72,21 +72,21 @@ class ReceivePage extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(
-              width: double.maxFinite,
-              child: DefaultButton(
-                onPressed: () {
-                  // Copy address to clipboard
-                },
-                // add a logo here for indicating copy
-                label: address.truncate(),
-                fontSize: 16.0,
-                padding: const EdgeInsets.symmetric(
-                  vertical: 18.0,
-                ),
-              ),
-            ),
-            SizedBox(height: 12.0),
+            // SizedBox(
+            //   width: double.maxFinite,
+            //   child: DefaultButton(
+            //     onPressed: () {
+            //       // Copy address to clipboard
+            //     },
+            //     // add a logo here for indicating copy
+            //     label: address.truncate(),
+            //     fontSize: 16.0,
+            //     padding: const EdgeInsets.symmetric(
+            //       vertical: 18.0,
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(height: 12.0),
             SizedBox(
               width: double.maxFinite,
               child: DefaultButton(

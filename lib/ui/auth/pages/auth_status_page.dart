@@ -8,7 +8,11 @@ class AuthStatusPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseScaffold(
       bgImage: 'assets/images/qw_login_bg.png',
-      body: Center(child: CircularProgressIndicator.adaptive()),
+      body: Center(
+        child: CircularProgressIndicator.adaptive(
+          valueColor: AlwaysStoppedAnimation(Colors.white),
+        ),
+      ),
     );
   }
 }

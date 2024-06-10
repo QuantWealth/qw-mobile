@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quantwealth/app/strings.dart';
 import 'package:quantwealth/app/theme/theme.dart';
+import 'package:quantwealth/injectable.dart';
 import 'package:quantwealth/ui/balance/infrastructure/datasource/asset_dto.dart';
 import 'package:quantwealth/ui/balance/ui/widgets/assets_listview.dart';
 import 'package:quantwealth/ui/common/widgets/default_button.dart';
+import 'package:quantwealth/ui/savings/cubit/tx_cubit.dart';
 
 class BalanceView extends StatelessWidget {
   final VoidCallback onAddFunds;
@@ -78,21 +81,70 @@ class BalanceView extends StatelessWidget {
             indicatorColor: white,
             dividerColor: Colors.transparent,
             tabs: const [
-              Tab(text: 'Assets'),
               Tab(text: 'Investments'),
+              Tab(text: 'Assets'),
             ],
           ),
           SizedBox(
             height: 400, // You can adjust this as per your requirement
             child: TabBarView(
               children: [
+                BlocBuilder<TxCubit, TxState>(
+                  bloc: getIt<TxCubit>(),
+                  builder: (context, state) {
+                    if (state.status == TxStatus.pending &&
+                        state.amount != null) {
+                      return ListView(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 20.0),
+                            child: ListTile(
+                              minVerticalPadding: 20,
+                              leading: CircleAvatar(
+                                backgroundColor: Colors.white,
+                                child: Icon(Icons.attach_money),
+                              ),
+                              title: Text(
+                                'Flexi',
+                                style: fontSB(18),
+                              ),
+                              subtitle: Text(
+                                'Savings',
+                                style: fontR(14),
+                              ),
+                              trailing: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    '\$200',
+                                    style: fontSB(18),
+                                  ),
+                                  Text(
+                                    '${18}%',
+                                    style: fontR(14, color: Colors.greenAccent),
+                                  ),
+                                ],
+                              ),
+                              onTap: () {},
+                            ),
+                          ),
+                        ],
+                      );
+                    }
+
+                    return Center(
+                      child: Text(
+                        'No investments yet',
+                        style: fontSB(18),
+                      ),
+                    );
+                  },
+                ),
                 AssetsListView(
                   assets: assets,
                   onClick: (asset) {},
-                ),
-                Icon(
-                  Icons.directions_transit,
-                  color: Colors.amber,
                 ),
               ],
             ),

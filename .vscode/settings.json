@@ -6,5 +6,4 @@
     "main_common.dart": "main_*.dart",
     "README.md": "LICENSE,CODE_OF_CONDUCT.md,CONTRIBUTING.md,SECURITY.md,CONTRIBUTION.md,CHANGELOG.md,PRIVACY_POLICY.md"
   },
-  "dart.flutterSdkPath": ".fvm/versions/3.19.6"
 }
