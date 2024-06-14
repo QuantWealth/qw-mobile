@@ -64,7 +64,14 @@ class AuthCubit extends Cubit<AuthState> {
       },
     );
 
-    final key = await _authRepository.getPrivateKey();
+    late String? key;
+    try {
+      key = await _authRepository.getPrivateKey();
+    } catch (e) {
+      log('Failed to get private key', name: 'AuthCubit');
+      key = null;
+    }
+
     if (_walletConnectProvider.service.isConnected) {
       log('WalletConnect is connected', name: 'AuthCubit');
       _profileCubit.initUser(

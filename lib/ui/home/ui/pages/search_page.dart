@@ -26,7 +26,7 @@ class _SearchPageState extends State<SearchPage> {
           child: SizedBox(
             width: double.infinity,
             child: FloatingActionButton.extended(
-              backgroundColor: Colors.grey[900],
+              backgroundColor: Colors.lightGreen.withOpacity(.4),
               onPressed: () => context.navigator.push(
                 InvestPage(selectedItems: selectedItems)
                     .route(material: Platform.isAndroid),

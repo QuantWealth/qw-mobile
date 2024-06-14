@@ -85,6 +85,7 @@ class _StakingPageState extends State<StakingPage> {
                               border: InputBorder.none,
                               hintText: 'Coming soon...',
                               hintStyle: inputStyle.copyWith(
+                                fontSize: 40,
                                 color: white.withOpacity(0.5),
                               ),
                               // prefixText: '\$',
