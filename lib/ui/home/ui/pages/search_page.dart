@@ -26,7 +26,7 @@ class _SearchPageState extends State<SearchPage> {
           child: SizedBox(
             width: double.infinity,
             child: FloatingActionButton.extended(
-              backgroundColor: Colors.lightGreen.withOpacity(.4),
+              backgroundColor: Colors.blueGrey.withOpacity(.8),
               onPressed: () => context.navigator.push(
                 InvestPage(selectedItems: selectedItems)
                     .route(material: Platform.isAndroid),
@@ -103,7 +103,7 @@ class _SearchPageState extends State<SearchPage> {
             }),
             child: ListTile(
               selected: selectedItems.contains(index),
-              selectedTileColor: Colors.grey[900],
+              selectedTileColor: Colors.lightGreen.withOpacity(.4),
               title: Text(
                 asset.name,
                 style: fontSB(18),
