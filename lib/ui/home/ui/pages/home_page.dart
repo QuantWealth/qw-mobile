@@ -201,7 +201,7 @@ enum PageItems {
       case PageItems.search:
         return 'Invest';
       case PageItems.profile:
-        return Strings.titleProfile;
+        return 'Degens';
     }
   }
 
