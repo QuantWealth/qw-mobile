@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:quantwealth/ui/auth/cubit/auth_cubit.dart';
 import 'package:quantwealth/ui/home/infrastructure/repository/home_repository.dart';
-import 'package:quantwealth/ui/profile/cubit/profile_state.dart';
+
+part 'profile_state.dart';
 
 @lazySingleton
 class ProfileCubit extends Cubit<ProfileState> {

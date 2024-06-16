@@ -1,18 +1,18 @@
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
-import 'package:logger/logger.dart';
 import 'package:quantwealth/ui/savings/infrastructure/datasource/approved_tx_dto.dart';
 import 'package:quantwealth/ui/savings/infrastructure/datasource/savings_dto.dart';
+import 'package:talker/talker.dart';
 
 @lazySingleton
 class SavingsRepository {
   final Dio _dio;
-  final Logger _logger;
+  final Talker _logger;
 
   SavingsRepository({
     required Dio dio,
-    required Logger logger,
+    required Talker logger,
   })  : _dio = dio,
         _logger = logger;
 
@@ -30,10 +30,10 @@ class SavingsRepository {
           .map((e) => SavingsDto.fromJson(e as Map<String, Object?>))
           .toList();
 
-      _logger.d(savings);
+      _logger.info(savings);
       return left(savings);
     } catch (e) {
-      _logger.e(e);
+      _logger.error(e);
       return right(Exception(e.toString()));
     }
   }
@@ -51,10 +51,10 @@ class SavingsRepository {
         },
       );
 
-      _logger.d(response);
+      _logger.info(response);
       return none();
     } catch (e) {
-      _logger.e(e);
+      _logger.error(e);
       return some(Exception(e.toString()));
     }
   }
@@ -74,10 +74,10 @@ class SavingsRepository {
         },
       );
 
-      _logger.d('Response: ${response.data}');
+      _logger.info('Response: ${response.data}');
       return Left(ApprovedTxDto.fromJson(response.data['data']));
     } on Exception catch (e) {
-      _logger.e('Error: $e');
+      _logger.error('Error: $e');
       return Right(e);
     }
   }
@@ -103,10 +103,10 @@ class SavingsRepository {
         },
       );
 
-      _logger.d('Response: ${response.data}');
+      _logger.info('Response: ${response.data}');
       return left(response.data['data']['taskId']);
     } on Exception catch (e) {
-      _logger.e('Error: $e');
+      _logger.error('Error: $e');
       return right(e);
     }
   }

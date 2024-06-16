@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:quantwealth/app/theme/theme.dart';
 import 'package:quantwealth/ui/balance/infrastructure/datasource/asset_dto.dart';
@@ -43,7 +44,11 @@ class AssetListTile extends StatelessWidget {
       minVerticalPadding: 20,
       leading: CircleAvatar(
         backgroundColor: Colors.white,
-        child: Image.network(asset.logoUrls.tokenLogo),
+        child: CachedNetworkImage(
+          imageUrl: asset.logoUrls.tokenLogo,
+          errorWidget: (context, url, error) => const DecoratedBox(
+              decoration: BoxDecoration(color: bottomBarGrey)),
+        ),
       ),
       title: Text(
         asset.name,
@@ -58,7 +63,7 @@ class AssetListTile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Text(
-            '\$${asset.balance.substring(0, 3)}',
+            '\$${asset.balanceAmount}',
             style: fontSB(18),
           ),
           Text(

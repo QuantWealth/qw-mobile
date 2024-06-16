@@ -1,4 +1,4 @@
-import 'package:quantwealth/ui/auth/cubit/auth_cubit.dart';
+part of 'profile_cubit.dart';
 
 class ProfileState {
   final LoginType loginType;

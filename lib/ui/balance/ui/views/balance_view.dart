@@ -48,7 +48,7 @@ class BalanceView extends StatelessWidget {
                   ),
                   SizedBox(height: 8.0),
                   Text(
-                    '\$${totalBalance.toStringAsFixed(2)}',
+                    '\$${totalBalance.toInt()}',
                     style: TextStyle(
                       fontSize: 64,
                       color: white,

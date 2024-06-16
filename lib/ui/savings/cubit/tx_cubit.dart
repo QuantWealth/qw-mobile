@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -11,8 +10,8 @@ import 'package:quantwealth/ui/profile/cubit/profile_cubit.dart';
 import 'package:quantwealth/ui/savings/infrastructure/datasource/approved_tx_dto.dart';
 import 'package:quantwealth/ui/savings/infrastructure/repository/savings_repository.dart';
 
-part 'tx_state.dart';
 part 'tx_cubit.freezed.dart';
+part 'tx_state.dart';
 
 @lazySingleton
 class TxCubit extends Cubit<TxState> {

@@ -1,17 +1,17 @@
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
-import 'package:logger/logger.dart';
 import 'package:quantwealth/ui/home/infrastructure/datasource/user_init_dto.dart';
+import 'package:talker/talker.dart';
 
 @lazySingleton
 class HomeRepository {
   final Dio _dio;
-  final Logger _logger;
+  final Talker _logger;
 
   HomeRepository({
     required Dio dio,
-    required Logger logger,
+    required Talker logger,
   })  : _dio = dio,
         _logger = logger;
 
@@ -28,10 +28,10 @@ class HomeRepository {
         },
       );
 
-      _logger.i('Response: ${response.data}');
+      _logger.info('Response: ${response.data}');
       return Left(UserInitDto.fromJson(response.data['data']));
     } on Exception catch (e) {
-      _logger.e('Error: $e');
+      _logger.error('Error: $e');
       return Right(e);
     }
   }

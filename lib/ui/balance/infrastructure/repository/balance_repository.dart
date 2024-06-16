@@ -1,17 +1,17 @@
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
-import 'package:logger/logger.dart';
 import 'package:quantwealth/ui/balance/infrastructure/datasource/asset_dto.dart';
+import 'package:talker/talker.dart';
 
 @lazySingleton
 class BalanceRepository {
   final Dio _dio;
-  final Logger _logger;
+  final Talker _logger;
 
   BalanceRepository({
     required Dio dio,
-    required Logger logger,
+    required Talker logger,
   })  : _dio = dio,
         _logger = logger;
 
@@ -33,16 +33,16 @@ class BalanceRepository {
       );
       final data = response.data as Map<String, dynamic>;
 
-      _logger.i('Response: ${data['data']['items']}');
+      _logger.info('Response: ${data['data']['items']}');
 
       final assets = (data['data']['items'] as List<dynamic>)
           .map((e) => AssetDto.fromJson(e as Map<String, Object?>))
           .toList();
 
-      _logger.d(assets);
+      _logger.info(assets);
       return left(assets);
-    } catch (e) {
-      _logger.e(e);
+    } catch (e, t) {
+      _logger.error(e, t);
       return right(Exception(e.toString()));
     }
   }

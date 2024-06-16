@@ -1,7 +1,7 @@
 import 'package:envied/envied.dart';
-import 'package:logger/logger.dart';
 import 'package:quantwealth/core/env/app_env.dart';
 import 'package:quantwealth/core/env/app_env_fields.dart';
+import 'package:talker/talker.dart';
 
 part 'staging_env.g.dart';
 
@@ -14,7 +14,7 @@ final class StagingEnv implements AppEnv, AppEnvFields {
   final String apiUrl = _Env.apiUrl;
 
   @override
-  final Level logLevel = Level.all;
+  final LogLevel logLevel = LogLevel.debug;
 
   @override
   @EnviedField(varName: 'WC_PROJECT_ID', obfuscate: true)

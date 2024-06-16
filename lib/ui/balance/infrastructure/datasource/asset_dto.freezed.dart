@@ -20,10 +20,12 @@ AssetDto _$AssetDtoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AssetDto {
-  @JsonKey(name: 'contract_name')
+  @JsonKey(name: 'contract_name', defaultValue: 'Unnamed')
   String get name => throw _privateConstructorUsedError;
-  @JsonKey(name: 'contract_ticker_symbol')
+  @JsonKey(name: 'contract_ticker_symbol', defaultValue: 'N/A')
   String get symbol => throw _privateConstructorUsedError;
+  @JsonKey(name: 'contract_decimals', defaultValue: 18)
+  int get decimals => throw _privateConstructorUsedError;
   @JsonKey(name: 'contract_address')
   String get address => throw _privateConstructorUsedError;
   String get balance => throw _privateConstructorUsedError;
@@ -31,8 +33,14 @@ mixin _$AssetDto {
   String get logoUrl => throw _privateConstructorUsedError;
   @JsonKey(name: 'logo_urls')
   LogoUrls get logoUrls => throw _privateConstructorUsedError;
-  @JsonKey(name: 'quote_rate')
-  String? get rate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'quote_rate', defaultValue: .0)
+  double get rate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'quote_rate_24h', defaultValue: .0)
+  double get rate24h => throw _privateConstructorUsedError;
+  @JsonKey(name: 'quote', defaultValue: .0)
+  double get quote => throw _privateConstructorUsedError;
+  @JsonKey(name: 'quote_24h', defaultValue: .0)
+  double get quote24h => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,13 +54,18 @@ abstract class $AssetDtoCopyWith<$Res> {
       _$AssetDtoCopyWithImpl<$Res, AssetDto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'contract_name') String name,
-      @JsonKey(name: 'contract_ticker_symbol') String symbol,
+      {@JsonKey(name: 'contract_name', defaultValue: 'Unnamed') String name,
+      @JsonKey(name: 'contract_ticker_symbol', defaultValue: 'N/A')
+      String symbol,
+      @JsonKey(name: 'contract_decimals', defaultValue: 18) int decimals,
       @JsonKey(name: 'contract_address') String address,
       String balance,
       @JsonKey(name: 'logo_url') String logoUrl,
       @JsonKey(name: 'logo_urls') LogoUrls logoUrls,
-      @JsonKey(name: 'quote_rate') String? rate});
+      @JsonKey(name: 'quote_rate', defaultValue: .0) double rate,
+      @JsonKey(name: 'quote_rate_24h', defaultValue: .0) double rate24h,
+      @JsonKey(name: 'quote', defaultValue: .0) double quote,
+      @JsonKey(name: 'quote_24h', defaultValue: .0) double quote24h});
 
   $LogoUrlsCopyWith<$Res> get logoUrls;
 }
@@ -72,11 +85,15 @@ class _$AssetDtoCopyWithImpl<$Res, $Val extends AssetDto>
   $Res call({
     Object? name = null,
     Object? symbol = null,
+    Object? decimals = null,
     Object? address = null,
     Object? balance = null,
     Object? logoUrl = null,
     Object? logoUrls = null,
-    Object? rate = freezed,
+    Object? rate = null,
+    Object? rate24h = null,
+    Object? quote = null,
+    Object? quote24h = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -87,6 +104,10 @@ class _$AssetDtoCopyWithImpl<$Res, $Val extends AssetDto>
           ? _value.symbol
           : symbol // ignore: cast_nullable_to_non_nullable
               as String,
+      decimals: null == decimals
+          ? _value.decimals
+          : decimals // ignore: cast_nullable_to_non_nullable
+              as int,
       address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -103,10 +124,22 @@ class _$AssetDtoCopyWithImpl<$Res, $Val extends AssetDto>
           ? _value.logoUrls
           : logoUrls // ignore: cast_nullable_to_non_nullable
               as LogoUrls,
-      rate: freezed == rate
+      rate: null == rate
           ? _value.rate
           : rate // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as double,
+      rate24h: null == rate24h
+          ? _value.rate24h
+          : rate24h // ignore: cast_nullable_to_non_nullable
+              as double,
+      quote: null == quote
+          ? _value.quote
+          : quote // ignore: cast_nullable_to_non_nullable
+              as double,
+      quote24h: null == quote24h
+          ? _value.quote24h
+          : quote24h // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 
@@ -128,13 +161,18 @@ abstract class _$$AssetDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'contract_name') String name,
-      @JsonKey(name: 'contract_ticker_symbol') String symbol,
+      {@JsonKey(name: 'contract_name', defaultValue: 'Unnamed') String name,
+      @JsonKey(name: 'contract_ticker_symbol', defaultValue: 'N/A')
+      String symbol,
+      @JsonKey(name: 'contract_decimals', defaultValue: 18) int decimals,
       @JsonKey(name: 'contract_address') String address,
       String balance,
       @JsonKey(name: 'logo_url') String logoUrl,
       @JsonKey(name: 'logo_urls') LogoUrls logoUrls,
-      @JsonKey(name: 'quote_rate') String? rate});
+      @JsonKey(name: 'quote_rate', defaultValue: .0) double rate,
+      @JsonKey(name: 'quote_rate_24h', defaultValue: .0) double rate24h,
+      @JsonKey(name: 'quote', defaultValue: .0) double quote,
+      @JsonKey(name: 'quote_24h', defaultValue: .0) double quote24h});
 
   @override
   $LogoUrlsCopyWith<$Res> get logoUrls;
@@ -153,11 +191,15 @@ class __$$AssetDtoImplCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? symbol = null,
+    Object? decimals = null,
     Object? address = null,
     Object? balance = null,
     Object? logoUrl = null,
     Object? logoUrls = null,
-    Object? rate = freezed,
+    Object? rate = null,
+    Object? rate24h = null,
+    Object? quote = null,
+    Object? quote24h = null,
   }) {
     return _then(_$AssetDtoImpl(
       name: null == name
@@ -168,6 +210,10 @@ class __$$AssetDtoImplCopyWithImpl<$Res>
           ? _value.symbol
           : symbol // ignore: cast_nullable_to_non_nullable
               as String,
+      decimals: null == decimals
+          ? _value.decimals
+          : decimals // ignore: cast_nullable_to_non_nullable
+              as int,
       address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -184,10 +230,22 @@ class __$$AssetDtoImplCopyWithImpl<$Res>
           ? _value.logoUrls
           : logoUrls // ignore: cast_nullable_to_non_nullable
               as LogoUrls,
-      rate: freezed == rate
+      rate: null == rate
           ? _value.rate
           : rate // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as double,
+      rate24h: null == rate24h
+          ? _value.rate24h
+          : rate24h // ignore: cast_nullable_to_non_nullable
+              as double,
+      quote: null == quote
+          ? _value.quote
+          : quote // ignore: cast_nullable_to_non_nullable
+              as double,
+      quote24h: null == quote24h
+          ? _value.quote24h
+          : quote24h // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -196,24 +254,34 @@ class __$$AssetDtoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AssetDtoImpl extends _AssetDto {
   const _$AssetDtoImpl(
-      {@JsonKey(name: 'contract_name') required this.name,
-      @JsonKey(name: 'contract_ticker_symbol') required this.symbol,
+      {@JsonKey(name: 'contract_name', defaultValue: 'Unnamed')
+      required this.name,
+      @JsonKey(name: 'contract_ticker_symbol', defaultValue: 'N/A')
+      required this.symbol,
+      @JsonKey(name: 'contract_decimals', defaultValue: 18)
+      required this.decimals,
       @JsonKey(name: 'contract_address') required this.address,
       required this.balance,
       @JsonKey(name: 'logo_url') required this.logoUrl,
       @JsonKey(name: 'logo_urls') required this.logoUrls,
-      @JsonKey(name: 'quote_rate') this.rate})
+      @JsonKey(name: 'quote_rate', defaultValue: .0) required this.rate,
+      @JsonKey(name: 'quote_rate_24h', defaultValue: .0) required this.rate24h,
+      @JsonKey(name: 'quote', defaultValue: .0) required this.quote,
+      @JsonKey(name: 'quote_24h', defaultValue: .0) required this.quote24h})
       : super._();
 
   factory _$AssetDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$AssetDtoImplFromJson(json);
 
   @override
-  @JsonKey(name: 'contract_name')
+  @JsonKey(name: 'contract_name', defaultValue: 'Unnamed')
   final String name;
   @override
-  @JsonKey(name: 'contract_ticker_symbol')
+  @JsonKey(name: 'contract_ticker_symbol', defaultValue: 'N/A')
   final String symbol;
+  @override
+  @JsonKey(name: 'contract_decimals', defaultValue: 18)
+  final int decimals;
   @override
   @JsonKey(name: 'contract_address')
   final String address;
@@ -226,12 +294,21 @@ class _$AssetDtoImpl extends _AssetDto {
   @JsonKey(name: 'logo_urls')
   final LogoUrls logoUrls;
   @override
-  @JsonKey(name: 'quote_rate')
-  final String? rate;
+  @JsonKey(name: 'quote_rate', defaultValue: .0)
+  final double rate;
+  @override
+  @JsonKey(name: 'quote_rate_24h', defaultValue: .0)
+  final double rate24h;
+  @override
+  @JsonKey(name: 'quote', defaultValue: .0)
+  final double quote;
+  @override
+  @JsonKey(name: 'quote_24h', defaultValue: .0)
+  final double quote24h;
 
   @override
   String toString() {
-    return 'AssetDto(name: $name, symbol: $symbol, address: $address, balance: $balance, logoUrl: $logoUrl, logoUrls: $logoUrls, rate: $rate)';
+    return 'AssetDto(name: $name, symbol: $symbol, decimals: $decimals, address: $address, balance: $balance, logoUrl: $logoUrl, logoUrls: $logoUrls, rate: $rate, rate24h: $rate24h, quote: $quote, quote24h: $quote24h)';
   }
 
   @override
@@ -241,18 +318,24 @@ class _$AssetDtoImpl extends _AssetDto {
             other is _$AssetDtoImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.symbol, symbol) || other.symbol == symbol) &&
+            (identical(other.decimals, decimals) ||
+                other.decimals == decimals) &&
             (identical(other.address, address) || other.address == address) &&
             (identical(other.balance, balance) || other.balance == balance) &&
             (identical(other.logoUrl, logoUrl) || other.logoUrl == logoUrl) &&
             (identical(other.logoUrls, logoUrls) ||
                 other.logoUrls == logoUrls) &&
-            (identical(other.rate, rate) || other.rate == rate));
+            (identical(other.rate, rate) || other.rate == rate) &&
+            (identical(other.rate24h, rate24h) || other.rate24h == rate24h) &&
+            (identical(other.quote, quote) || other.quote == quote) &&
+            (identical(other.quote24h, quote24h) ||
+                other.quote24h == quote24h));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, name, symbol, address, balance, logoUrl, logoUrls, rate);
+  int get hashCode => Object.hash(runtimeType, name, symbol, decimals, address,
+      balance, logoUrl, logoUrls, rate, rate24h, quote, quote24h);
 
   @JsonKey(ignore: true)
   @override
@@ -270,24 +353,36 @@ class _$AssetDtoImpl extends _AssetDto {
 
 abstract class _AssetDto extends AssetDto {
   const factory _AssetDto(
-      {@JsonKey(name: 'contract_name') required final String name,
-      @JsonKey(name: 'contract_ticker_symbol') required final String symbol,
+      {@JsonKey(name: 'contract_name', defaultValue: 'Unnamed')
+      required final String name,
+      @JsonKey(name: 'contract_ticker_symbol', defaultValue: 'N/A')
+      required final String symbol,
+      @JsonKey(name: 'contract_decimals', defaultValue: 18)
+      required final int decimals,
       @JsonKey(name: 'contract_address') required final String address,
       required final String balance,
       @JsonKey(name: 'logo_url') required final String logoUrl,
       @JsonKey(name: 'logo_urls') required final LogoUrls logoUrls,
-      @JsonKey(name: 'quote_rate') final String? rate}) = _$AssetDtoImpl;
+      @JsonKey(name: 'quote_rate', defaultValue: .0) required final double rate,
+      @JsonKey(name: 'quote_rate_24h', defaultValue: .0)
+      required final double rate24h,
+      @JsonKey(name: 'quote', defaultValue: .0) required final double quote,
+      @JsonKey(name: 'quote_24h', defaultValue: .0)
+      required final double quote24h}) = _$AssetDtoImpl;
   const _AssetDto._() : super._();
 
   factory _AssetDto.fromJson(Map<String, dynamic> json) =
       _$AssetDtoImpl.fromJson;
 
   @override
-  @JsonKey(name: 'contract_name')
+  @JsonKey(name: 'contract_name', defaultValue: 'Unnamed')
   String get name;
   @override
-  @JsonKey(name: 'contract_ticker_symbol')
+  @JsonKey(name: 'contract_ticker_symbol', defaultValue: 'N/A')
   String get symbol;
+  @override
+  @JsonKey(name: 'contract_decimals', defaultValue: 18)
+  int get decimals;
   @override
   @JsonKey(name: 'contract_address')
   String get address;
@@ -300,8 +395,17 @@ abstract class _AssetDto extends AssetDto {
   @JsonKey(name: 'logo_urls')
   LogoUrls get logoUrls;
   @override
-  @JsonKey(name: 'quote_rate')
-  String? get rate;
+  @JsonKey(name: 'quote_rate', defaultValue: .0)
+  double get rate;
+  @override
+  @JsonKey(name: 'quote_rate_24h', defaultValue: .0)
+  double get rate24h;
+  @override
+  @JsonKey(name: 'quote', defaultValue: .0)
+  double get quote;
+  @override
+  @JsonKey(name: 'quote_24h', defaultValue: .0)
+  double get quote24h;
   @override
   @JsonKey(ignore: true)
   _$$AssetDtoImplCopyWith<_$AssetDtoImpl> get copyWith =>
