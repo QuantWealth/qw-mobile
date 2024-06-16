@@ -1,7 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:quantwealth/app/extensions.dart';
+import 'package:quantwealth/app/theme/theme.dart';
 import 'package:quantwealth/injectable.dart';
 import 'package:quantwealth/ui/auth/cubit/auth_cubit.dart';
 import 'package:quantwealth/ui/auth/pages/auth_page.dart';
@@ -77,18 +79,28 @@ class _QuantAppState extends State<QuantApp> {
                 ),
               ),
             ),
-            Positioned(
-              right: .0,
-              bottom: 200.0,
-              child: IconButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => TalkerScreen(talker: getIt<Talker>()),
-                  ));
-                },
-                icon: Icon(Icons.bug_report_outlined),
+            if (kDebugMode)
+              Positioned(
+                right: .0,
+                bottom: 200.0,
+                child: Container(
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: bottomBarGrey,
+                  ),
+                  child: IconButton(
+                    onPressed: () {
+                      _navigatorKey.currentState?.push(MaterialPageRoute(
+                        builder: (context) =>
+                            TalkerScreen(talker: getIt<Talker>()),
+                      ));
+                    },
+                    color: Colors.white,
+                    icon: Icon(Icons.bug_report_outlined),
+                  ),
+                ),
               ),
-            ),
           ],
         ),
       ),
