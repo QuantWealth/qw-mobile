@@ -87,14 +87,17 @@ class ReceivePage extends StatelessWidget {
             //   ),
             // ),
             // SizedBox(height: 12.0),
-            SizedBox(
-              width: double.maxFinite,
-              child: DefaultButton(
-                onPressed: () => Share.share(address),
-                label: Strings.labelShare,
-                fontSize: 16.0,
-                padding: const EdgeInsets.symmetric(
-                  vertical: 18.0,
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: SizedBox(
+                width: double.maxFinite,
+                child: DefaultButton(
+                  onPressed: () => Share.share(address),
+                  label: Strings.labelShare,
+                  fontSize: 16.0,
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 18.0,
+                  ),
                 ),
               ),
             ),

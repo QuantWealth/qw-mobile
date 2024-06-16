@@ -21,12 +21,11 @@ class SavingsCubit extends Cubit<SavingsState> {
         super(SavingsState.initial());
 
   Future<void> onStart() async {
-    final profile = _profileCubit.state;
-
     emit(SavingsState.loading());
     final result = await _repository.getSavingOptions(
-      address: profile.walletAddress,
+      address: '0x0617b72940f105811F251967EE4fdD5E38f159d5',
     );
+
     result.fold(
       (savings) => emit(SavingsState.success(
         amount: state.amount,

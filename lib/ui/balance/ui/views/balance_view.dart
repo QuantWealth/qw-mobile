@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quantwealth/app/strings.dart';
@@ -20,6 +22,13 @@ class BalanceView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final totalBalance = BigInt.from(assets.fold<double>(
+          0,
+          (previousValue, element) =>
+              previousValue + double.parse(element.balance),
+        )) /
+        BigInt.from(10).pow(18);
+
     return DefaultTabController(
       length: 2,
       child: ListView(
@@ -28,7 +37,7 @@ class BalanceView extends StatelessWidget {
           SizedBox(height: 48.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               Column(
                 children: [
                   Text(
@@ -41,7 +50,7 @@ class BalanceView extends StatelessWidget {
                   ),
                   SizedBox(height: 8.0),
                   Text(
-                    '\$1000',
+                    '\$${totalBalance.toStringAsFixed(2)}',
                     style: TextStyle(
                       fontSize: 64,
                       color: white,
