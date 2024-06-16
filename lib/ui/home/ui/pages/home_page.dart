@@ -35,38 +35,22 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
+      navBarColor: bottomBarGrey,
       title: _activePage.title,
       titleWidget: _activePage == PageItems.balance
-          ? Padding(
-              padding: const EdgeInsets.only(top: 40.0),
-              child: Stack(
-                children: [
-                  Center(
-                    child: SizedBox(
-                      height: 100.0,
-                      width: 100.0,
-                      child: SvgPicture.asset('assets/icons/logo.svg'),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: IconButton(
-                      onPressed: () => getIt<AuthCubit>().logout(),
-                      icon: Icon(Icons.logout_outlined),
-                      color: white,
-                    ),
-                  )
-                ],
-              ),
+          ? SizedBox(
+              width: 80.0,
+              child: SvgPicture.asset('assets/icons/logo.svg'),
             )
           : null,
-      suffix: _activePage != PageItems.balance
-          ? IconButton(
-              onPressed: () => getIt<AuthCubit>().logout(),
-              icon: Icon(Icons.logout_outlined),
-              color: white,
-            )
-          : null,
+      suffix: [
+        if (_activePage != PageItems.balance)
+          IconButton(
+            onPressed: () => getIt<AuthCubit>().logout(),
+            icon: Icon(Icons.logout_outlined),
+            color: white,
+          )
+      ],
       isCenterTitle: true,
       body: PageView(
         controller: _pageController,

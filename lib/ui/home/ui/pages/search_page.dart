@@ -19,6 +19,7 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
+      navBarColor: bottomBarGrey,
       floatingActionButton: Visibility(
         visible: selectedItems.isNotEmpty,
         child: Padding(
@@ -52,7 +53,7 @@ class _SearchPageState extends State<SearchPage> {
           );
         },
         itemCount: stakingAssets.length,
-        padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
+        padding: EdgeInsets.fromLTRB(16.0, 64.0, 16.0, 20.0),
         itemBuilder: (context, index) {
           final asset = stakingAssets[index];
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:quantwealth/app/strings.dart';
 import 'package:quantwealth/app/theme/theme.dart';
 import 'package:quantwealth/ui/savings/cubit/savings_cubit.dart';
 import 'package:quantwealth/ui/savings/ui/widgets/savings_item_button.dart';
@@ -37,6 +36,7 @@ class _StakingPageState extends State<StakingPage> {
 
     return Column(
       children: [
+        const SizedBox(height: 48.0),
         AnimatedContainer(
           duration: const Duration(milliseconds: 300),
           margin: EdgeInsets.all(16.0),

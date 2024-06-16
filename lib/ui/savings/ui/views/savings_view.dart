@@ -59,188 +59,190 @@ class _SavingsViewState extends State<SavingsView> {
 
     return Stack(
       children: [
-        ListView(
-          padding: const EdgeInsets.symmetric(vertical: .0),
-          children: [
-            AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
-              margin: EdgeInsets.all(16.0),
-              curve: Curves.easeInOut,
-              decoration: BoxDecoration(
-                color: _fieldInFocus ? qw1D1D1D : null,
-                image: _fieldInFocus
-                    ? DecorationImage(
-                        image: AssetImage('assets/images/qw_bg.png'),
-                        fit: BoxFit.cover,
-                      )
-                    : null,
-                // backgroundBlendMode: _fieldInFocus ? BlendMode.dst : null,
-                boxShadow: [
-                  BoxShadow(
-                    color: _fieldInFocus
-                        ? white.withOpacity(0.4)
-                        : white.withOpacity(.0),
-                    blurRadius: 10.0,
-                    spreadRadius: 2.5,
-                  ),
-                ],
-              ),
-              child: Column(
-                children: [
-                  const SizedBox(height: 32.0),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: Column(
-                            children: [
-                              TextFormField(
-                                controller: _amountController,
-                                focusNode: _focusNode,
-                                onChanged: widget.onAmountChanged,
-                                style: inputStyle,
-                                keyboardType: TextInputType.number,
-                                inputFormatters: [
-                                  FilteringTextInputFormatter.digitsOnly,
-                                ],
-                                textAlign: TextAlign.center,
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: Strings.hintAmountInput,
-                                  prefix: Text(
-                                    '\$',
-                                    style: inputStyle.copyWith(
+        Positioned.fill(
+          child: ListView(
+            padding: const EdgeInsets.only(top: 48.0),
+            children: [
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 300),
+                margin: EdgeInsets.all(16.0),
+                curve: Curves.easeInOut,
+                decoration: BoxDecoration(
+                  color: _fieldInFocus ? qw1D1D1D : null,
+                  image: _fieldInFocus
+                      ? DecorationImage(
+                          image: AssetImage('assets/images/qw_bg.png'),
+                          fit: BoxFit.cover,
+                        )
+                      : null,
+                  // backgroundBlendMode: _fieldInFocus ? BlendMode.dst : null,
+                  boxShadow: [
+                    BoxShadow(
+                      color: _fieldInFocus
+                          ? white.withOpacity(0.4)
+                          : white.withOpacity(.0),
+                      blurRadius: 10.0,
+                      spreadRadius: 2.5,
+                    ),
+                  ],
+                ),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 32.0),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              children: [
+                                TextFormField(
+                                  controller: _amountController,
+                                  focusNode: _focusNode,
+                                  onChanged: widget.onAmountChanged,
+                                  style: inputStyle,
+                                  keyboardType: TextInputType.number,
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.digitsOnly,
+                                  ],
+                                  textAlign: TextAlign.center,
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: Strings.hintAmountInput,
+                                    prefix: Text(
+                                      '\$',
+                                      style: inputStyle.copyWith(
+                                        color: white.withOpacity(0.5),
+                                      ),
+                                    ),
+                                    hintStyle: inputStyle.copyWith(
                                       color: white.withOpacity(0.5),
                                     ),
-                                  ),
-                                  hintStyle: inputStyle.copyWith(
-                                    color: white.withOpacity(0.5),
-                                  ),
-                                  // prefixText: '\$',
-                                ),
-                              ),
-                              const SizedBox(height: 8.0),
-                              Text(
-                                'Input Amount (in USD)',
-                                style: TextStyle(
-                                  color: white,
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 12.0,
-                                  fontFamily: 'GalanoGrotesque',
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 32.0),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 40.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: AmountInputLevels.uiValues
-                          .map((level) => TextButton(
-                                onPressed: () => widget.onLevelChanged(level),
-                                style: TextButton.styleFrom(
-                                  foregroundColor: white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    side: BorderSide(
-                                      color: Colors.grey.withOpacity(.3),
-                                    ),
-                                  ),
-                                  elevation: 10,
-                                  shadowColor: Colors.grey.shade600,
-                                  backgroundColor: Colors.transparent,
-                                  textStyle: TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.w500,
+                                    // prefixText: '\$',
                                   ),
                                 ),
-                                child: Text(
-                                  '${level.value}%',
+                                const SizedBox(height: 8.0),
+                                Text(
+                                  'Input Amount (in USD)',
                                   style: TextStyle(
+                                    color: white,
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 12.0,
                                     fontFamily: 'GalanoGrotesque',
                                   ),
                                 ),
-                              ))
-                          .toList(),
-                    ),
-                  ),
-                  const SizedBox(height: 64.0),
-                  if (_fieldInFocus)
-                    Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Row(
-                        children: [
-                          Text(
-                            'Total Asset Balance',
-                            style: TextStyle(
-                              color: white,
-                              fontWeight: FontWeight.w300,
-                              fontSize: 14.0,
-                              fontFamily: 'GalanoGrotesque',
-                            ),
-                          ),
-                          Expanded(
-                            child: Text(
-                              widget.balance,
-                              textAlign: TextAlign.end,
-                              style: TextStyle(
-                                color: white,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 14.0,
-                                fontFamily: 'GalanoGrotesque',
-                              ),
+                              ],
                             ),
                           ),
                         ],
                       ),
                     ),
-                ],
-              ),
-            ),
-            if (!_fieldInFocus)
-              ...widget.savings.map(
-                (savings) => Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 43.0),
-                  child: SavingsItemButton(
-                    onPressed: () => widget.onSelectSavings(savings),
-                    name: savings.name,
-                    apy: '${savings.apy}%',
-                    isSelected: widget.selectedSavings == savings,
-                  ),
+                    const SizedBox(height: 32.0),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: AmountInputLevels.uiValues
+                            .map((level) => TextButton(
+                                  onPressed: () => widget.onLevelChanged(level),
+                                  style: TextButton.styleFrom(
+                                    foregroundColor: white,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      side: BorderSide(
+                                        color: Colors.grey.withOpacity(.3),
+                                      ),
+                                    ),
+                                    elevation: 10,
+                                    shadowColor: Colors.grey.shade600,
+                                    backgroundColor: Colors.transparent,
+                                    textStyle: TextStyle(
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  child: Text(
+                                    '${level.value}%',
+                                    style: TextStyle(
+                                      fontFamily: 'GalanoGrotesque',
+                                    ),
+                                  ),
+                                ))
+                            .toList(),
+                      ),
+                    ),
+                    const SizedBox(height: 64.0),
+                    if (_fieldInFocus)
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              'Total Asset Balance',
+                              style: TextStyle(
+                                color: white,
+                                fontWeight: FontWeight.w300,
+                                fontSize: 14.0,
+                                fontFamily: 'GalanoGrotesque',
+                              ),
+                            ),
+                            Expanded(
+                              child: Text(
+                                widget.balance,
+                                textAlign: TextAlign.end,
+                                style: TextStyle(
+                                  color: white,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.0,
+                                  fontFamily: 'GalanoGrotesque',
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                  ],
                 ),
               ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 43.0),
-              child: SavingsItemButton(
-                onPressed: () {},
-                name: 'Custom',
-                apy: '15-30%',
-                isSelected: false,
+              if (!_fieldInFocus)
+                ...widget.savings.map(
+                  (savings) => Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 43.0),
+                    child: SavingsItemButton(
+                      onPressed: () => widget.onSelectSavings(savings),
+                      name: savings.name,
+                      apy: '${savings.apy}%',
+                      isSelected: widget.selectedSavings == savings,
+                    ),
+                  ),
+                ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 43.0),
+                child: SavingsItemButton(
+                  onPressed: () {},
+                  name: 'Custom',
+                  apy: '15-30%',
+                  isSelected: false,
+                ),
               ),
-            ),
-            // const SizedBox(height: 100.0),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: [
-            //     DefaultButton(
-            //       onPressed: widget.onInvest,
-            //       label: Strings.labelInvest,
-            //       fontSize: 22.0,
-            //       padding: const EdgeInsets.symmetric(
-            //         vertical: 18.0,
-            //         horizontal: 80.0,
-            //       ),
-            //     ),
-            //   ],
-            // ),
-          ],
+              // const SizedBox(height: 100.0),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     DefaultButton(
+              //       onPressed: widget.onInvest,
+              //       label: Strings.labelInvest,
+              //       fontSize: 22.0,
+              //       padding: const EdgeInsets.symmetric(
+              //         vertical: 18.0,
+              //         horizontal: 80.0,
+              //       ),
+              //     ),
+              //   ],
+              // ),
+            ],
+          ),
         ),
         if (_fieldInFocus)
           Align(

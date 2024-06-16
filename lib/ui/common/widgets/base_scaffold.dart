@@ -10,7 +10,7 @@ class BaseScaffold extends StatefulWidget {
   final String? bgImage;
   final Widget? titleWidget;
   final Function? onBack;
-  final Widget? suffix;
+  final List<Widget>? suffix;
   final bool isCenterTitle;
   final Widget body;
   final Color? backgroundColor;
@@ -19,6 +19,8 @@ class BaseScaffold extends StatefulWidget {
   final bool safeArea;
   final Widget? bottomNavigationBar;
   final Widget? floatingActionButton;
+  final Color? navBarColor;
+  final Color? statusBarColor;
 
   const BaseScaffold({
     super.key,
@@ -35,6 +37,8 @@ class BaseScaffold extends StatefulWidget {
     this.isFirstPage = false,
     this.bottomNavigationBar,
     this.floatingActionButton,
+    this.navBarColor = Colors.transparent,
+    this.statusBarColor = Colors.transparent,
   });
 
   @override
@@ -65,19 +69,21 @@ class _BaseScaffoldState extends State<BaseScaffold> {
             FocusScope.of(context).unfocus();
           },
           child: AnnotatedRegion<SystemUiOverlayStyle>(
-            value: SystemUiOverlayStyle.light,
+            value: SystemUiOverlayStyle.light.copyWith(
+              systemNavigationBarColor: widget.navBarColor,
+              statusBarColor: widget.statusBarColor,
+            ),
             child: Scaffold(
               backgroundColor: Colors.transparent,
+              extendBodyBehindAppBar: true,
+              extendBody: true,
               appBar: widget.title != null || widget.titleWidget != null
-                  ? PreferredSize(
-                      preferredSize: Size.fromHeight(70.0),
-                      child: widget.titleWidget ??
-                          Container(
-                            color: Colors.transparent,
-                            height: double.infinity,
-                            width: double.infinity,
-                            child: _appBar(),
-                          ),
+                  ? AppBar(
+                      backgroundColor: Colors.transparent,
+                      elevation: 0,
+                      centerTitle: widget.isCenterTitle,
+                      title: widget.titleWidget,
+                      actions: widget.suffix,
                     )
                   : null,
               body: widget.body,
@@ -131,9 +137,8 @@ class _BaseScaffoldState extends State<BaseScaffold> {
                         )
                       : Container(),
                   if (widget.suffix != null)
-                    Container(
-                      padding: const EdgeInsets.only(right: 8),
-                      child: widget.suffix!,
+                    Row(
+                      children: widget.suffix!,
                     ),
                 ],
               ),
