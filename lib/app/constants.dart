@@ -23,3 +23,18 @@ final fakeAssets = List.generate(2, (index) {
     icon: index.isEven ? Icons.account_balance_wallet : Icons.account_balance,
   );
 });
+
+final cashAssets = [
+  FakeAsset(
+    title: 'Account',
+    subtitle: 'Individual',
+    amount: '11,400.00',
+    icon: Icons.account_balance_wallet,
+  ),
+  FakeAsset(
+    title: 'DCA',
+    subtitle: 'Individual',
+    amount: '1,000.43',
+    icon: Icons.account_balance,
+  ),
+];

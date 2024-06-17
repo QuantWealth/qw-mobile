@@ -1,7 +1,12 @@
+import 'dart:io';
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:quantwealth/app/constants.dart';
+import 'package:quantwealth/app/extensions.dart';
 import 'package:quantwealth/app/theme/theme.dart';
+import 'package:quantwealth/ui/balance/ui/views/cash_asset_view.dart';
+import 'package:quantwealth/ui/balance/ui/views/investment_asset_view.dart';
 import 'package:quantwealth/ui/balance/ui/widgets/asset_list_tile.dart';
 
 class PortfolioView extends StatelessWidget {
@@ -28,16 +33,22 @@ class PortfolioView extends StatelessWidget {
                     style: fontB(30),
                   ),
                   subtitle: Text(
-                    '\$1.3M net worth at 25',
+                    '\$1.3M net worth at 60',
                     style: fontM(18, color: Colors.grey),
                   ),
                 ),
               ),
-              Text(
-                'Goals',
-                style: fontB(
-                  18,
-                  color: Colors.deepPurpleAccent,
+              TextButton(
+                onPressed: () {},
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.zero,
+                ),
+                child: Text(
+                  'Goals',
+                  style: fontB(
+                    18,
+                    color: Colors.deepPurpleAccent,
+                  ),
                 ),
               ),
             ],
@@ -46,7 +57,7 @@ class PortfolioView extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(12.0),
           child: SizedBox(
-            height: 200,
+            height: context.mediaQuery.size.height * 0.20,
             child: PortfolioChart(),
           ),
         ),
@@ -77,89 +88,137 @@ class PortfolioView extends StatelessWidget {
           color: Colors.grey.withOpacity(.8),
           thickness: 0.5,
         ),
-        Padding(
-          padding: const EdgeInsets.all(16),
-          child: Row(
+        InkWell(
+          onTap: () => context.navigator.push(
+            CashAssetView(asset: cashAssets.first).route(
+              material: Platform.isAndroid,
+            ),
+          ),
+          child: Column(
             children: [
-              Expanded(
-                child: Text(
-                  'Cash',
-                  style: fontB(18),
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        'Cash',
+                        style: fontB(18),
+                      ),
+                    ),
+                    Text(
+                      '\$12,400.43',
+                      style: fontSB(18),
+                    ),
+                  ],
                 ),
               ),
-              Text(
-                '\$12,400.43',
-                style: fontSB(18),
+              ListView.builder(
+                shrinkWrap: true,
+                padding: EdgeInsets.zero,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: cashAssets.length,
+                itemBuilder: (_, i) {
+                  final asset = cashAssets[i];
+
+                  return StockAssetListTile(
+                    asset: asset,
+                    // onTap: () => context.navigator.push(
+                    //   CashAssetView(asset: asset).route(
+                    //     material: Platform.isAndroid,
+                    //   ),
+                    // ),
+                  );
+                },
               ),
+              SizedBox(height: 12),
             ],
           ),
         ),
-        ListView.builder(
-          shrinkWrap: true,
-          padding: EdgeInsets.zero,
-          physics: NeverScrollableScrollPhysics(),
-          itemCount: fakeAssets.length,
-          itemBuilder: (_, i) => StockAssetListTile(asset: fakeAssets[i]),
-        ),
-        SizedBox(height: 12),
         Divider(
           color: Colors.grey.withOpacity(.8),
           thickness: 0.5,
         ),
-        Padding(
-          padding: const EdgeInsets.all(16),
-          child: Row(
+        InkWell(
+          onTap: () => context.navigator.push(
+            InvestmentAssetView(asset: cashAssets.first).route(
+              material: Platform.isAndroid,
+            ),
+          ),
+          child: Column(
             children: [
-              Expanded(
-                child: Text(
-                  'Investments',
-                  style: fontB(18),
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        'Investments',
+                        style: fontB(18),
+                      ),
+                    ),
+                    Text(
+                      '\$127,940.63',
+                      style: fontSB(18),
+                    ),
+                  ],
                 ),
               ),
-              Text(
-                '\$127.940.63',
-                style: fontSB(18),
+              ListView.builder(
+                shrinkWrap: true,
+                padding: EdgeInsets.zero,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: fakeAssets.length,
+                itemBuilder: (_, i) => StockAssetListTile(
+                  asset: fakeAssets[i],
+                  // onTap: () => context.navigator.push(
+                  //   InvestmentAssetView(asset: fakeAssets[i]).route(
+                  //     material: Platform.isAndroid,
+                  //   ),
+                  // ),
+                ),
               ),
+              SizedBox(height: 12),
             ],
           ),
         ),
-        ListView.builder(
-          shrinkWrap: true,
-          padding: EdgeInsets.zero,
-          physics: NeverScrollableScrollPhysics(),
-          itemCount: fakeAssets.length,
-          itemBuilder: (_, i) => StockAssetListTile(asset: fakeAssets[i]),
-        ),
-        SizedBox(height: 12),
         Divider(
           color: Colors.grey.withOpacity(.8),
           thickness: 0.5,
         ),
-        Padding(
-          padding: const EdgeInsets.all(16),
-          child: Row(
+        InkWell(
+          onTap: () {},
+          child: Column(
             children: [
-              Expanded(
-                child: Text(
-                  'Strategies',
-                  style: fontB(18),
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        'Strategies',
+                        style: fontB(18),
+                      ),
+                    ),
+                    Text(
+                      '\$207,040.63',
+                      style: fontSB(18),
+                    ),
+                  ],
                 ),
               ),
-              Text(
-                '\$207,040.63',
-                style: fontSB(18),
+              ListView.builder(
+                shrinkWrap: true,
+                padding: EdgeInsets.zero,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: fakeAssets.length,
+                itemBuilder: (_, i) => StockAssetListTile(asset: fakeAssets[i]),
               ),
+              SizedBox(height: 12),
             ],
           ),
         ),
-        ListView.builder(
-          shrinkWrap: true,
-          padding: EdgeInsets.zero,
-          physics: NeverScrollableScrollPhysics(),
-          itemCount: fakeAssets.length,
-          itemBuilder: (_, i) => StockAssetListTile(asset: fakeAssets[i]),
-        ),
-        SizedBox(height: 12),
+        SizedBox(height: 24.0),
       ],
     );
   }
@@ -172,7 +231,7 @@ class PortfolioChart extends StatelessWidget {
   Widget build(BuildContext context) {
     return LineChart(
       LineChartData(
-        gridData: FlGridData(show: false),
+        gridData: FlGridData(show: true),
         titlesData: FlTitlesData(show: false),
         borderData: FlBorderData(show: false),
         lineTouchData: LineTouchData(

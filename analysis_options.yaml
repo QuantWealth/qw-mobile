@@ -10,5 +10,6 @@ analyzer:
     - "**/*.g.dart"
     - "**/*.freezed.dart"
   errors:
+    constant_identifier_names: ignore
     invalid_annotation_target: ignore
     todo: ignore

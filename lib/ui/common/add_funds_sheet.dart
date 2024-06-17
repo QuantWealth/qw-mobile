@@ -9,6 +9,14 @@ import 'package:quantwealth/ui/receive/ui/receive_page.dart';
 class AddFundsSheet extends StatelessWidget {
   const AddFundsSheet({super.key});
 
+  void show(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) => AddFundsSheet(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -39,11 +47,13 @@ class AddFundsSheet extends StatelessWidget {
           SizedBox(height: 18),
           TextOutlinedButton(
             text: 'Crypto Transfer',
-            onPressed: () => context.navigator.push(
-              ReceivePage(
-                address: getIt<ProfileCubit>().state.walletAddress,
-              ).route(),
-            ),
+            onPressed: () => context.navigator
+              ..pop()
+              ..push(
+                ReceivePage(
+                  address: getIt<ProfileCubit>().state.walletAddress,
+                ).route(),
+              ),
           ),
           SizedBox(height: 18),
           TextOutlinedButton(

@@ -11,6 +11,7 @@ class BaseScaffold extends StatefulWidget {
   final Widget? titleWidget;
   final Function? onBack;
   final List<Widget>? suffix;
+  final bool extendBodyBehindAppBar;
   final bool isCenterTitle;
   final Widget body;
   final Color? backgroundColor;
@@ -19,6 +20,7 @@ class BaseScaffold extends StatefulWidget {
   final bool safeArea;
   final Widget? bottomNavigationBar;
   final Widget? floatingActionButton;
+  final FloatingActionButtonLocation? floatingActionButtonLocation;
   final Color? navBarColor;
   final Color? statusBarColor;
 
@@ -33,10 +35,12 @@ class BaseScaffold extends StatefulWidget {
     this.onBack,
     this.suffix,
     required this.body,
+    this.extendBodyBehindAppBar = true,
     this.onLoading = false,
     this.isFirstPage = false,
     this.bottomNavigationBar,
     this.floatingActionButton,
+    this.floatingActionButtonLocation,
     this.navBarColor = Colors.transparent,
     this.statusBarColor = Colors.transparent,
   });
@@ -75,10 +79,11 @@ class _BaseScaffoldState extends State<BaseScaffold> {
             ),
             child: Scaffold(
               backgroundColor: Colors.transparent,
-              extendBodyBehindAppBar: true,
+              extendBodyBehindAppBar: widget.extendBodyBehindAppBar,
               extendBody: false,
               appBar: widget.title != null || widget.titleWidget != null
                   ? AppBar(
+                      iconTheme: IconThemeData(color: Colors.white),
                       backgroundColor: Colors.transparent,
                       elevation: 0,
                       centerTitle: widget.isCenterTitle,
@@ -90,7 +95,8 @@ class _BaseScaffoldState extends State<BaseScaffold> {
               bottomNavigationBar: widget.bottomNavigationBar,
               floatingActionButton: widget.floatingActionButton,
               floatingActionButtonLocation:
-                  FloatingActionButtonLocation.centerFloat,
+                  widget.floatingActionButtonLocation ??
+                      FloatingActionButtonLocation.centerFloat,
             ),
           ),
         ),

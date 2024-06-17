@@ -14,7 +14,7 @@ class StockAssetListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: () => onTap?.call(),
+      onTap: onTap,
       contentPadding: EdgeInsets.symmetric(horizontal: 16),
       leading: CircleAvatar(
         radius: 25,
