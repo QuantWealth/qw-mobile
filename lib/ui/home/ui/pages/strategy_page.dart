@@ -64,7 +64,7 @@ class UserPortfolioCard extends StatelessWidget {
                 ),
               ),
               title: Text(
-                'Professional ${index + 1}',
+                'Uniswap ${index + 1}',
                 style: fontB(18),
               ),
               subtitle: Text(
@@ -82,7 +82,7 @@ class UserPortfolioCard extends StatelessWidget {
                 ),
                 child: Icon(
                   Icons.candlestick_chart,
-                  color: index.isEven ? Colors.green : Colors.red,
+                  color: Colors.green,
                   size: 30,
                 ),
               ),

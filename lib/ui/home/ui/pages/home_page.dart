@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:quantwealth/app/strings.dart';
 import 'package:quantwealth/app/theme/theme.dart';
-import 'package:quantwealth/injectable.dart';
-import 'package:quantwealth/ui/auth/cubit/auth_cubit.dart';
 import 'package:quantwealth/ui/balance/ui/pages/balance_page.dart';
 import 'package:quantwealth/ui/common/widgets/base_scaffold.dart';
 import 'package:quantwealth/ui/home/ui/pages/search_page.dart';
@@ -36,23 +34,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return BaseScaffold(
       navBarColor: bottomBarGrey,
-      title: _activePage.title,
-      // titleWidget: _activePage == PageItems.balance
-      //     ? SizedBox(
-      //         width: 80.0,
-      //         child: SvgPicture.asset('assets/icons/logo.svg'),
-      //       )
-      //     : null,
-      suffix: [
-        if (_activePage != PageItems.balance)
-          IconButton(
-            onPressed: () => getIt<AuthCubit>().logout(),
-            icon: Icon(Icons.logout_outlined),
-            color: white,
-          )
-      ],
-      isCenterTitle: true,
       body: PageView(
+        physics: NeverScrollableScrollPhysics(),
         controller: _pageController,
         onPageChanged: (index) {
           setState(() {
@@ -68,7 +51,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       bottomNavigationBar: Container(
-        height: 96.0,
+        height: 70.0,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(10.0),
@@ -76,39 +59,42 @@ class _HomePageState extends State<HomePage> {
           ),
           boxShadow: [
             BoxShadow(
-              color: gray900.withOpacity(0.1),
+              color: Colors.black.withOpacity(0.1),
               offset: Offset(0, 4),
               blurRadius: 8.0,
             ),
           ],
-          color: bottomBarGrey,
+          color: bottomBarGrey.withOpacity(.3),
         ),
-        child: Row(
-          children: PageItems.values
-              .map(
-                (e) => Expanded(
-                  child: IconButton(
-                    onPressed: () {
-                      _pageController.animateToPage(
-                        e.index,
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeInOut,
-                      );
-                    },
-                    icon: SizedBox(
-                      height: 32.0,
-                      width: 32.0,
-                      child: SvgPicture.asset(
-                        color: _activePage == e
-                            ? white
-                            : Colors.grey.withOpacity(.7),
-                        e.icon,
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 8.0),
+          child: Row(
+            children: PageItems.values
+                .map(
+                  (e) => Expanded(
+                    child: IconButton(
+                      onPressed: () {
+                        _pageController.animateToPage(
+                          e.index,
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeInOut,
+                        );
+                      },
+                      icon: SizedBox(
+                        height: 32.0,
+                        width: 32.0,
+                        child: SvgPicture.asset(
+                          color: _activePage == e
+                              ? white
+                              : Colors.grey.withOpacity(.7),
+                          e.icon,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              )
-              .toList(),
+                )
+                .toList(),
+          ),
         ),
       ),
     );
@@ -140,8 +126,7 @@ enum PageItems {
   balance,
   savings,
   search,
-  investments,
-  profile;
+  investments;
 
   String get icon {
     switch (this) {
@@ -153,8 +138,6 @@ enum PageItems {
         return 'assets/icons/bottomThree.svg';
       case PageItems.search:
         return 'assets/icons/search.svg';
-      case PageItems.profile:
-        return 'assets/icons/bottomFour.svg';
     }
   }
 
@@ -168,8 +151,6 @@ enum PageItems {
         return 'assets/icons/bottomThreeActive.svg';
       case PageItems.search:
         return 'assets/icons/search.svg';
-      case PageItems.profile:
-        return 'assets/icons/bottomFourActive.svg';
     }
   }
 
@@ -184,8 +165,6 @@ enum PageItems {
         return 'Staking';
       case PageItems.search:
         return 'Invest';
-      case PageItems.profile:
-        return 'Degens';
     }
   }
 
@@ -199,8 +178,6 @@ enum PageItems {
         return PageItems.search;
       case 3:
         return PageItems.investments;
-      case 4:
-        return PageItems.profile;
     }
     return null;
   }

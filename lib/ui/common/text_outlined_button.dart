@@ -24,14 +24,14 @@ class TextOutlinedButton extends StatelessWidget {
       child: OutlinedButton(
         onPressed: onPressed,
         style: Styles.outlinedButtonStyle.copyWith(
-          padding:  MaterialStateProperty.all(
+          padding:  WidgetStateProperty.all(
             padding ??
                 EdgeInsets.symmetric(
                   vertical: 16,
                   horizontal: 32,
                 ),
           ),
-          side: MaterialStateProperty.all(
+          side: WidgetStateProperty.all(
             BorderSide(color: borderColor),
           ),
         ),

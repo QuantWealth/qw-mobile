@@ -47,7 +47,7 @@ class SvgOutlinedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return OutlinedButton(
       style: Styles.outlinedButtonStyle
-          .copyWith(padding: MaterialStateProperty.all(padding)),
+          .copyWith(padding: WidgetStateProperty.all(padding)),
       onPressed: onPressed,
       child: SvgPicture.asset(icon,
           height: height,

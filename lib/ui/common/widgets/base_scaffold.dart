@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:quantwealth/app/theme/theme.dart';
 
-import 'default_image.dart';
 import 'default_loading.dart';
 
 class BaseScaffold extends StatefulWidget {
@@ -23,6 +22,7 @@ class BaseScaffold extends StatefulWidget {
   final FloatingActionButtonLocation? floatingActionButtonLocation;
   final Color? navBarColor;
   final Color? statusBarColor;
+  final PreferredSizeWidget? toolbar;
 
   const BaseScaffold({
     super.key,
@@ -41,6 +41,7 @@ class BaseScaffold extends StatefulWidget {
     this.bottomNavigationBar,
     this.floatingActionButton,
     this.floatingActionButtonLocation,
+    this.toolbar,
     this.navBarColor = Colors.transparent,
     this.statusBarColor = Colors.transparent,
   });
@@ -81,7 +82,9 @@ class _BaseScaffoldState extends State<BaseScaffold> {
               backgroundColor: Colors.transparent,
               extendBodyBehindAppBar: widget.extendBodyBehindAppBar,
               extendBody: false,
-              appBar: widget.title != null || widget.titleWidget != null
+              appBar: widget.title != null ||
+                      widget.titleWidget != null ||
+                      widget.toolbar != null
                   ? AppBar(
                       iconTheme: IconThemeData(color: Colors.white),
                       backgroundColor: Colors.transparent,
@@ -89,6 +92,7 @@ class _BaseScaffoldState extends State<BaseScaffold> {
                       centerTitle: widget.isCenterTitle,
                       title: widget.titleWidget,
                       actions: widget.suffix,
+                      bottom: widget.toolbar,
                     )
                   : null,
               body: widget.body,
@@ -103,66 +107,5 @@ class _BaseScaffoldState extends State<BaseScaffold> {
         if (widget.onLoading) const DefaultLoading(),
       ],
     );
-  }
-
-  _appBar() {
-    bool enableBack = widget.onBack != null;
-    bool enableTitle = widget.title != null;
-    bool enableSuffix = widget.suffix != null;
-
-    if (enableBack || enableSuffix || enableTitle) {
-      return Container(
-        padding: const EdgeInsets.symmetric(horizontal: 4),
-        color: Colors.transparent, // widget.backgroundColor ?? bg,
-        height: APPBAR_HEIGHT,
-        alignment: Alignment.center,
-        child: Stack(
-          alignment: Alignment.centerLeft,
-          children: [
-            if (enableBack || enableSuffix)
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  (enableBack)
-                      ? GestureDetector(
-                          onTap: () {
-                            FocusScope.of(context).unfocus();
-                            widget.onBack!();
-                          },
-                          child: Container(
-                            width: 40,
-                            height: 40,
-                            color: Colors.transparent,
-                            alignment: Alignment.centerLeft,
-                            child: DefaultImage(
-                              path: 'assets/icons/ic_back.svg',
-                              width: 40,
-                              height: 40,
-                            ),
-                          ),
-                        )
-                      : Container(),
-                  if (widget.suffix != null)
-                    Row(
-                      children: widget.suffix!,
-                    ),
-                ],
-              ),
-            if (enableTitle)
-              Container(
-                alignment: widget.isCenterTitle ? Alignment.center : null,
-                padding: EdgeInsets.only(left: widget.isCenterTitle ? 0 : 50),
-                child: Text(
-                  widget.title!,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: fontTitle(),
-                ),
-              ),
-          ],
-        ),
-      );
-    }
-    return Container();
   }
 }

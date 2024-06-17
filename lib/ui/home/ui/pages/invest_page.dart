@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:collection/collection.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +9,6 @@ import 'package:quantwealth/ui/common/add_funds_sheet.dart';
 import 'package:quantwealth/ui/common/text_outlined_button.dart';
 import 'package:quantwealth/ui/common/widgets/base_scaffold.dart';
 import 'package:quantwealth/ui/home/ui/pages/search_page.dart';
-import 'package:quantwealth/ui/savings/cubit/savings_cubit.dart';
 
 class InvestPage extends StatefulWidget {
   final List<int> selectedItems;
@@ -90,7 +87,6 @@ class _InvestPageState extends State<InvestPage> {
             ),
             child: Column(
               children: [
-                const SizedBox(height: 32.0),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: Row(
@@ -142,55 +138,20 @@ class _InvestPageState extends State<InvestPage> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 32.0),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 40.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: AmountInputLevels.uiValues
-                        .map((level) => TextButton(
-                              onPressed: () {},
-                              style: TextButton.styleFrom(
-                                foregroundColor: white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  side: BorderSide(
-                                    color: Colors.grey.withOpacity(.3),
-                                  ),
-                                ),
-                                elevation: 10,
-                                shadowColor: Colors.grey.shade600,
-                                backgroundColor: Colors.transparent,
-                                textStyle: TextStyle(
-                                  fontSize: 16.0,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              child: Text(
-                                '${level.value}%',
-                                style: TextStyle(
-                                  fontFamily: 'GalanoGrotesque',
-                                ),
-                              ),
-                            ))
-                        .toList(),
-                  ),
-                ),
-                SizedBox(height: 50),
               ],
             ),
           ),
-          AspectRatio(
-            aspectRatio: 1,
-            child: PieChart(
-              PieChartData(
-                borderData: FlBorderData(show: false),
-                sectionsSpace: 0,
-                centerSpaceRadius: 40,
-                sections: showingSections(),
-              ),
-            ),
-          ),
+          // AspectRatio(
+          //   aspectRatio: 1,
+          //   child: PieChart(
+          //     PieChartData(
+          //       borderData: FlBorderData(show: false),
+          //       sectionsSpace: 0,
+          //       centerSpaceRadius: 40,
+          //       sections: showingSections(),
+          //     ),
+          //   ),
+          // ),
           ListView.builder(
             physics: NeverScrollableScrollPhysics(),
             padding: EdgeInsets.all(20),
@@ -276,9 +237,6 @@ class _InvestPageState extends State<InvestPage> {
       final amount = (double.tryParse(_amountController.text) ?? 0) *
           (dataMap[index]! / 100);
 
-      log('amount: $amount');
-      log('dataMap: $dataMap');
-
       return PieChartSectionData(
         color: color,
         value: dataMap.values.sum == 0
@@ -286,7 +244,7 @@ class _InvestPageState extends State<InvestPage> {
             : dataMap[index],
         title:
             '${asset.name.substring(0, 3)}\n(\$${amount.toStringAsFixed(1)})',
-        radius: radius * (context.mediaQuery.size.width / 200),
+        radius: radius * (context.mediaQuery.size.width / 200) / 2,
         titleStyle: TextStyle(
           fontSize: fontSize,
           fontWeight: FontWeight.bold,

@@ -5,6 +5,7 @@ import 'package:quantwealth/app/extensions.dart';
 import 'package:quantwealth/app/theme/theme.dart';
 import 'package:quantwealth/ui/common/widgets/base_scaffold.dart';
 import 'package:quantwealth/ui/home/ui/pages/invest_page.dart';
+import 'package:quantwealth/ui/home/ui/pages/strategy_page.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -18,93 +19,157 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BaseScaffold(
-      navBarColor: bottomBarGrey,
-      floatingActionButton: Visibility(
-        visible: selectedItems.isNotEmpty,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-          child: SizedBox(
-            width: double.infinity,
-            child: FloatingActionButton.extended(
-              backgroundColor: Colors.blueGrey.withOpacity(.8),
-              onPressed: () => context.navigator.push(
-                InvestPage(selectedItems: selectedItems)
-                    .route(material: Platform.isAndroid),
-              ),
-              icon: Icon(
-                Icons.arrow_forward_ios,
-                color: Colors.white,
-              ),
-              label: Text(
-                'Invest',
-                style: fontSB(18, color: Colors.white),
+    return DefaultTabController(
+      length: 2,
+      child: BaseScaffold(
+        extendBodyBehindAppBar: false,
+        navBarColor: bottomBarGrey,
+        titleWidget: Text(
+          'Marketplace',
+          style: fontSB(24),
+        ),
+        isCenterTitle: true,
+        floatingActionButton: Visibility(
+          visible: selectedItems.isNotEmpty,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: SizedBox(
+              width: double.infinity,
+              child: FloatingActionButton.extended(
+                backgroundColor: Colors.black,
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(
+                    color: Colors.white,
+                    width: .5,
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                onPressed: () => context.navigator.push(
+                  InvestPage(selectedItems: selectedItems)
+                      .route(material: Platform.isAndroid),
+                ),
+                icon: Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.white,
+                ),
+                label: Text(
+                  'Invest',
+                  style: fontSB(18, color: Colors.white),
+                ),
               ),
             ),
           ),
         ),
-      ),
-      body: ListView.separated(
-        separatorBuilder: (context, index) {
-          return Divider(
-            color: white.withOpacity(0.2),
-            height: 1,
-            thickness: 1.0,
-          );
-        },
-        itemCount: stakingAssets.length,
-        padding: EdgeInsets.fromLTRB(16.0, 64.0, 16.0, 20.0),
-        itemBuilder: (context, index) {
-          final asset = stakingAssets[index];
-
-          if (index == 0) {
-            return Padding(
-              padding: const EdgeInsets.only(
-                left: 28.0,
-                right: 30.0,
-                bottom: 20,
-              ),
-              child: Row(
-                children: [
-                  Expanded(
+        body: SafeArea(
+          child: Column(
+            children: [
+              TabBar(
+                indicatorSize: TabBarIndicatorSize.label,
+                indicatorColor: Colors.white,
+                dividerColor: Colors.transparent,
+                tabs: [
+                  Tab(
                     child: Text(
-                      'Investments',
-                      style: fontB(18),
+                      'Custom',
+                      style: fontM(20, color: Colors.white),
                     ),
                   ),
-                  SizedBox(
-                    width: 75,
+                  Tab(
                     child: Text(
-                      'APR',
-                      style: fontB(18),
-                      textAlign: TextAlign.end,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 75,
-                    child: Text(
-                      'RF',
-                      style: fontB(18),
-                      textAlign: TextAlign.center,
+                      'Degens',
+                      style: fontM(20, color: Colors.white),
                     ),
                   ),
                 ],
               ),
-            );
-          }
+              Expanded(
+                child: TabBarView(
+                  children: [
+                    _customList(),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16.0),
+                      child: StrategyPage(),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
-          return InkWell(
-            onTap: () => setState(() {
-              if (selectedItems.contains(index)) {
-                selectedItems.remove(index);
-                return;
-              } else {
-                selectedItems.add(index);
-              }
-            }),
+  ListView _customList() {
+    return ListView.separated(
+      separatorBuilder: (context, index) {
+        return Divider(
+          color: white.withOpacity(0.2),
+          height: 6,
+          thickness: 1.0,
+        );
+      },
+      itemCount: stakingAssets.length,
+      padding: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 20.0),
+      itemBuilder: (context, index) {
+        final asset = stakingAssets[index];
+
+        if (index == 0) {
+          return Padding(
+            padding: const EdgeInsets.only(
+              left: 28.0,
+              right: 30.0,
+              bottom: 20,
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    'Investments',
+                    style: fontB(18),
+                  ),
+                ),
+                SizedBox(
+                  width: 75,
+                  child: Text(
+                    'APR',
+                    style: fontB(18),
+                    textAlign: TextAlign.end,
+                  ),
+                ),
+                SizedBox(
+                  width: 75,
+                  child: Text(
+                    'RF',
+                    style: fontB(18),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ],
+            ),
+          );
+        }
+
+        return GestureDetector(
+          onTap: () => setState(() {
+            if (selectedItems.contains(index)) {
+              selectedItems.remove(index);
+              return;
+            } else {
+              selectedItems.add(index);
+            }
+          }),
+          child: Container(
+            decoration: selectedItems.contains(index)
+                ? BoxDecoration(
+                    border: Border.all(
+                      color: Colors.white,
+                      width: .5,
+                    ),
+                    borderRadius: BorderRadius.circular(5),
+                  )
+                : null,
             child: ListTile(
-              selected: selectedItems.contains(index),
-              selectedTileColor: Colors.lightGreen.withOpacity(.4),
               title: Text(
                 asset.name,
                 style: fontSB(18),
@@ -113,20 +178,6 @@ class _SearchPageState extends State<SearchPage> {
                 asset.symbol,
                 style: fontR(16),
               ),
-              // leading: Checkbox(
-              //   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              //   activeColor: Colors.white,
-              //   checkColor: Colors.black,
-              //   value: selectedItems.contains(index),
-              //   onChanged: (value) => setState(() {
-              //     if (value == false) {
-              //       selectedItems.remove(index);
-              //       return;
-              //     } else {
-              //       selectedItems.add(index);
-              //     }
-              //   }),
-              // ),
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -160,9 +211,9 @@ class _SearchPageState extends State<SearchPage> {
                 ],
               ),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }
