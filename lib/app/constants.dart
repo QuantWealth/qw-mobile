@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:quantwealth/ui/balance/ui/widgets/asset_list_tile.dart';
 import 'package:quantwealth/ui/savings/infrastructure/datasource/approved_tx_dto.dart';
 
 abstract class Constants {}
@@ -12,3 +14,12 @@ const sampleTxData = ApprovedTxDto(
     value: '0',
   ),
 );
+
+final fakeAssets = List.generate(2, (index) {
+  return FakeAsset(
+    title: 'Asset ${index + 1}',
+    subtitle: 'Subtitle ${index + 1}',
+    amount: (1000 + index * 100).toStringAsFixed(2),
+    icon: index.isEven ? Icons.account_balance_wallet : Icons.account_balance,
+  );
+});

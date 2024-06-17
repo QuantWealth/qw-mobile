@@ -76,7 +76,7 @@ class _BaseScaffoldState extends State<BaseScaffold> {
             child: Scaffold(
               backgroundColor: Colors.transparent,
               extendBodyBehindAppBar: true,
-              extendBody: true,
+              extendBody: false,
               appBar: widget.title != null || widget.titleWidget != null
                   ? AppBar(
                       backgroundColor: Colors.transparent,

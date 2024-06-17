@@ -37,12 +37,12 @@ class _HomePageState extends State<HomePage> {
     return BaseScaffold(
       navBarColor: bottomBarGrey,
       title: _activePage.title,
-      titleWidget: _activePage == PageItems.balance
-          ? SizedBox(
-              width: 80.0,
-              child: SvgPicture.asset('assets/icons/logo.svg'),
-            )
-          : null,
+      // titleWidget: _activePage == PageItems.balance
+      //     ? SizedBox(
+      //         width: 80.0,
+      //         child: SvgPicture.asset('assets/icons/logo.svg'),
+      //       )
+      //     : null,
       suffix: [
         if (_activePage != PageItems.balance)
           IconButton(
@@ -100,8 +100,8 @@ class _HomePageState extends State<HomePage> {
                       width: 32.0,
                       child: SvgPicture.asset(
                         color: _activePage == e
-                            ? Colors.grey.withOpacity(.9)
-                            : white,
+                            ? white
+                            : Colors.grey.withOpacity(.7),
                         e.icon,
                       ),
                     ),
