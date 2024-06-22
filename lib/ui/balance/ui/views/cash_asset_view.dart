@@ -1,3 +1,4 @@
+import 'package:countup/countup.dart';
 import 'package:flutter/material.dart';
 import 'package:quantwealth/app/extensions.dart';
 import 'package:quantwealth/app/theme/theme.dart';
@@ -38,8 +39,12 @@ class CashAssetView extends StatelessWidget {
         children: [
           ListTile(
             contentPadding: const EdgeInsets.symmetric(horizontal: 18.0),
-            title: Text(
-              '\$${asset.amount}',
+            title: Countup(
+              begin: 0,
+              end: double.parse(asset.amount),
+              prefix: '\$',
+              separator: ',',
+              duration: const Duration(seconds: 1),
               style: fontB(40),
             ),
             subtitle: Row(

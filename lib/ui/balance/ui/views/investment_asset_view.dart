@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:countup/countup.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:quantwealth/app/extensions.dart';
@@ -39,8 +40,12 @@ class InvestmentAssetView extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18.0),
-            child: Text(
-              '\$${asset.amount}',
+            child: Countup(
+              begin: 0,
+              end: double.parse(asset.amount),
+              prefix: '\$',
+              separator: ',',
+              duration: const Duration(seconds: 1),
               style: fontB(40),
             ),
           ),

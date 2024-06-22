@@ -15,37 +15,56 @@ class _StrategyPageState extends State<StrategyPage> {
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: .0),
       child: ListView(
         physics: BouncingScrollPhysics(),
-        children: List<int>.generate(20, (index) => index)
-            .map((index) => Padding(
-                  padding: const EdgeInsets.only(bottom: 12.0),
-                  child: UserPortfolioCard(index: index, onTap: () {}),
-                ))
-            .toList(),
+        children: List<int>.generate(20, (index) => index).map((index) {
+          final color = Colors.primaries[index % Colors.primaries.length];
+
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 12.0),
+            child: UserPortfolioCard(
+              title: 'Uniswap ${index + 1}',
+              subtitle: '900 / 900',
+              userIconColor: color,
+              onTap: () {},
+            ),
+          );
+        }).toList(),
       ),
     );
   }
 }
 
 class UserPortfolioCard extends StatelessWidget {
-  final int index;
+  final String title, subtitle;
+  final bool showUserIcon;
+  final Color userIconColor, boxShadowColor;
+  final Widget? trailing;
   final Function()? onTap;
 
   const UserPortfolioCard({
     super.key,
-    required this.index,
+    required this.title,
+    required this.subtitle,
+    this.showUserIcon = true,
+    this.userIconColor = Colors.white,
+    this.boxShadowColor = Colors.transparent,
+    this.trailing,
     this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    final color = Colors.primaries[index % Colors.primaries.length];
-
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(12),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: boxShadowColor,
+              blurRadius: 0,
+            ),
+          ],
           borderRadius: BorderRadius.circular(12),
           border: Border.all(color: Colors.grey, width: .5),
         ),
@@ -54,38 +73,27 @@ class UserPortfolioCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           children: [
             ListTile(
-              leading: CircleAvatar(
-                backgroundColor: color,
-                radius: 24.0,
-                child: Icon(
-                  Icons.account_circle,
-                  color: Colors.white,
-                  size: 30,
-                ),
-              ),
+              leading: showUserIcon
+                  ? Icon(
+                      Icons.account_circle,
+                      color: Colors.white,
+                      size: 30,
+                    )
+                  : null,
               title: Text(
-                'Uniswap ${index + 1}',
+                title,
                 style: fontB(18),
               ),
               subtitle: Text(
-                '900 / 900',
+                subtitle,
                 style: fontR(16),
               ),
-              trailing: OutlinedButton(
-                onPressed: () {},
-                style: OutlinedButton.styleFrom(
-                  minimumSize: Size.zero,
-                  padding: EdgeInsets.all(8),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+              trailing: trailing ??
+                  Icon(
+                    Icons.trending_up_outlined,
+                    color: Colors.green,
+                    size: 30,
                   ),
-                ),
-                child: Icon(
-                  Icons.candlestick_chart,
-                  color: Colors.green,
-                  size: 30,
-                ),
-              ),
             ),
             Row(
               children: [
@@ -97,7 +105,7 @@ class UserPortfolioCard extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     subtitle: Text(
-                      '+255,0${index}0.08',
+                      '+255,020.08',
                       style: fontB(16, color: Colors.green),
                       textAlign: TextAlign.center,
                     ),
@@ -111,7 +119,7 @@ class UserPortfolioCard extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     subtitle: Text(
-                      '+3$index.89%',
+                      '+30.89%',
                       style: fontB(16, color: Colors.green),
                       textAlign: TextAlign.center,
                     ),
@@ -129,7 +137,7 @@ class UserPortfolioCard extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     subtitle: Text(
-                      '\$20,${index}2,090.2',
+                      '\$20,22,090.2',
                       style: fontSB(14, color: Colors.white),
                       textAlign: TextAlign.center,
                     ),
@@ -143,7 +151,7 @@ class UserPortfolioCard extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     subtitle: Text(
-                      '+2$index.89%',
+                      '+23.89%',
                       style: fontSB(14, color: Colors.white),
                       textAlign: TextAlign.center,
                     ),
@@ -157,7 +165,7 @@ class UserPortfolioCard extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     subtitle: Text(
-                      '+9.${index}5%',
+                      '+9.45%',
                       style: fontSB(14, color: Colors.white),
                       textAlign: TextAlign.center,
                     ),

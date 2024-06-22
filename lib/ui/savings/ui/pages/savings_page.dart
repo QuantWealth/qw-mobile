@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quantwealth/app/extensions.dart';
+import 'package:quantwealth/app/theme/theme.dart';
 import 'package:quantwealth/injectable.dart';
 import 'package:quantwealth/ui/auth/cubit/auth_cubit.dart';
 import 'package:quantwealth/ui/common/add_funds_sheet.dart';
 import 'package:quantwealth/ui/common/tx_sign_sheet.dart';
+import 'package:quantwealth/ui/common/widgets/base_scaffold.dart';
 import 'package:quantwealth/ui/profile/cubit/profile_cubit.dart';
 import 'package:quantwealth/ui/savings/cubit/savings_cubit.dart';
 import 'package:quantwealth/ui/savings/cubit/tx_cubit.dart';
@@ -103,28 +105,37 @@ class _SavingsPageState extends State<SavingsPage>
               );
             }
           },
-          child: SavingsView(
-            onAmountChanged: (val) => getIt<SavingsCubit>().amountChanged(val),
-            onLevelChanged: (val) {},
-            onSelectSavings: (op) {
-              getIt<SavingsCubit>().switchOption(op);
-              InvestConfirmPopup.show(
-                context,
-                title: '${op.name} details',
-                description:
-                    'You are about to invest in the ${op.name.toLowerCase()} savings option. Are you sure you want to continue?',
-                onContinue: () {
-                  // getIt<SavingsCubit>().invest();
-                  getIt<TxCubit>().sendApprove(
-                    amount: int.tryParse(state.amount) ?? 0,
-                  );
-                },
-              );
-            },
-            onInvest: () {},
-            savings: state.savingOptions,
-            selectedSavings: state.selectedSavingsOption,
-            balance: '\$5500',
+          child: BaseScaffold(
+            extendBodyBehindAppBar: false,
+            titleWidget: Text(
+              'AI Strategy',
+              style: fontSB(24),
+            ),
+            isCenterTitle: true,
+            body: SavingsView(
+              onAmountChanged: (val) =>
+                  getIt<SavingsCubit>().amountChanged(val),
+              onLevelChanged: (val) {},
+              onSelectSavings: (op) {
+                getIt<SavingsCubit>().switchOption(op);
+                InvestConfirmPopup.show(
+                  context,
+                  title: '${op.name} details',
+                  description:
+                      'You are about to invest in the ${op.name.toLowerCase()} savings option. Are you sure you want to continue?',
+                  onContinue: () {
+                    // getIt<SavingsCubit>().invest();
+                    getIt<TxCubit>().sendApprove(
+                      amount: int.tryParse(state.amount) ?? 0,
+                    );
+                  },
+                );
+              },
+              onInvest: () {},
+              savings: state.savingOptions,
+              selectedSavings: state.selectedSavingsOption,
+              balance: '\$5500',
+            ),
           ),
         );
       },

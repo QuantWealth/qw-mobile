@@ -29,40 +29,62 @@ class _SearchPageState extends State<SearchPage> {
           style: fontSB(24),
         ),
         isCenterTitle: true,
-        floatingActionButton: Visibility(
-          visible: selectedItems.isNotEmpty,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            child: SizedBox(
-              width: double.infinity,
-              child: FloatingActionButton.extended(
-                backgroundColor: Colors.black,
-                shape: RoundedRectangleBorder(
-                  side: BorderSide(
-                    color: Colors.white,
-                    width: .5,
-                  ),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                onPressed: () => context.navigator.push(
-                  InvestPage(selectedItems: selectedItems)
-                      .route(material: Platform.isAndroid),
-                ),
-                icon: Icon(
-                  Icons.arrow_forward_ios,
-                  color: Colors.white,
-                ),
-                label: Text(
-                  'Invest',
-                  style: fontSB(18, color: Colors.white),
-                ),
-              ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: SizedBox(
+          width: double.infinity,
+          child: FloatingActionButton.extended(
+            enableFeedback: true,
+            backgroundColor: Colors.black,
+            onPressed: () => selectedItems.isNotEmpty
+                ? context.navigator.push(
+                    InvestPage(selectedItems: selectedItems)
+                        .route(material: Platform.isAndroid),
+                  )
+                : null,
+            icon: Text(
+              'Invest',
+              style: fontSB(20, color: Colors.white),
+            ),
+            label: Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.white,
             ),
           ),
         ),
         body: SafeArea(
           child: Column(
             children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: SearchBar(
+                  hintText: 'Search for strategies, assets, etc.',
+                  side: WidgetStatePropertyAll(
+                    BorderSide(
+                      color: Colors.white,
+                      width: .3,
+                    ),
+                  ),
+                  backgroundColor: WidgetStatePropertyAll(
+                    Colors.grey.withOpacity(.05),
+                  ),
+                  leading: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Icon(
+                      Icons.search,
+                      color: Colors.white,
+                    ),
+                  ),
+                  trailing: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.filter_list,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               TabBar(
                 indicatorSize: TabBarIndicatorSize.label,
                 indicatorColor: Colors.white,
@@ -82,6 +104,7 @@ class _SearchPageState extends State<SearchPage> {
                   ),
                 ],
               ),
+              SizedBox(height: 10.0),
               Expanded(
                 child: TabBarView(
                   children: [
@@ -93,6 +116,7 @@ class _SearchPageState extends State<SearchPage> {
                   ],
                 ),
               ),
+              SizedBox(height: 60.0)
             ],
           ),
         ),
@@ -102,53 +126,13 @@ class _SearchPageState extends State<SearchPage> {
 
   ListView _customList() {
     return ListView.separated(
-      separatorBuilder: (context, index) {
-        return Divider(
-          color: white.withOpacity(0.2),
-          height: 6,
-          thickness: 1.0,
-        );
-      },
       itemCount: stakingAssets.length,
       padding: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 20.0),
+      separatorBuilder: (context, index) => Padding(
+        padding: EdgeInsets.symmetric(vertical: 8.0),
+      ),
       itemBuilder: (context, index) {
         final asset = stakingAssets[index];
-
-        if (index == 0) {
-          return Padding(
-            padding: const EdgeInsets.only(
-              left: 28.0,
-              right: 30.0,
-              bottom: 20,
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    'Investments',
-                    style: fontB(18),
-                  ),
-                ),
-                SizedBox(
-                  width: 75,
-                  child: Text(
-                    'APR',
-                    style: fontB(18),
-                    textAlign: TextAlign.end,
-                  ),
-                ),
-                SizedBox(
-                  width: 75,
-                  child: Text(
-                    'RF',
-                    style: fontB(18),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ],
-            ),
-          );
-        }
 
         return GestureDetector(
           onTap: () => setState(() {
@@ -159,57 +143,68 @@ class _SearchPageState extends State<SearchPage> {
               selectedItems.add(index);
             }
           }),
-          child: Container(
-            decoration: selectedItems.contains(index)
-                ? BoxDecoration(
-                    border: Border.all(
-                      color: Colors.white,
-                      width: .5,
-                    ),
-                    borderRadius: BorderRadius.circular(5),
-                  )
-                : null,
-            child: ListTile(
-              title: Text(
-                asset.name,
-                style: fontSB(18),
+          child: AnimatedContainer(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: Colors.grey,
+                width: selectedItems.contains(index) ? 3 : .5,
               ),
-              subtitle: Text(
-                asset.symbol,
-                style: fontR(16),
-              ),
-              trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: 70,
-                        child: Text(
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 12),
+            duration: const Duration(milliseconds: 200),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                ListTile(
+                  title: Text(
+                    asset.name,
+                    style: fontB(18),
+                  ),
+                  subtitle: Text(
+                    asset.symbol,
+                    style: fontR(16),
+                  ),
+                  trailing: Icon(
+                    Icons.stacked_line_chart_rounded,
+                    color: Colors.green,
+                    size: 30,
+                  ),
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: ListTile(
+                        title: Text(
+                          'APR',
+                          style: fontR(13, color: Colors.grey),
+                          textAlign: TextAlign.center,
+                        ),
+                        subtitle: Text(
                           '${asset.apy}%',
-                          style: fontB(18),
-                          textAlign: TextAlign.end,
+                          style: fontB(16, color: Colors.white),
+                          textAlign: TextAlign.center,
                         ),
                       ),
-                    ],
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: 70,
-                        child: Text(
+                    ),
+                    Expanded(
+                      child: ListTile(
+                        title: Text(
+                          'Risk Profile',
+                          style: fontR(13, color: Colors.grey),
+                          textAlign: TextAlign.center,
+                        ),
+                        subtitle: Text(
                           '${asset.riskProfile}%',
-                          style: fontB(18),
-                          textAlign: TextAlign.end,
+                          style: fontB(16, color: Colors.white),
+                          textAlign: TextAlign.center,
                         ),
                       ),
-                    ],
-                  ),
-                ],
-              ),
+                    )
+                  ],
+                ),
+              ],
             ),
           ),
         );

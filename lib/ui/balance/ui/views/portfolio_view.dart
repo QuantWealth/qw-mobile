@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:countup/countup.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:quantwealth/app/constants.dart';
@@ -28,13 +29,17 @@ class PortfolioView extends StatelessWidget {
               Expanded(
                 child: ListTile(
                   contentPadding: EdgeInsets.zero,
-                  title: Text(
-                    '\$138,943',
-                    style: fontB(30),
+                  title: Countup(
+                    begin: 0,
+                    end: 138943,
+                    prefix: '\$',
+                    separator: ',',
+                    duration: const Duration(seconds: 1),
+                    style: fontB(36),
                   ),
                   subtitle: Text(
                     '\$1.3M net worth at 60',
-                    style: fontM(18, color: Colors.grey),
+                    style: fontM(16, color: Colors.grey),
                   ),
                 ),
               ),
@@ -234,6 +239,9 @@ class PortfolioChart extends StatelessWidget {
         gridData: FlGridData(show: true),
         titlesData: FlTitlesData(show: false),
         borderData: FlBorderData(show: false),
+        showingTooltipIndicators: [
+          // TODO
+        ],
         lineTouchData: LineTouchData(
           handleBuiltInTouches: true,
           touchTooltipData: LineTouchTooltipData(

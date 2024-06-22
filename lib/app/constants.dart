@@ -28,13 +28,13 @@ final cashAssets = [
   FakeAsset(
     title: 'Account',
     subtitle: 'Individual',
-    amount: '11,400.00',
+    amount: '11400.00',
     icon: Icons.account_balance_wallet,
   ),
   FakeAsset(
     title: 'DCA',
     subtitle: 'Individual',
-    amount: '1,000.43',
+    amount: '1000.43',
     icon: Icons.account_balance,
   ),
 ];
