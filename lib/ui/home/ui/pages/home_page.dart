@@ -4,8 +4,8 @@ import 'package:quantwealth/app/strings.dart';
 import 'package:quantwealth/app/theme/theme.dart';
 import 'package:quantwealth/ui/balance/ui/pages/balance_page.dart';
 import 'package:quantwealth/ui/common/widgets/base_scaffold.dart';
+import 'package:quantwealth/ui/home/ui/pages/profile_page.dart';
 import 'package:quantwealth/ui/home/ui/pages/search_page.dart';
-import 'package:quantwealth/ui/home/ui/pages/staking_page.dart';
 import 'package:quantwealth/ui/home/ui/pages/strategy_page.dart';
 import 'package:quantwealth/ui/savings/ui/pages/savings_page.dart';
 
@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
           BalancePage(),
           SavingsPage(),
           SearchPage(),
-          StakingPage(),
+          ProfilePage(),
           StrategyPage(),
         ],
       ),
