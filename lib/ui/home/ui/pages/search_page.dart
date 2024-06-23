@@ -33,6 +33,7 @@ class _SearchPageState extends State<SearchPage> {
         floatingActionButton: SizedBox(
           width: double.infinity,
           child: FloatingActionButton.extended(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
             enableFeedback: true,
             backgroundColor: Colors.black,
             onPressed: () => selectedItems.isNotEmpty

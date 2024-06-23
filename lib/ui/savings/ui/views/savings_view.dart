@@ -211,7 +211,7 @@ class _SavingsViewState extends State<SavingsView> {
                             ),
                           ],
                         ),
-                        onTap: () {},
+                        onTap: () => widget.onSelectSavings(saving),
                         boxShadowColor: Colors.grey.withOpacity(.05),
                       ),
                     ))
