@@ -1,10 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:quantwealth/app/extensions.dart';
 import 'package:quantwealth/app/strings.dart';
 import 'package:quantwealth/app/theme/theme.dart';
 import 'package:quantwealth/ui/home/ui/pages/strategy_page.dart';
 import 'package:quantwealth/ui/savings/cubit/savings_cubit.dart';
 import 'package:quantwealth/ui/savings/infrastructure/datasource/savings_dto.dart';
+import 'package:quantwealth/ui/savings/ui/views/strategy_details.dart';
 
 class SavingsView extends StatefulWidget {
   final void Function(String) onAmountChanged;
@@ -211,7 +215,14 @@ class _SavingsViewState extends State<SavingsView> {
                             ),
                           ],
                         ),
-                        onTap: () => widget.onSelectSavings(saving),
+                        onTap: () => context.navigator.push(
+                          StrategyDetailsPopup(
+                            savings: saving,
+                            onInvest: widget.onSelectSavings,
+                          ).route(
+                            material: Platform.isAndroid,
+                          ),
+                        ),
                         boxShadowColor: Colors.grey.withOpacity(.05),
                       ),
                     ))

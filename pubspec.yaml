@@ -41,6 +41,7 @@ dependencies:
   fluttertoast: ^8.2.6
   cached_network_image: ^3.3.1
   countup: ^0.1.4
+  k_chart_plus: ^1.0.2
 
 dev_dependencies:
   flutter_test:
@@ -57,6 +58,7 @@ flutter:
   assets:
     - assets/icons/
     - assets/images/
+    - assets/market_data.json
   fonts:
     - family: GalanoGrotesque
       fonts:
