@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:quantwealth/core/env/app_env.dart';
 import 'package:web3modal_flutter/web3modal_flutter.dart';
+
 import 'wallet_provider.dart';
 
 class EvmWallet {
@@ -41,8 +42,8 @@ class WalletConnectProvider implements WalletProvider {
             'eth_sendTransaction',
             'eth_sign',
             'personal_sign',
-            'eth_sendRawTransaction',
             'eth_signTypedData_v4',
+            'eth_signTypedData',
           ],
           events: [
             'chainChanged',

@@ -59,13 +59,13 @@ class _SearchPageState extends State<SearchPage> {
                 padding: const EdgeInsets.all(16.0),
                 child: SearchBar(
                   hintText: 'Search for strategies, assets, etc.',
-                  side: WidgetStatePropertyAll(
+                  side: MaterialStatePropertyAll(
                     BorderSide(
                       color: Colors.white,
                       width: .3,
                     ),
                   ),
-                  backgroundColor: WidgetStatePropertyAll(
+                  backgroundColor: MaterialStatePropertyAll(
                     Colors.grey.withOpacity(.05),
                   ),
                   leading: Padding(

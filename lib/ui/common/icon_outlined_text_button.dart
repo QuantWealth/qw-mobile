@@ -23,7 +23,7 @@ class IconOutlinedTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return OutlinedButton(
       style: Styles.outlinedButtonStyle.copyWith(
-        padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
+        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
           EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         ),
       ),

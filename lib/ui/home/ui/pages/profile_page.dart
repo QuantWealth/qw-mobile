@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quantwealth/app/theme/theme.dart';
+import 'package:quantwealth/injectable.dart';
+import 'package:quantwealth/ui/auth/cubit/auth_cubit.dart';
 import 'package:quantwealth/ui/common/widgets/base_scaffold.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -18,7 +20,7 @@ class ProfilePage extends StatelessWidget {
       suffix: [
         IconButton(
           icon: Icon(Icons.logout_sharp),
-          onPressed: () {},
+          onPressed: () => getIt<AuthCubit>().logout(),
         ),
       ],
       body: ListView(

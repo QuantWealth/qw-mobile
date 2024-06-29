@@ -150,7 +150,6 @@ class _StrategyDetailsPopupState extends State<StrategyDetailsPopup> {
                               children: [
                                 ListTile(
                                   dense: true,
-                                  minTileHeight: .0,
                                   minLeadingWidth: .0,
                                   title: Text(
                                     'Flexi',
@@ -170,7 +169,6 @@ class _StrategyDetailsPopupState extends State<StrategyDetailsPopup> {
                                 ),
                                 ListTile(
                                   dense: true,
-                                  minTileHeight: .0,
                                   minLeadingWidth: .0,
                                   title: Text(
                                     'Fixed',
@@ -189,7 +187,6 @@ class _StrategyDetailsPopupState extends State<StrategyDetailsPopup> {
                                   ),
                                 ),
                                 ListTile(
-                                  minTileHeight: .0,
                                   minLeadingWidth: .0,
                                   dense: true,
                                   title: Text(
